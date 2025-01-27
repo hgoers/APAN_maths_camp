@@ -1,0 +1,85 @@
+---
+title: "Introduction"
+format:
+  html:
+    code-link: true
+toc-depth: 4
+execute: 
+  warning: false
+  message: false
+  echo: true
+  fig-width: 10
+---
+
+Welcome to APAN Maths Camp. This hands-on introduction to political science data analysis will (re)introduce you to R and statistics in an accessible and engaging way. We will avoid abstractions and jargon, opting instead for a hands-on, ground-up, and simulation-focused approach to understanding how these concepts and skills work.
+
+By the end of this summer, you’ll be prepared to tackle the quantitative elements of your coursework. No prior experience in statistics or coding (and definitely no ancient Greek) is needed—just bring your curiosity!
+
+## What this course covers
+
+After successfully completing this course you will be able to:
+
+-   Describe important features of your outcomes of interest and the variables you think drive changes to those outcomes
+
+-   Identify and evaluate the relationship between variables and continuous or binary outcomes using appropriate statistical models
+
+-   Describe those relationships using clear and precise language
+
+-   Understand the difference between different approaches to statistical analysis and uncertainty
+
+-   Critically evaluate empirical claims made in political news and analysis
+
+-   Use R to collect, clean, and analyze data
+
+-   Use Quarto and markdown communicate your findings.
+
+## Course structure
+
+This course is asynchronous. You will have access to all content and assessments throughout the summer break. You can complete these at whatever time suits you best. We recommend getting an early start: you need to complete all the content, quizzes, and the final exam before your first week of classes.
+
+The course comprises ten substantive sessions. You should complete these in order: each builds on the previous sessions. Each includes some written content, a worked example of the concepts being discussed, and relevant R code. Some include short recorded lectures.
+
+Each session ends with a mandatory multiple-choice quiz (taken through ELMs). You need to obtain a score of X percent or higher on each session's quiz before you can move on to the next one. There are no limits on the number of times you can attempt the quiz.
+
+::: callout-note
+We understand that some of you are coming into the APAN M.S. program with a strong background in statistics and R. If you are familiar with the topics covered in a given session, you can "test-out" of it by obtaining a mark of X percent or higher on its multiple-choice quiz before starting its content.
+:::
+
+You will also complete a final exam at the end of the course. All material covered in all ten sessions will be tested.
+
+### Introduction to R
+
+We also provide an optional introduction to R. If you have no background in R or would like to brush up on your coding skills (including your familiarity with the `tidyverse`), I suggest that you start there.
+
+You will find it in the **Introduction to R** section of the course website. It includes seven short sessions that will introduce you to:
+
+1.  R and RStudio
+2.  Data visualization
+3.  Data transformation
+4.  Data wrangling
+5.  Data merging
+6.  Data programming
+7.  Communication using Quarto and markdown.
+
+After completing this introduction, you will be comfortable using this important tool for data analysis. You will be able to collect data, run analyses, and communicate your findings all using R.
+
+## Course resources
+
+Each session includes several resources written just for you. These can all be accessed from this website. They include:
+
+-   detailed written and recorded content introducing the statistical concepts you are required to know prior to starting the program
+-   worked examples of these concepts being used to answer political science questions
+-   the R code used to apply these concepts
+-   a comprehensive introduction to R.
+
+There are no additional required readings for this course. Along the way, I may suggest other resources - book chapters, blog posts, videos, etc. - that you might find helpful. Sometimes it helps to hear these concepts explained in a couple of different ways.
+
+### Additional required resources
+
+To complete this course, you need access to a personal computer and a stable internet connection. You also need to have access to the latest versions of R and RStudio. Here are detailed instructions on how to download or update these two free resources:
+
+{{< fa book >}} [Instructions on downloading R](https://r4ds.hadley.nz/intro#r)
+
+{{< fa book >}} [Instructions on downloading RStudio](https://r4ds.hadley.nz/intro#rstudio)
+
+Everything you need to successfully complete this course is available for free.

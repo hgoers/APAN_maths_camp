@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Exploring the Relationship Between Two Variables – GVPT399F</title>
+<title>Exploring the Relationship Between Two Variables – APAN Maths Camp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -123,13 +123,13 @@ window.Quarto = {
 };
 </script><link rel="stylesheet" href="../html/custom.css">
 </head>
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">GVPT399F</span>
+    <span class="navbar-title">APAN Maths Camp</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -143,7 +143,7 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../content/00-introduction.html" aria-current="page"> 
+    <a class="nav-link" href="../content/00-introduction.qmd"> 
 <span class="menu-text">Content</span></a>
   </li>  
 </ul>
@@ -151,176 +151,8 @@ window.Quarto = {
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/03-01-wrangling.html">Session 3</a></li><li class="breadcrumb-item"><a href="../content/03-02-bivariate.html">Exploring the Relationship Between Two Variables</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-<li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Session 0</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/00-introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Session 1</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/01-01-visualization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introducing R Through Data Visualization</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/01-02-experiments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Causes and Effects</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Session 2</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/02-01-transformation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Transformation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/02-02-surveys_to_pops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">From Samples to the Population</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Session 3</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/03-01-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Wrangling</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/03-02-bivariate.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Exploring the Relationship Between Two Variables</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Session 4</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/04-01-merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Merging</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/04-02-linear_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Estimating Causal Effects with Observational Data</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Session 5</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/05-01-programming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Programming</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/05-02-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Probability</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Session 6</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/06-01-communicating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Communication</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/06-02-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Measuring Uncertainty</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-    </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
@@ -363,7 +195,7 @@ window.Quarto = {
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/hgoers/GVPT339F/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/03-01-wrangling.html">Session 3</a></li><li class="breadcrumb-item"><a href="../content/03-02-bivariate.html">Exploring the Relationship Between Two Variables</a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Exploring the Relationship Between Two Variables</h1>
 </div>
 
@@ -738,8 +570,8 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
 
     <script>
 
-      function styleCell_udhtpxx8l88u7ajk9i87(i, j, css_id) {
-          var table = document.getElementById("tinytable_udhtpxx8l88u7ajk9i87");
+      function styleCell_we15hp6n857nhg9nw1eg(i, j, css_id) {
+          var table = document.getElementById("tinytable_we15hp6n857nhg9nw1eg");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -749,7 +581,7 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_udhtpxx8l88u7ajk9i87');
+        var table = document.getElementById('tinytable_we15hp6n857nhg9nw1eg');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -757,8 +589,8 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_udhtpxx8l88u7ajk9i87(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_udhtpxx8l88u7ajk9i87");
+      function spanCell_we15hp6n857nhg9nw1eg(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_we15hp6n857nhg9nw1eg");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -788,52 +620,52 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 2, j: 1 },  ], css_id: 'tinytable_css_gp6fyrts2kkymg4zr0m7',}, 
-          { positions: [ { i: 2, j: 0 },  ], css_id: 'tinytable_css_evbtwbqovxvxeriid2vo',}, 
-          { positions: [ { i: 3, j: 0 },  ], css_id: 'tinytable_css_co6iwwtxd6q25q17w1cv',}, 
-          { positions: [ { i: 1, j: 0 },  ], css_id: 'tinytable_css_bvn9pbo2itzb7npfeat2',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_aftekfzn7muf9uw2t78z',}, 
-          { positions: [ { i: 1, j: 1 },  ], css_id: 'tinytable_css_4pneofg5k5m0b6s3xbzy',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_1jega5286iiax7wrzeky',}, 
-          { positions: [ { i: 3, j: 1 },  ], css_id: 'tinytable_css_0xz0oodyi57yt1r6pg4o',}, 
+          { positions: [ { i: 3, j: 1 },  ], css_id: 'tinytable_css_qd6gwk4i2z2oznyat0zp',}, 
+          { positions: [ { i: 2, j: 0 },  ], css_id: 'tinytable_css_ohmtlpafcuypucwpvqzk',}, 
+          { positions: [ { i: 1, j: 1 },  ], css_id: 'tinytable_css_lvessj9utgp8rc7sc4ky',}, 
+          { positions: [ { i: 1, j: 0 },  ], css_id: 'tinytable_css_kgg5ij8tmby8yj3a3jum',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_bnxqarfi7am52y64ku1k',}, 
+          { positions: [ { i: 3, j: 0 },  ], css_id: 'tinytable_css_4jjadw1ynj589fvhp5hn',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_3319pzfb0q388wpoc11v',}, 
+          { positions: [ { i: 2, j: 1 },  ], css_id: 'tinytable_css_32o97805x2rghdx5y5nj',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_udhtpxx8l88u7ajk9i87(cell.i, cell.j, group.css_id);
+                  styleCell_we15hp6n857nhg9nw1eg(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_gp6fyrts2kkymg4zr0m7, .table th.tinytable_css_gp6fyrts2kkymg4zr0m7 { text-align: center; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_evbtwbqovxvxeriid2vo, .table th.tinytable_css_evbtwbqovxvxeriid2vo { text-align: left; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_co6iwwtxd6q25q17w1cv, .table th.tinytable_css_co6iwwtxd6q25q17w1cv { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_bvn9pbo2itzb7npfeat2, .table th.tinytable_css_bvn9pbo2itzb7npfeat2 { text-align: left; }
-      .table td.tinytable_css_aftekfzn7muf9uw2t78z, .table th.tinytable_css_aftekfzn7muf9uw2t78z { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_4pneofg5k5m0b6s3xbzy, .table th.tinytable_css_4pneofg5k5m0b6s3xbzy { text-align: center; }
-      .table td.tinytable_css_1jega5286iiax7wrzeky, .table th.tinytable_css_1jega5286iiax7wrzeky { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_0xz0oodyi57yt1r6pg4o, .table th.tinytable_css_0xz0oodyi57yt1r6pg4o { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_qd6gwk4i2z2oznyat0zp, .table th.tinytable_css_qd6gwk4i2z2oznyat0zp { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_ohmtlpafcuypucwpvqzk, .table th.tinytable_css_ohmtlpafcuypucwpvqzk { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_lvessj9utgp8rc7sc4ky, .table th.tinytable_css_lvessj9utgp8rc7sc4ky { text-align: center; }
+      .table td.tinytable_css_kgg5ij8tmby8yj3a3jum, .table th.tinytable_css_kgg5ij8tmby8yj3a3jum { text-align: left; }
+      .table td.tinytable_css_bnxqarfi7am52y64ku1k, .table th.tinytable_css_bnxqarfi7am52y64ku1k { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_4jjadw1ynj589fvhp5hn, .table th.tinytable_css_4jjadw1ynj589fvhp5hn { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_3319pzfb0q388wpoc11v, .table th.tinytable_css_3319pzfb0q388wpoc11v { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_32o97805x2rghdx5y5nj, .table th.tinytable_css_32o97805x2rghdx5y5nj { text-align: center; border-bottom: solid black 0.05em; }
     </style>
 <div class="container">
-      <table class="table table-borderless" id="tinytable_udhtpxx8l88u7ajk9i87" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_we15hp6n857nhg9nw1eg" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
 <thead><tr>
 <th scope="col"> </th>
                 <th scope="col">(1)</th>
               </tr></thead>
 <tbody>
 <tr>
-<td>(Intercept)            </td>
+<td>(Intercept)</td>
                   <td>32.794</td>
                 </tr>
 <tr>
 <td>GDP per capita (logged)</td>
-                  <td>4.521 </td>
+                  <td>4.521</td>
                 </tr>
 <tr>
-<td>Num.Obs.               </td>
-                  <td>203   </td>
+<td>Num.Obs.</td>
+                  <td>203</td>
                 </tr>
 </tbody>
 </table>
