@@ -143,7 +143,7 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/00-introduction.qmd"> 
+    <a class="nav-link" href="../content/00-02-introduction.html"> 
 <span class="menu-text">Content</span></a>
   </li>  
 </ul>
@@ -192,7 +192,7 @@ window.Quarto = {
 </li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/hgoers/GVPT339F/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://hgoers.github.io/APAN_maths_camp/issues/new" class="toc-action"><i class="bi bi-git"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -570,8 +570,8 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
 
     <script>
 
-      function styleCell_7kw27io87h0nkcs07v0e(i, j, css_id) {
-          var table = document.getElementById("tinytable_7kw27io87h0nkcs07v0e");
+      function styleCell_sn1s7rwoupoe1uthiivt(i, j, css_id) {
+          var table = document.getElementById("tinytable_sn1s7rwoupoe1uthiivt");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -581,7 +581,7 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_7kw27io87h0nkcs07v0e');
+        var table = document.getElementById('tinytable_sn1s7rwoupoe1uthiivt');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -589,8 +589,8 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_7kw27io87h0nkcs07v0e(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_7kw27io87h0nkcs07v0e");
+      function spanCell_sn1s7rwoupoe1uthiivt(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_sn1s7rwoupoe1uthiivt");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -620,36 +620,36 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 3, j: 1 },  ], css_id: 'tinytable_css_x9ckk5xy2fgdbjff5uug',}, 
-          { positions: [ { i: 2, j: 0 },  ], css_id: 'tinytable_css_n5qg7nkqlllqb6gs6k7e',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_mr71z00o7gr5vsq9ehfr',}, 
-          { positions: [ { i: 1, j: 0 },  ], css_id: 'tinytable_css_hzwp0fsujm3ab850gbhz',}, 
-          { positions: [ { i: 3, j: 0 },  ], css_id: 'tinytable_css_cq9uegr9m9b0ju7uw6vj',}, 
-          { positions: [ { i: 2, j: 1 },  ], css_id: 'tinytable_css_8kjh0dgu5ra53fy7axsf',}, 
-          { positions: [ { i: 1, j: 1 },  ], css_id: 'tinytable_css_5vg5li7c6rqs6gsbwidc',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_2hveujtmcn76hr2jo5lm',}, 
+          { positions: [ { i: 1, j: 0 },  ], css_id: 'tinytable_css_znimok3rrc0roccuok0c',}, 
+          { positions: [ { i: 1, j: 1 },  ], css_id: 'tinytable_css_u92gh6zgtyufhoqrlk99',}, 
+          { positions: [ { i: 2, j: 1 },  ], css_id: 'tinytable_css_pm26i0h3uqd7nvn1l7g1',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_mdrk74vgraeq9h66itag',}, 
+          { positions: [ { i: 3, j: 0 },  ], css_id: 'tinytable_css_irvnccxrmlpg402qf9w8',}, 
+          { positions: [ { i: 2, j: 0 },  ], css_id: 'tinytable_css_3fjj4wb2mb22esskv3a9',}, 
+          { positions: [ { i: 3, j: 1 },  ], css_id: 'tinytable_css_1x5mmvsuborebvqdyex9',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_1etk8zlgqeh5rrajur5n',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_7kw27io87h0nkcs07v0e(cell.i, cell.j, group.css_id);
+                  styleCell_sn1s7rwoupoe1uthiivt(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_x9ckk5xy2fgdbjff5uug, .table th.tinytable_css_x9ckk5xy2fgdbjff5uug { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_n5qg7nkqlllqb6gs6k7e, .table th.tinytable_css_n5qg7nkqlllqb6gs6k7e { text-align: left; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_mr71z00o7gr5vsq9ehfr, .table th.tinytable_css_mr71z00o7gr5vsq9ehfr { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_hzwp0fsujm3ab850gbhz, .table th.tinytable_css_hzwp0fsujm3ab850gbhz { text-align: left; }
-      .table td.tinytable_css_cq9uegr9m9b0ju7uw6vj, .table th.tinytable_css_cq9uegr9m9b0ju7uw6vj { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_8kjh0dgu5ra53fy7axsf, .table th.tinytable_css_8kjh0dgu5ra53fy7axsf { text-align: center; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_5vg5li7c6rqs6gsbwidc, .table th.tinytable_css_5vg5li7c6rqs6gsbwidc { text-align: center; }
-      .table td.tinytable_css_2hveujtmcn76hr2jo5lm, .table th.tinytable_css_2hveujtmcn76hr2jo5lm { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_znimok3rrc0roccuok0c, .table th.tinytable_css_znimok3rrc0roccuok0c { text-align: left; }
+      .table td.tinytable_css_u92gh6zgtyufhoqrlk99, .table th.tinytable_css_u92gh6zgtyufhoqrlk99 { text-align: center; }
+      .table td.tinytable_css_pm26i0h3uqd7nvn1l7g1, .table th.tinytable_css_pm26i0h3uqd7nvn1l7g1 { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_mdrk74vgraeq9h66itag, .table th.tinytable_css_mdrk74vgraeq9h66itag { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_irvnccxrmlpg402qf9w8, .table th.tinytable_css_irvnccxrmlpg402qf9w8 { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_3fjj4wb2mb22esskv3a9, .table th.tinytable_css_3fjj4wb2mb22esskv3a9 { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_1x5mmvsuborebvqdyex9, .table th.tinytable_css_1x5mmvsuborebvqdyex9 { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_1etk8zlgqeh5rrajur5n, .table th.tinytable_css_1etk8zlgqeh5rrajur5n { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
 <div class="container">
-      <table class="table table-borderless" id="tinytable_7kw27io87h0nkcs07v0e" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_sn1s7rwoupoe1uthiivt" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
 <thead><tr>
 <th scope="col"> </th>
                 <th scope="col">(1)</th>
@@ -1421,7 +1421,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hgoers/GVPT339F/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://hgoers.github.io/APAN_maths_camp/issues/new" class="toc-action"><i class="bi bi-git"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a><br><a href="https://www.andrewheiss.com/teaching/">Heavily inspired by course websites built by Dr Andrew Heiss</a></p>
 </div>
