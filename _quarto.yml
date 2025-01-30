@@ -27,7 +27,7 @@ website:
           contents: 
             - content/00-02-introduction.qmd
             - content/01-02-measurement.qmd
-#            - content/02-experiments.qmd
+            - content/02-02-experiments.qmd
 #            - content/02-02-surveys_to_pops.qmd
 #            - content/03-02-bivariate.qmd
 #            - content/04-02-linear_regression.qmd
