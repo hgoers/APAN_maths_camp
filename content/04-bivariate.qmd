@@ -1,5 +1,5 @@
 ---
-title: "Exploring the Relationship Between Two Variables"
+title: "Session 4: Modelling the Relationship between Two Variables"
 format:
   html:
     code-link: true
@@ -45,7 +45,11 @@ How do two variables move with one another? When when goes up, does the other go
 
 The type of variables we have determines how we can answer this question. To begin, we will explore the relationship between two continuous variables. Later in the section, we will look at how to explore the relationship between a continuous and categorical variable.
 
-We will return to the relationship between a country's wealth and health. This question was made popular by the Gapminder project. We were introduced to it during the [Transformations section in Session One](https://hgoers.github.io/GVPT399F/content/02-01-transformation.html).
+This session, we will look at the relationship between a country's wealth and health. This question was made popular by the Gapminder project. You can read more about their research [here](https://www.gapminder.org/).
+
+Before we get started, check out this video that describes (very enthusiastically) the relationship between health and wealth:
+
+{{< video https://www.youtube.com/embed/jbkSRLYSojo width="100%" height="600px" >}}
 
 ### Collecting our data
 

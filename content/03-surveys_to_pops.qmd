@@ -1,5 +1,5 @@
 ---
-title: "From Samples to the Population"
+title: "Session 3: How to Infer Population Characteristics through Survey Research"
 format:
   html:
     code-link: true
@@ -218,7 +218,7 @@ This is an example of sampling bias: my sample is systematically different from 
 
 ## Large(ish) numbers
 
-It is not sufficient to have a pure random sample of your population. You also need a sufficiently large sample. To illustrate, consider drawing just one person from your population. Even if you did so entirely randomly, it is unlikely they will reflect the diversity (or even the average view) of the population.
+It is not sufficient to have a pure random sample of your population. You also need a sufficiently large sample. To illustrate, consider drawing just one person from your population. Even if you did so entirely randomly, it is unlikely they will reflect the diversity of the population.
 
 Let's return to our attempt to find the average GDP earned by countries globally in 2022 to illustrate this. I am going to select completely randomly five countries from the (cheeky) population using `dplyr`'s `sample_n()` function:
 
@@ -457,4 +457,4 @@ It looks like the ANES did a fairly good job of capturing the US voting populati
 
 One interesting thing to note is that the survey did overstate support for Joe Biden and understated support for Donald Trump. We might see this despite having a representative sample. For example, people - when asked who they voted for - may be inclined to say they voted for the winner (regardless of who that winner was). Also, individuals may be hesitant to tell a pollster that they voted for Donald Trump given how divisive he and his campaign were.
 
-It is; however, very likely that the ANES did not reach a representative sample of the US voting population. As we discussed above: this is very difficult (if not impossible) to do. ANES runs very good surveys precisely because they acknowledge and, to the best of their ability, account for this. Generally, surveys will compare the demographics of their respondents to those of the voting population (or population more generally). If they find that some individuals are under-represented in their sample (for example, young black women make up a smaller proportion of their sample than they make up in the population), they will make the responses of individuals who fit those demographics count for more than one response in their calculations. Similarly, if they find a demographic is over-represented in their sample, they will make their responses count for less than one response in their calculations. This practice is called **weighting** and it is standard across all major and respected surveys.
+It is; however, very likely that the ANES did not reach a representative sample of the US voting population. As we discussed above: this is very difficult (if not impossible) to do. ANES runs very good surveys precisely because they acknowledge and, to the best of their ability, account for this. Generally, surveys will compare the demographics of their respondents to those of the voting population (or population more generally). If they find that some individuals are under-represented in their sample (for example, young Black women make up a smaller proportion of their sample than they make up in the population), they will make the responses of individuals who fit those demographics count for more than one response in their calculations. Similarly, if they find a demographic is over-represented in their sample, they will make their responses count for less than one response in their calculations. This practice is called **weighting** and it is standard across all major and respected surveys.

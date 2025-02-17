@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Session 0: Introduction"
 format:
   html:
     code-link: true

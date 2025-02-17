@@ -16,7 +16,7 @@ website:
     right:
       - href: index.qmd
         text: Home
-      - href: content/00-02-introduction.qmd
+      - href: content/00-introduction.qmd
         text: Content
 
   sidebar:
@@ -25,23 +25,23 @@ website:
       contents:
         - section: "Introduction to Political Science Data Analysis"
           contents: 
-            - content/00-02-introduction.qmd
-            - content/01-02-measurement.qmd
-            - content/02-02-experiments.qmd
-#            - content/02-02-surveys_to_pops.qmd
-#            - content/03-02-bivariate.qmd
+            - content/00-introduction.qmd
+            - content/01-measurement.qmd
+            - content/02-experiments.qmd
+            - content/03-surveys_to_pops.qmd
+            - content/04-bivariate.qmd
 #            - content/04-02-linear_regression.qmd
 #            - content/05-02-probability.qmd
 #            - content/06-02-uncertainty.qmd
         - section: "Introduction to R"
           contents:
-            - content/00-01-introduction.qmd
-#            - content/01-01-visualization.qmd         
-#            - content/02-01-transformation.qmd
-#            - content/03-01-wrangling.qmd
-#            - content/04-01-merging.qmd
-#            - content/05-01-programming.qmd
-#            - content/06-01-communicating.qmd
+            - content/intro_to_r-00-introduction.qmd
+            - content/intro_to_r-01-visualization.qmd         
+            - content/intro_to_r-02-transformation.qmd
+            - content/intro_to_r-03-wrangling.qmd
+            - content/intro_to_r-04-merging.qmd
+            - content/intro_to_r-05-programming.qmd
+            - content/intro_to_r-06-communicating.qmd
             
             
   page-footer:
