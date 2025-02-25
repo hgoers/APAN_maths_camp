@@ -9,522 +9,420 @@ execute:
   message: false
   echo: true 
   fig-width: 10
+  fig-height: 6
 ---
+
+## Introduction
+
+Data visualization is one of the most powerful tools in a political scientist’s analytical toolkit. Well-designed visualizations make complex data easier to understand and help communicate findings effectively. In this chapter, we introduce `ggplot2`, a popular R package that follows the grammar of graphics, a structured approach to building plots. Instead of relying on pre-made chart templates, `ggplot2` allows you to layer different elements to create customized and insightful visualizations.
+
+By the end of this chapter, you will be able to create meaningful plots using real-world political science data. We will walk through the process of building a visualization step by step, using voter turnout data from the 2020 U.S. presidential election.
+
+Let’s get started!
 
 ## Set up
 
-To complete this session, you need to load in the following R packages:
-
-::: {.callout-tip collapse="true"}
-## Install packages
-
-To install new R packages, run the following (excluding the packages you have already installed):
+Before we begin, ensure you have installed and loaded the necessary R packages:
 
 ```{r}
 #| eval: false
 
-install.packages("tidyverse")
-```
-:::
+install.packages(c("tidyverse", "MetBrewer"))
 
-```{r}
 library(tidyverse)
+library(MetBrewer)
 ```
-
-This section focuses on introducing you to some new R skills. You will learn how to create your own data visualizations using real-world data.
-
-To guide this process, we will use data visualization to answer the following question:
-
-> Do cars with big engines use more fuel than cars with small engines?
-
-Before we get started, answer the following questions:
-
-1.  What do you think the answer to this question is?
-2.  How would you prove your answer? What information about cars would you need?
-
-::: callout-note
-I borrow (read: steal) heavily from [Hadley Wickham's *R4DS*](https://r4ds.hadley.nz/)in this and other introductory R sessions. This is a fantastic resource for anyone learning R. I encourage you to use it if you ever get stuck.
-:::
-
-Data visualization is a critical skill for data analysis. You can learn a lot more about your data, including the relationships buried within them, from plots than you can from looking at the raw numbers (and even from complicated statistical models). We will use data visualization throughout this course to learn about our data.
-
-For example, we can answer our question above using the following plot:
-
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(mapping = aes(colour = class)) + 
-  geom_smooth(method = "lm") + 
-  theme(
-    legend.position = "bottom",
-    panel.grid = element_blank(),
-    panel.background = element_blank(),
-    plot.title.position = "plot",
-    plot.title = element_text(face = "bold")
-  ) + 
-  labs(
-    title = "Engine displacement and highway miles per gallon",
-    subtitle = "Values for seven different classes of cars",
-    x = "Engine displacement (L)",
-    y = "Highway miles per gallon"
-  )
-```
-
-We will now step through how to create this graph using R. During this explanation, you will be introduced to some fundamental elements of R.
-
-## Loading in and exploring your data
-
-First, we need to load into our R session the R packages we will use. Today, we will be using the R packages contained within the `tidyverse`.
-
-```{r}
-library(tidyverse)
-```
-
-::: callout-tip
-Always load your packages into your R session at the top of your R script. These scripts run from top to bottom. Loading necessary libraries in at the start ensures you don't get annoying, missing package errors later on.
-:::
-
-Next, we need to load in the data we will be using. The `mpg` data set (which includes lots of information on various car models) comes as part of the `ggplot2` R package, which we loaded in with the `tidyverse`. You can access the data set by running the following:
-
-```{r}
-mpg
-```
-
-::: callout-note
-We will learn how to load your own data in later in the course.
-:::
-
-This data set provides us with information on several different models of cars. Importantly, it includes information on each model's engine size and average fuel use. We will use the following two variables to answer our question:
-
--   `displ`: engine displacement, in litres
-
--   `hwy`: highway miles per gallon
-
-::: callout-tip
-You can learn more detail about this data set by running `?mpg` from your console.
-:::
-
-Engine displacement is a useful proxy for a car's engine size. The larger its displacement, the larger the engine. Similarly, the number of gallons of fuel the car uses on the highway is a useful proxy for its fuel efficiency.
-
-Returning to our question, *do cars with big engines use more fuel than cars with small engines?*, what is your hypothesis framed in terms of these two variables?
-
-::: {.callout-note collapse="true"}
-## Here's mine:
-
-Cars with larger engines will travel fewer miles on the highway for each gallon of fuel used than cars with smaller engines.
-:::
-
-### Exercise
-
-How many rows are in `mpg`? How many columns?
-
-::: {.callout-note collapse="true"}
-## Check your answer
-
-The number of rows and columns are printed at the top of the `mpg` output. There are `r nrow(mpg)` rows and `r ncol(mpg)` columns.
-
-Alternatively, you can run the following:
-
-```{r}
-nrow(mpg)
-ncol(mpg)
-```
-:::
-
-What does the `drv` variable describe?
-
-::: {.callout-note collapse="true"}
-## Check your answer
-
-Find the variable description by running the following:
-
-```{r}
-?mpg
-```
-:::
-
-## Plotting your data
-
-Next, we need to plot our data. We will use the `ggplot2` package to do this. `ggplot2` is a wonderfully intuitive and flexible data visualization tool. It is used widely.
-
-`ggplot2` works by building up data visualizations in layers. We will start with our blank canvas:
-
-```{r}
-ggplot(data = mpg)
-```
-
-Here, we have run the `ggplot()` function. We have included one argument, `data`. This is the data frame that includes all the data we want to visualize.
-
-Next, we need to let `ggplot()` know which variables we would like to visualize and where we would like them to go. We do this through `ggplot()`'s `mapping` argument:
-
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy))
-```
-
-`ggplot()` has now added some structure to our blank canvas. The `displ` variable is mapped onto the x-axis and the `hwy` variable is mapped to the y-axis. The `mapping` argument took a function, `aes()`, as its value. These are the **aesthetics** of your plot.
-
-Next, we need to visualize each data point. We want to produce a scatter plot, so we will add the relevant \`ggplot\` **geometric object** to our plot:
-
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point()
-```
-
-All geometric objects start with `geom_`. Here are some examples:
-
--   `geom_line()` plots a line graph
-
--   `geom_col()` plots a column graph
-
--   `geom_histogram()` plots a histogram.
-
-We now have a basic plot of our data. We can see a distinct relationship between a car's engine size and its fuel use: cars with larger engines tend to travel fewer miles on the highway for each gallon of fuel than cars with smaller engines. This supports my hypothesis. Happy days!
-
-We can even use `ggplot()` to visualize this general trend:
-
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point() + 
-  geom_smooth(method = "lm")
-```
-
-Here, I have used `geom_smooth` to add a line to my plot that summarizes the relationship between our two variables. I asked it to draw a straight line by setting the argument `method` to `"lm"` (which stands for linear model).
-
-::: callout-note
-We will talk a lot more about linear models during this course. Sit tight!
-:::
-
-Although this general trend is interesting, I suspect there are some important differences in this relationship between the different classes of cars. We can quickly check if this is the case by adding a visual cue of those different classes to our plot:
-
-First, I will colour each car's data point based on its class:
-
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, colour = class)) + 
-  geom_point()
-```
-
-Note that I have introduced a new aesthetic to the model: `colour`. In doing so, I have told `ggplot()` to vary each data point's colour based on its `class`. Each car is classified into one of the following seven classes:
 
 ```{r}
 #| echo: false
 
-distinct(mpg, class)
+library(tidyverse)
+library(MetBrewer)
+library(patchwork)
+
+turnout_df <- read_csv("https://gist.githubusercontent.com/hgoers/ecbe1f9659cefd38be799392e6f66a0f/raw/9666e887f0befd1f854388b29ef2cd1add6b03fe/turnout.csv")
 ```
 
-::: callout-note
-I, an Australian, am not afraid of my "u"s. Nor, is R! Both American English and "ahem" \~ proper \~ English work in R. For example, you can substitute my `colour` for `color`.
+::: callout-tip
+You only need to install an R package onto your computer once, but you need to load it (using `library("package_name")`) every time you start a new R session.
 :::
 
-We can extend this grouping to all of our layers:
+The `tidyverse` package includes `ggplot2`, as well as other useful tools for working with data.
 
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, colour = class)) + 
-  geom_point() + 
-  geom_smooth(method = "lm")
-```
+## Does Wealth Influence Voter Turnout?
 
-Simiarly, we can isolate which aesthetics apply to which layers by moving the `aes()` mapping from `ggplot()` to the specific layer to which we would like to apply it. Remember, `ggplot2` is very flexible!
+In the 2020 U.S. presidential election, voter turnout varied significantly across states. Some states saw record participation, while others lagged behind. What factors explain this variation? One common hypothesis is that wealthier citizens are more likely to vote.
 
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(aes(colour = class)) + 
-  geom_smooth(method = "lm")
-```
+We will investigate this by exploring the relationship between median household income and voter turnout rates across U.S. states.
 
-::: callout-note
-All aesthetics supplied to the top `ggplot()` function will be inherited by the layers that proceed it unless you specify otherwise.
-:::
+## Data
 
-### Exercise
-
-Make a scatter plot of `hwy` vs `cyl`.
-
-::: {.callout-note collapse="true"}
-## Check your answer
-
-```{r}
-ggplot(mpg, mapping = aes(x = hwy, y = cyl)) + 
-  geom_point()
-```
-:::
-
-What happens if you make a scatter plot of `class` vs `drv`? Why is the plot not useful?
-
-::: {.callout-note collapse="true"}
-## Check your answer
-
-Scatter plots are best used to visualize the relationship between two **continuous variables**. These variables have an inherent order to them, allowing us to see how the relationship changes as each grows or shrinks. `class` and `drv` are **unordered categorical variables**, so their order in relation to each other is not meaningful.
-
-```{r}
-ggplot(mpg, mapping = aes(x = class, y = drv)) + 
-  geom_point()
-```
-:::
-
-Why does the following give an error and how would you fix it?
+To analyze this question, we use the `turnout_df` dataset, which contains information on voter turnout, median income, and regional classifications of U.S. states. To load it into your current R session, run the following:
 
 ```{r}
 #| eval: false
 
-ggplot(data = mpg) + 
+turnout_df <- read_csv("https://gist.githubusercontent.com/hgoers/ecbe1f9659cefd38be799392e6f66a0f/raw/9666e887f0befd1f854388b29ef2cd1add6b03fe/turnout.csv")
+```
+
+This data set provides us with information on all 51 US states and DC. Each row contains an **observation**, which is a set of information about each of our states. We have information about `r ncol(turnout_df)` **variables**, including the state's name and its total population of citizens (in thousands).
+
+Let's take a quick look at the data:
+
+```{r}
+glimpse(turnout_df)
+```
+
+Key variables include:
+
+-   `turnout`: The proportion of adult citizens in a state that voted in the 2020 election.
+-   `median_income`: Median household income in the state.
+-   `southern`: A binary variable indicating whether the state is Southern or not.
+
+## Ultimate goal
+
+By the end of this session, you will have created the following plot:
+
+```{r}
+#| echo: false
+
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point(aes(colour = southern), size = 2) + 
+  geom_smooth(method = "lm", colour = "darkgrey") + 
+  labs(title = "Median income and voter turnout in the 2020 US Presidential election by state", 
+       subtitle = "States with wealthier citizens tended to have higher turnout rates than states with poorer citizens",
+       x = "Median income",
+       y = "Voter turnout",
+       colour = "Region",
+       caption = "Source: US Census") + 
+  theme_classic() + 
+  theme(plot.title.position = "plot",
+        plot.title = element_text(face = "bold"),
+        legend.position = "top") + 
+  scale_x_continuous(labels = scales::dollar) + 
+  scale_y_continuous(labels = scales::percent) + 
+  scale_colour_manual(values = met.brewer(name = "Johnson")[c(1, 5)])
+```
+
+Along the way, you will learn more about R packages and functions, data types, vectors, and lists.
+
+## Creating a `ggplot`
+
+We start by creating an empty plot using the **function** `ggplot()`:
+
+```{r}
+ggplot()
+```
+
+This is the blank canvas upon which you will append **layers**. The first **argument** `ggplot()` takes is the data you want it to plot. We want to provide it with the `turnout_df` data set.
+
+```{r}
+ggplot(data = turnout_df)
+```
+
+Nothing has happened visually to our plot, but we can now reference these data as we add layers to the plot.
+
+The next argument `ggplot()` takes is `mapping`, which takes information on how our data should be represented on the plot. This argument takes a function, `aes()`. This function (which is short for **aesthetics**) specifies which variables will be mapped to which elements of the plot. Our scatter plot has two dimensions: `x` and `y`. Let's tell `ggplot()` which variables we want in each of those dimensions:
+
+```{r}
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout))
+```
+
+`ggplot()` has added structure to the blank canvas. It has plotted out the range of observed values of each state's median income on the x-axis and its voter turnout on the y-axis.
+
+Next, we need to add the states. To do this, we add geometric objects (**geoms**) to our plot. We want a scatter plot, so we will use `geom_point()`. Throughout this course you will see many of the different `geoms_*` available.
+
+```{r}
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
   geom_point()
 ```
 
-::: {.callout-note collapse="true"}
-## Check your answer
+This is looking good! We can see each state's median income and voter turnout in 2020. Importantly, we can see this information within the context of all other states' median incomes and voter turnout rates. We can, therefore, start to answer our question: do states with wealthier citizens have higher turnout rates than states with poorer citizens?
 
-![](slides/img/error.png){fig-align="center"}
+This appears to be the case. The states with lower median incomes (sitting to the left of the plot) appear to have low turnout rates (sitting in the lower half of the plot) when compared to states with higher median incomes. Formally, we would say that these variables appear to be **positively** related to one another. Higher (lower) values of one variable tend to be associated with higher (lower) values of the other.
 
-Always read error messages carefully. They often tell you - in plain language - what the problem is and how to fix it. Here, we can see that "`geom_point()` requires the following missing aesthetics: `x` and `y`". So, to fix it, we need to supply those aesthetics. For example:
+## Adding aesthetics and layers
+
+We can add more dimensions to our plot to communicate different groups in our data. For example, we may want to explore whether the relationship between wealth and turnout rates differs for Southern states and non-Southern states. To see this, I am going to colour in the points on the scatter plot based on whether they are Southern states.
 
 ```{r}
-
-ggplot(mpg, mapping = aes(x = hwy, y = cyl)) + 
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout, colour = southern)) +
   geom_point()
 ```
-:::
 
-## Styling your plot
+The `southern` variable is **categorical**. `ggplot()` automatically assigns each unique category within this variable a value (here, a colour). It also adds a useful legend to the plot informing you of these values.
 
-You have now learnt how to plot your data using `ggplot2`. However, the default styling leaves a little to be desired. We will now learn how to personalize your plots.
-
-First, we need to add some more information to our plot to make it easier to interpret. We will start with some more useful labels:
+We can now add a new layer to our scatter plot that sums up the relationship between our two variables of interest more succinctly. We can plot the **line of best fit** (more on this later in the course), determined by a linear model, using `geom_smooth()` with its `method` argument set to `"lm"` (for linear model).
 
 ```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(mapping = aes(colour = class)) + 
-  geom_smooth(method = "lm") + 
-  labs(
-    title = "Engine displacement and highway miles per gallon",
-    subtitle = "Values for seven different classes of cars",
-    x = "Engine displacement (L)",
-    y = "Highway miles per gallon"
-  )
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout, colour = southern)) +
+  geom_point() + 
+  geom_smooth(method = "lm")
 ```
 
-Next, we want to adjust what our plots look like. You can do this to highlight certain elements of your data:
-
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(mapping = aes(color = class == "2seater")) + 
-  geom_smooth(method = "lm") + 
-  labs(
-    title = "Engine displacement and highway miles per gallon",
-    subtitle = "Values for seven different classes of cars",
-    x = "Engine displacement (L)",
-    y = "Highway miles per gallon"
-  )
-```
-
-Or to simply make the graph more appealing to look at:
-
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(colour = "pink") + 
-  geom_smooth(method = "lm") + 
-  labs(
-    title = "Engine displacement and highway miles per gallon",
-    subtitle = "Values for seven different classes of cars",
-    x = "Engine displacement (L)",
-    y = "Highway miles per gallon"
-  )
-```
-
-Less is often more when it comes to data visualization. Your audience will find it easier to learn about the relationships you want to highlight when your plot is not cluttered with stylistic elements.
-
-We can easily strip away a lot of the default `ggplot()` styling using the `theme_minimal()` function:
-
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(mapping = aes(colour = class)) + 
-  geom_smooth(method = "lm") + 
-  theme_minimal() + 
-  labs(
-    title = "Engine displacement and highway miles per gallon",
-    subtitle = "Values for seven different classes of cars",
-    x = "Engine displacement (L)",
-    y = "Highway miles per gallon"
-  ) 
-```
-
-There are many preset `ggplot2` themes available. You can check them out in the [`ggplot` documentation](https://ggplot2.tidyverse.org/reference/ggtheme.html).
-
-Like any R function, the `ggplot2` `theme_X()` series of functions are running a more verbose set of R code in the background. You can add in this code directly using the `theme()` function to control the look of your plot. For example, here are some things I commonly do to my plots:
-
-```{r}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(mapping = aes(colour = class)) + 
-  geom_smooth(method = "lm") + 
-  theme(
-    legend.position = "bottom",
-    panel.grid = element_blank(),
-    panel.background = element_blank(),
-    plot.title.position = "plot",
-    plot.title = element_text(face = "bold")
-  ) + 
-  labs(
-    title = "Engine displacement and highway miles per gallon",
-    subtitle = "Values for seven different classes of cars",
-    x = "Engine displacement (L)",
-    y = "Highway miles per gallon"
-  ) 
-```
-
-Here, I have:
-
--   Moved the legend to the bottom of the plot
-
--   Removed the grid lines
-
--   Removed the grey shading behind the plot
-
--   Pulled the plot title closer to the edge of the plot
-
--   Made the plot title bold.
-
-You can see the many, many different elements of a `ggplot2` plot you can control by looking over the `theme()` function's documentation:
-
-```{r}
-?theme
-```
-
-### Exercises
-
-What has gone wrong with this code? Why are the points not blue?
-
-```{r}
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
-```
-
-::: {.callout-note collapse="true"}
-## Check your answer
-
-Placing the `color = "blue"` argument in the `aes()` means that `geom_point()` will treat `"blue"` as a variable, not as a value. We need to move it out of `aes()` and make it a stand-alone argument of `geom_point()`:
-
-```{r}
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
-```
-:::
-
-Name a categorical variable in `mpg.` Name a continuous one.
-
-:::::: {.callout-note collapse="true"}
-## Check your answer
-
-::::: columns
-::: {.column width="50%"}
-### Categorical
-
--   `manufacturer`
--   `model`
--   `trans`
--   `drv`
--   `fl`
--   `class`
-:::
-
-::: {.column width="50%"}
-### Continuous
-
--   `displ`
--   `year`
--   `cyl`
--   `cty`
--   `hwy`
-:::
-:::::
-::::::
-
-Map a continuous variable to `color`. How does this aesthetics behave differently for categorical vs. continuous variables?
-
-::: {.callout-note collapse="true"}
-## Check your answer
-
-`ggplot()` will adapt to create a continuous colour palette for a continuous variable.
-
-```{r}
-ggplot(mpg, aes(x = displ, y = hwy, colour = cyl)) + 
-  geom_point()
-```
-:::
-
-Map `class` to the `shape` aesthetic. What does the warning tell you?
-
-::: {.callout-note collapse="true"}
-## Check your answer
-
-![](slides/img/warning.png){fig-align="center"}
-
-This warning lets us know that `ggplot()` can plot up to six different unique values under the `shape` argument. Our data include seven unique values. One (`suv`) is being dropped out of the visualization.
-:::
-
-## Working with categorical data
-
-So far, we have looked at plotting the relationship between two **continuous variables**. We need different plot types to visualize categorical data.
-
-First, let's take a look at some categorical variables in our `mpg` data set:
-
-```{r}
-#| echo: false 
-
-select(mpg, manufacturer, model, drv)
-```
-
-Here, we have information on each car's manufacturer, its model name, and its drive train type (front-wheel, rear-wheel, or four-wheel drive).
-
-What is the most popular drive train type among our sample of car models? We can quickly answer this question by visualizing the count of the number of different models in each drive train type:
-
-```{r}
-ggplot(mpg, aes(x = drv)) + 
-  geom_bar()
-```
-
-It looks like front-wheel drives (`f`) are *just* the most popular type, quickly followed by four-wheel drives. We can reorder our x-axis to follow this ranking:
-
-```{r}
-ggplot(mpg, aes(x = fct_infreq(drv))) +
-  geom_bar()
-```
-
-Counts of our data can be very helpful for getting a sense of what is common (or not) among them. For example, I can use a **histogram** (which plots counts of the number of observations within bins of continuous variables) to see how my variable is distributed across all the range of its values. Here is that distribution for one of our continuous variables above, highway miles per gallon:
-
-```{r}
-ggplot(mpg, aes(x = hwy)) +
-  geom_histogram()
-```
-
-From this histogram, we learn that the car models in our sample tend to do between roughly 15 to 30 highway miles per gallon of fuel. A small number of cars are more efficient (can do up to over 40 miles with that one gallon). Similarly a small number of cars are very inefficient (only getting around 12 miles with that gallon).
-
-We can get a similar, if cleaner, sense of this shape using a **density plot**:
-
-```{r}
-ggplot(mpg, aes(x = hwy)) +
-  geom_density()
-```
-
-This density plot is showing the same data as the histogram, but it presents a smoother picture. This can often allow us to focus more easily on the shape of the distribution of our data. However, it can gloss over some important details in that distribution. For example, we get less of a sense of the trough (or low point) immediately after 20 miles per gallon in the density plot compared to the histogram.
-
-We can also use these data visualizations to easily compare data. For example, here is the distribution of highway miles per gallon for cars according to their drive train type:
-
-```{r}
-ggplot(mpg, aes(x = hwy, colour = drv, fill = drv)) +
-  geom_density(alpha = 0.5)
-```
+We have added two lines of best fit to our data: one fit against the Southern states and another fit using only the non-Southern states. From this we learn that despite Southern states tending to have both less wealthy citizens and lower turnout rates than their non-Southern counterparts, the relationship between wealth and turnout rates appears the same across these two groups. These lines have very similar slopes and are almost set at the same height. We can appropriately consolidate these two groups into one when discussing the relationship between wealth and turnout rates.
 
 ::: callout-note
-The `colour` aesthetic controls the thin outline of the density plot. Adding the `fill` aesthetic makes the groups easier to see. `geom_density()`'s `alpha` argument controls the transparency of each density plot.
+We will discuss how we prove formally that these two relationships are not **substantively** or **statistically significantly** different from one another during the course.
 :::
 
-### Exercise
-
-Plot the number of observations in each category of a categorical variable in the `mpg` data set. Make sure to use an appropriate graph type.
-
-::: {.callout-note collapse="true"}
-## Check your answer
+How do we do this in `ggplot`? The aesthetics we define in the `ggplot()` function are global. This means that they are passed down to every subsequent geom layer of the plot. Happily, each of these layers can take their own `mapping` arguments. These will override the `mapping` argument provided to `ggplot()`, if one exists.
 
 ```{r}
-ggplot(mpg, aes(x = drv)) + 
-  geom_bar()
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point(aes(colour = southern)) + 
+  geom_smooth(method = "lm")
 ```
+
+Because we asked only the `geom_point()` layer to consider whether a state is Southern or not, we now have one line of best fit representing the relationship between our variables of interest across all 50 states and DC.
+
+## Cleaning up our plot
+
+We are missing some important information on our plot. First, we need to provide a useful title for our viewers. We should also provide a brief summary of the relationship in our own words. It is also always good to include your data source (I got these data from the US Census). Finally, you should always use informative and tidy axis labels so your viewer is not confused as to what each variable measures. Let's add all those labels to our plot using the `labs()` function:
+
+```{r}
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point(aes(colour = southern)) + 
+  geom_smooth(method = "lm") + 
+  labs(title = "Median income and voter turnout in the 2020 US Presidential election by state", 
+       subtitle = "States with wealthier citizens tended to have higher turnout rates than states with poorer citizens",
+       x = "Median income",
+       y = "Voter turnout",
+       colour = "Region",
+       caption = "Source: US Census")
+```
+
+That's better, but our plot is still very cluttered. Let's remove some of those extraneous frills. We can do this using the `theme_*()` set of functions. These provide you with some aesthetic settings that the authors of `ggplot` thought might be useful. For example, here are three different `theme_*()` functions from which you can select:
+
+```{r}
+#| echo: false
+
+p <- ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point()
+
+p + labs(title = "theme_dark()") + theme_dark() | p + labs(title = "theme_classic()") + theme_classic() | p + labs(title = "theme_minimal()") + theme_minimal()
+```
+
+I like `theme_classic()`, so let's apply that to our plot:
+
+```{r}
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point(aes(colour = southern)) + 
+  geom_smooth(method = "lm") + 
+  labs(title = "Median income and voter turnout in the 2020 US Presidential election by state", 
+       subtitle = "States with wealthier citizens tended to have higher turnout rates than states with poorer citizens",
+       x = "Median income",
+       y = "Voter turnout",
+       colour = "Region",
+       caption = "Source: US Census") + 
+  theme_classic()
+```
+
+You can adjust these pre-set aethetic choices using the `theme()` function. For example, I want to do the following to our chart:
+
+-   Remove the padding between the title/subtitle and the edge of the plot
+-   Make the title bold
+-   Move the legend to under the subtitle
+
+```{r}
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point(aes(colour = southern)) + 
+  geom_smooth(method = "lm") + 
+  labs(title = "Median income and voter turnout in the 2020 US Presidential election by state", 
+       subtitle = "States with wealthier citizens tended to have higher turnout rates than states with poorer citizens",
+       x = "Median income",
+       y = "Voter turnout",
+       colour = "Region",
+       caption = "Source: US Census") + 
+  theme_classic() + 
+  theme(plot.title.position = "plot",
+        plot.title = element_text(face = "bold"),
+        legend.position = "top")
+```
+
+Because I included `theme()` after `theme_classic()` in my script, I overwrote its default arguments for `plot.title.position`, `plot.title`, and `legend.position`.
+
+Next, I want to include more informative tick marks. It would be good to include the unit for each, so the viewers are not left wondering. To do this we can use functions from the helpful `scales` R package in `ggplot`'s `scale_*_continous()` functions.
+
+```{r}
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point(aes(colour = southern)) + 
+  geom_smooth(method = "lm") + 
+  labs(title = "Median income and voter turnout in the 2020 US Presidential election by state", 
+       subtitle = "States with wealthier citizens tended to have higher turnout rates than states with poorer citizens",
+       x = "Median income",
+       y = "Voter turnout",
+       colour = "Region",
+       caption = "Source: US Census") + 
+  theme_classic() + 
+  theme(plot.title.position = "plot",
+        plot.title = element_text(face = "bold"),
+        legend.position = "top") + 
+  scale_x_continuous(labels = scales::dollar) + 
+  scale_y_continuous(labels = scales::percent)
+```
+
+I used `scales::percent()` to convert the proportions plotted on the y-axis to percentages and `scales::dollar()` to convert the median income values into more readable dollar values.
+
+::: callout-tip
+You can use a function from an R package without loading the whole package into your session by including the package name and two colons before the function. This is useful when you only want to use one or two functions from a package infrequently in your script. For example, I only need these two functions from the `scales` package once, so I prefer to call them directly than load in the whole package.
 :::
+
+Next, I would like to increase the size of the points so they are easier to see. I can do this by adjusting `geom_points()` `size` argument:
+
+```{r}
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point(aes(colour = southern), size = 2) + 
+  geom_smooth(method = "lm") + 
+  labs(title = "Median income and voter turnout in the 2020 US Presidential election by state", 
+       subtitle = "States with wealthier citizens tended to have higher turnout rates than states with poorer citizens",
+       x = "Median income",
+       y = "Voter turnout",
+       colour = "Region",
+       caption = "Source: US Census") + 
+  theme_classic() + 
+  theme(plot.title.position = "plot",
+        plot.title = element_text(face = "bold"),
+        legend.position = "top") + 
+  scale_x_continuous(labels = scales::dollar) + 
+  scale_y_continuous(labels = scales::percent)
+```
+
+We're almost there. As a final touch, I would like to use a more appealing colour palette than the default one. First, I will make the line of best fit grey so it doesn't dominate the plot. I can do this using `geom_smooth()`'s `colour` argument:
+
+```{r}
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point(aes(colour = southern), size = 2) + 
+  geom_smooth(method = "lm", colour = "darkgrey") + 
+  labs(title = "Median income and voter turnout in the 2020 US Presidential election by state", 
+       subtitle = "States with wealthier citizens tended to have higher turnout rates than states with poorer citizens",
+       x = "Median income",
+       y = "Voter turnout",
+       colour = "Region",
+       caption = "Source: US Census") + 
+  theme_classic() + 
+  theme(plot.title.position = "plot",
+        plot.title = element_text(face = "bold"),
+        legend.position = "top") + 
+  scale_x_continuous(labels = scales::dollar) + 
+  scale_y_continuous(labels = scales::percent)
+```
+
+Next, I would like to change the colours of the points. I really like the palettes included in the `MetBrewer` R package. This package creates palettes based on paintings hanging in the Metropolitan Museum of Art.
+
+::: callout-note
+You can see all the colour palettes included in the package here: <https://github.com/BlakeRMills/MetBrewer>.
+:::
+
+For example, this palette comes from Vincent van Gogh's *Cypresses* (1889):
+
+```{r}
+met.brewer(name = "VanGogh1")
+```
+
+And this colourblind-friendly palette comes from Carl Morgenstern's *Jungfrau, Mönch, and Eiger* (1851):
+
+```{r}
+met.brewer(name = "Morgenstern")
+```
+
+Let's use the beautiful colour palette generated from William Henry Johnson's *Jitterbugs V* (1941–42). This palette has highly contrasting colours, which will make it easy for our viewer to distinguish between Southern and non-Southern dots.
+
+```{r}
+met.brewer(name = "Johnson")
+```
+
+To manually select our colour palette, we need to use the `scale_colour_manual()` function:
+
+```{r}
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point(aes(colour = southern), size = 2) + 
+  geom_smooth(method = "lm", colour = "darkgrey") + 
+  labs(title = "Median income and voter turnout in the 2020 US Presidential election by state", 
+       subtitle = "States with wealthier citizens tended to have higher turnout rates than states with poorer citizens",
+       x = "Median income",
+       y = "Voter turnout",
+       colour = "Region",
+       caption = "Source: US Census") + 
+  theme_classic() + 
+  theme(plot.title.position = "plot",
+        plot.title = element_text(face = "bold"),
+        legend.position = "top") + 
+  scale_x_continuous(labels = scales::dollar) + 
+  scale_y_continuous(labels = scales::percent) + 
+  scale_colour_manual(values = met.brewer(name = "Johnson")[c(1, 5)])
+```
+
+Huh, what's with those numbers and brackets? The `values` argument of `scale_colour_manual()` takes a **vector** of hex values representing your selected colours. A hex value is a unique value assigned to a colour. You will see the ones provided in the Johnson palette shortly.
+
+A vector is a collection of values of the same type. For example, here is the vector representing our colour palette:
+
+```{r}
+#| echo: false
+as.character(met.brewer(name = "Johnson"))
+```
+
+These are all **characters** (think: words, or letters). Other data types include integers, logical values, and factors. You will be introduced to these throughout the course.
+
+I want to use the two colours at opposing ends of this palette so they are easy to distinguish from each other. I, therefore, need to grab the first value, `r as.character(met.brewer(name = "Johnson"))[1]`, and the fifth value, `r as.character(met.brewer(name = "Johnson"))[5]`. I can do this using those square brackets and providing the value's position. For example, here is the code to grab the second value:
+
+```{r}
+met.brewer(name = "Johnson")[2]
+```
+
+And third value:
+
+```{r}
+met.brewer(name = "Johnson")[3]
+```
+
+To grab two values, you need to provide their positions within a vector, which is created using the code `c()`. For example, I include the two values in my vector using the following:
+
+```{r}
+c(2, 3)
+```
+
+Which I can then include in the brackets to get their corresponding colour values:
+
+```{r}
+met.brewer(name = "Johnson")[c(2, 3)]
+```
+
+Putting this all together, I can supply `scale_colour_manual()` with the values I would like to use from the Johnson palette. Pretty cool!
+
+## Answering the question
+
+We now have a clean and engaging visualization of the relationship between a state's median income and its voter turnout rates. It shows that this relationship is positive: states with higher median incomes tended to have higher turnout rates than states with lower median incomes.
+
+```{r}
+#| echo: false
+
+ggplot(data = turnout_df, mapping = aes(x = median_income, y = turnout)) +
+  geom_point(aes(colour = southern), size = 2) + 
+  geom_smooth(method = "lm", colour = "darkgrey") + 
+  labs(title = "Median income and voter turnout in the 2020 US Presidential election by state", 
+       subtitle = "States with wealthier citizens tended to have higher turnout rates than states with poorer citizens",
+       x = "Median income",
+       y = "Voter turnout",
+       colour = "Region",
+       caption = "Source: US Census") + 
+  theme_classic() + 
+  theme(plot.title.position = "plot",
+        plot.title = element_text(face = "bold"),
+        legend.position = "top") + 
+  scale_x_continuous(labels = scales::dollar) + 
+  scale_y_continuous(labels = scales::percent) + 
+  scale_colour_manual(values = met.brewer(name = "Johnson")[c(1, 5)])
+```
+
+Can we learn anything more from this relationship? For example, do you think that we can definitively say that states that increase their median incomes will see higher turnout rates at the next Presidential election? Or do you think something else might be going on? Perhaps individuals with higher levels of education tend to *earn and vote* more than those with less education. Might that be the decisive factor lurking behind this relationship? This course will provide you with the skills to use data to wade through these murky and complex relationships. Your first step should always be to visualize your data!
+
+## Summary
+
+-   `ggplot2` allows you to build custom visualizations by layering different components.
+
+-   We explored voter turnout and income, finding an apparent positive relationship.
+
+-   Adding colors, labels, and trend lines enhances clarity and insight.
+
+-   Future sessions will explore more advanced visualizations and data transformations.

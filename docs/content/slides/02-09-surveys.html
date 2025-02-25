@@ -1315,18 +1315,18 @@ margin-right: 0; }
 <span id="cb1-6"><a></a>sample_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 2
-   country                  gdp
-   &lt;chr&gt;                  &lt;dbl&gt;
- 1 Mexico               1.46e12
- 2 Azerbaijan           7.88e10
- 3 Viet Nam             4.10e11
- 4 Chad                 1.24e10
- 5 Solomon Islands      1.57e 9
- 6 Indonesia            1.32e12
- 7 Mongolia             1.71e10
- 8 Niger                1.54e10
- 9 Montenegro           6.23e 9
-10 Hong Kong SAR, China 3.59e11
+   country              gdp
+   &lt;chr&gt;              &lt;dbl&gt;
+ 1 Panama           7.63e10
+ 2 Denmark          4.02e11
+ 3 Paraguay         4.20e10
+ 4 Puerto Rico      1.14e11
+ 5 Finland          2.80e11
+ 6 United Kingdom   3.11e12
+ 7 Norway           5.94e11
+ 8 Egypt, Arab Rep. 4.77e11
+ 9 Turkiye          9.07e11
+10 Nepal            4.12e10
 # ℹ 50 more rows</code></pre>
 </div>
 </div>
@@ -1339,9 +1339,9 @@ margin-right: 0; }
 <span id="cb3-2"><a></a>  <span class="fu">summarise</span>(<span class="at">avg_gdp =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(<span class="fu">mean</span>(gdp, <span class="at">na.rm =</span> T)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
-  avg_gdp         
-  &lt;chr&gt;           
-1 $723,090,686,395</code></pre>
+  avg_gdp           
+  &lt;chr&gt;             
+1 $1,258,331,968,074</code></pre>
 </div>
 </div>
 <p>Now, imagine that we knew definitively that it was NA. Why such a large difference?</p>
