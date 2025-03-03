@@ -37,7 +37,7 @@ After successfully completing this course you will be able to:
 
 This course is asynchronous. You will have access to all content and assessments throughout the summer break. You can complete these at whatever time suits you best. We recommend getting an early start: you need to complete all the content, quizzes, and the final exam before your first week of classes.
 
-The course comprises ten substantive sessions. You should complete these in order: each builds on the previous sessions. Each includes some written content, a worked example of the concepts being discussed, and relevant R code. Some include short recorded lectures.
+The course comprises twelve substantive sessions. You should complete these in order: each builds on the previous sessions. Each includes some written content, a worked example of the concepts being discussed, and relevant R code. Some include short recorded lectures.
 
 Each session ends with a mandatory multiple-choice quiz (taken through ELMs). You need to obtain a score of X percent or higher on each session's quiz before you can move on to the next one. There are no limits on the number of times you can attempt the quiz.
 
@@ -45,7 +45,7 @@ Each session ends with a mandatory multiple-choice quiz (taken through ELMs). Yo
 We understand that some of you are coming into the APAN M.S. program with a strong background in statistics and R. If you are familiar with the topics covered in a given session, you can "test-out" of it by obtaining a mark of X percent or higher on its multiple-choice quiz before starting its content.
 :::
 
-You will also complete a final exam at the end of the course. All material covered in all ten sessions will be tested.
+You will also complete a final exam at the end of the course. All material covered in all twelve sessions will be tested.
 
 ### Introduction to R
 

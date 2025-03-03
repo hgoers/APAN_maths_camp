@@ -202,6 +202,54 @@ window.Quarto = {
  <span class="menu-text">Session 4: Modelling the Relationship between Two Variables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/05-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 5: Introduction to Probability Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/06-hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 6: Introduction to Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/07-linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 7: Using Observational Data to Estimate Causal Effects</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/08-multiple_linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 8: Extending to Multiple Linear Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/09-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 9: Measuring Uncertainty</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/10-binary_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 10: Modelling Binary Outcomes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/11-panel_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 11: Accounting for Non-Independence Between Observations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/12-beysian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 12: Introducing Beysian Interpretations</span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -1090,16 +1138,16 @@ range = max - min
 <pre><code># A tibble: 1,000,000 × 1
         x
     &lt;dbl&gt;
- 1 -1.37 
- 2  0.962
- 3  2.05 
- 4 -3.01 
- 5  0.717
- 6 -4.89 
- 7 -2.02 
- 8 -1.49 
- 9  2.49 
-10  0.548
+ 1  1.54 
+ 2  0.249
+ 3  2.04 
+ 4  1.31 
+ 5  1.64 
+ 6  1.28 
+ 7  1.10 
+ 8 -2.71 
+ 9  0.342
+10 -1.16 
 # ℹ 999,990 more rows</code></pre>
 </div>
 </div>
@@ -1107,18 +1155,18 @@ range = max - min
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">narrow_dist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,000,000 × 1
-        x
-    &lt;dbl&gt;
- 1 -0.356
- 2  1.45 
- 3 -2.43 
- 4  0.774
- 5 -0.888
- 6 -0.760
- 7  0.574
- 8 -2.06 
- 9 -0.626
-10 -0.972
+         x
+     &lt;dbl&gt;
+ 1  1.11  
+ 2  2.25  
+ 3 -1.04  
+ 4 -0.261 
+ 5 -0.0606
+ 6 -1.04  
+ 7 -1.63  
+ 8  1.40  
+ 9 -1.61  
+10 -0.954 
 # ℹ 999,990 more rows</code></pre>
 </div>
 </div>
@@ -1177,18 +1225,18 @@ Tip
 <span><span class="va">wide_var_calc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,000,000 × 4
-        x      mean   diff diff_2
-    &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
- 1 -1.37  -0.000533 -1.37   1.88 
- 2  0.962 -0.000533  0.963  0.927
- 3  2.05  -0.000533  2.05   4.19 
- 4 -3.01  -0.000533 -3.01   9.03 
- 5  0.717 -0.000533  0.717  0.514
- 6 -4.89  -0.000533 -4.89  23.9  
- 7 -2.02  -0.000533 -2.02   4.10 
- 8 -1.49  -0.000533 -1.49   2.23 
- 9  2.49  -0.000533  2.49   6.18 
-10  0.548 -0.000533  0.548  0.300
+        x    mean   diff diff_2
+    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1  1.54  0.00129  1.53  2.35  
+ 2  0.249 0.00129  0.248 0.0614
+ 3  2.04  0.00129  2.04  4.14  
+ 4  1.31  0.00129  1.30  1.70  
+ 5  1.64  0.00129  1.64  2.69  
+ 6  1.28  0.00129  1.27  1.63  
+ 7  1.10  0.00129  1.10  1.21  
+ 8 -2.71  0.00129 -2.71  7.37  
+ 9  0.342 0.00129  0.341 0.116 
+10 -1.16  0.00129 -1.16  1.35  
 # ℹ 999,990 more rows</code></pre>
 </div>
 </div>
@@ -1198,7 +1246,7 @@ Tip
 <span></span>
 <span><span class="va">wide_var</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.996199</code></pre>
+<pre><code>[1] 3.99556</code></pre>
 </div>
 </div>
 <p>We can compare this to the variance for our narrower distribution.</p>
@@ -1214,7 +1262,7 @@ Tip
 <span></span>
 <span><span class="va">narrow_var</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.000743</code></pre>
+<pre><code>[1] 0.9989524</code></pre>
 </div>
 </div>
 <p>It is, in fact, smaller!</p>
@@ -1222,15 +1270,15 @@ Tip
 <div class="cell">
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">wide_dist</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         x
-x 3.996199</code></pre>
+<pre><code>        x
+x 3.99556</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">narrow_dist</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         x
-x 1.000743</code></pre>
+<pre><code>          x
+x 0.9989524</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1246,26 +1294,26 @@ x TRUE</code></pre>
 <div class="cell">
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">wide_var</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.999049</code></pre>
+<pre><code>[1] 1.99889</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">narrow_var</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.000372</code></pre>
+<pre><code>[1] 0.9994761</code></pre>
 </div>
 </div>
 <p>You can get this directly using base R’s <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">wide_dist</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.999049</code></pre>
+<pre><code>[1] 1.99889</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">narrow_dist</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.000372</code></pre>
+<pre><code>[1] 0.9994761</code></pre>
 </div>
 </div>
 <p>The standard deviation of all countries’ percentage of their GDP that they spent on education in 2020 was 1.75%. This horrible sentence demonstrates that standard deviations are most usefully employed in contexts other than attempts to better describe your variables of interest. For example, they are very important for determining how certain we can be about the relationships between different variables we uncover using statistical models (which we will get to later in the course).</p>

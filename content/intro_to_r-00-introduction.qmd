@@ -45,7 +45,7 @@ This course aims to provide you with two broad skills: statistical analysis and 
 
 ## R packages
 
-An R package is a collection of functions, data, and documentation bundled together to extend R’s capabilities. Packages help users avoid reinventing the wheel by providing pre-written code for common tasks like data manipulation, visualization, and statistical modeling. The `tidyverse`, for example, is a collection of packages that simplify working with data in R. You can install packages from CRAN (the Comprehensive R Archive Network) using `install.packages("package_name")` and load them with `library(package_name)`.
+An R package is a collection of functions, data, and documentation bundled together to extend R’s capabilities. Packages help users avoid reinventing the wheel by providing pre-written code for common tasks like data manipulation, visualization, and statistical modeling. The `tidyverse`, for example, is a collection of packages that simplify working with data in R. You can install packages from CRAN (the Comprehensive R Archive Network) using `install.packages("package_name")` and load them into your current session using `library(package_name)`. These packages are written by R coders just like you. As your R skills develop, you might want to approach these common tasks in your own way. You might even want to write your own package for others to use.
 
 We will install and learn about some wonderful R packages throughout this course, starting with `ggplot2` and the broader `tidyverse` family in the very next session.
 

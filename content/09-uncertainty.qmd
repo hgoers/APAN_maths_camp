@@ -1,5 +1,5 @@
 ---
-title: "Measuring Uncertainty"
+title: "Session 9: Measuring Uncertainty"
 format:
   html:
     code-link: true
@@ -162,7 +162,7 @@ m_2 <- lm(dreamTeamPoints ~ disposalEfficiency, data = afl_sample_2)
 tidy(m_2)
 ```
 
-Again, we got a different set of coefficients. *The only thing driving this difference is random chance.* We took a random sample of the same number of players as above from the same population. 
+Again, we got a different set of coefficients. *The only thing driving this difference is random chance.* We took a random sample of the same number of players as above from the same population.
 
 Let's go again:
 
@@ -182,7 +182,7 @@ m_3 <- lm(dreamTeamPoints ~ disposalEfficiency, data = afl_sample_3)
 tidy(m_3)
 ```
 
-Again, we get different estimates. The only difference was pure random chance. 
+Again, we get different estimates. The only difference was pure random chance.
 
 We can see these differences more clearly by plotting them:
 
@@ -244,7 +244,7 @@ afl_regressions |>
        caption = "Median is shown with point. One and two standard deviations are shown by the black bars.")
 ```
 
-Here is the distribution of those 1,000 different coefficients for disposal efficiency for each model. We can see a wide range of estimates for the relationship between disposal efficiency and Dream Team points. Some samples even led our model to estimate a negative relationship! 
+Here is the distribution of those 1,000 different coefficients for disposal efficiency for each model. We can see a wide range of estimates for the relationship between disposal efficiency and Dream Team points. Some samples even led our model to estimate a negative relationship!
 
 Next, we can look at the intercept estimates:
 
@@ -260,7 +260,7 @@ afl_regressions |>
        caption = "Median is shown with point. One and two standard deviations are shown by the black bars.")
 ```
 
-Again, we have a wide range of estimates. Some are more common than others: the average of our 1,000 estimates (`r afl_regressions |> unnest_wider(model) |> filter(term == "(Intercept)") |> summarise(mean(estimate)) |> pull() |> round(3)`) is the most common one produced. Estimates far from that average are less common. Similarly, the average of the 1,000 estimates produced for the disposal efficiency variable (`r afl_regressions |> unnest_wider(model) |> filter(term == "disposalEfficiency") |> summarise(mean(estimate)) |> pull() |> round(3)`) was the most common one produced. 
+Again, we have a wide range of estimates. Some are more common than others: the average of our 1,000 estimates (`r afl_regressions |> unnest_wider(model) |> filter(term == "(Intercept)") |> summarise(mean(estimate)) |> pull() |> round(3)`) is the most common one produced. Estimates far from that average are less common. Similarly, the average of the 1,000 estimates produced for the disposal efficiency variable (`r afl_regressions |> unnest_wider(model) |> filter(term == "disposalEfficiency") |> summarise(mean(estimate)) |> pull() |> round(3)`) was the most common one produced.
 
 We can use this knowledge to focus back on that single regression model that we built right at the start of this session. Those averages are very, very close to the estimates produced by that first model:
 
@@ -329,7 +329,7 @@ tidy(m) |>
   select(term:std.error)
 ```
 
-Okay, so we have a good sense of the spread around our best guess. Let's visualize this. We will start with the disposal efficiency coefficient estimate: 
+Okay, so we have a good sense of the spread around our best guess. Let's visualize this. We will start with the disposal efficiency coefficient estimate:
 
 ```{r}
 tibble(
@@ -371,8 +371,8 @@ We know from above that there are a range of plausible intercepts and coefficien
 
 First, we need to define what we mean by a plausible range of relationships. Traditionally, we are willing to accept a five percent risk that we declare that there is a relationship between an outcome and an independent variable when there is, in fact, no relationship. Let's stick with that threshold.
 
-::: {.callout-note}
-The political science journal articles you have read will often talk about a p-value of 0.05. This threshold of a five percent risk that we declare that there is a relationship between an outcome and an independent variable when there is, in fact, no relationship is the functional definition of that p-value. 
+::: callout-note
+The political science journal articles you have read will often talk about a p-value of 0.05. This threshold of a five percent risk that we declare that there is a relationship between an outcome and an independent variable when there is, in fact, no relationship is the functional definition of that p-value.
 :::
 
 Okay, so now we need to work out where the other 95 percent of plausible values sit. Let's start with the coefficient describing the relationship between Dream Team points and disposal efficiency. Here is our representation of the coefficients drawn from an infinite number random samples pulled from our population (it is the same as printed above):
@@ -390,12 +390,12 @@ tibble(
        y = "Density")
 ```
 
-Where do 95 percent of these coefficients fall around our best guess? Because we estimated the spread of our estimates using the standard error, we cannot use the usual (and helpful) standard Normal distribution to answer this question. Instead, we need to look at a similar, but different distribution: the t-distribution. 
+Where do 95 percent of these coefficients fall around our best guess? Because we estimated the spread of our estimates using the standard error, we cannot use the usual (and helpful) standard Normal distribution to answer this question. Instead, we need to look at a similar, but different distribution: the t-distribution.
 
-::: {.callout-note}
+::: callout-note
 ## The t-distribution
 
-The **t-distribution** is very similar to the Normal distribution, but it depends on one important factor that the Normal distribution does not: the amount of information you used to fit your model. 
+The **t-distribution** is very similar to the Normal distribution, but it depends on one important factor that the Normal distribution does not: the amount of information you used to fit your model.
 
 There are an infinite number of t-distributions. Each is defined by its **degrees of freedom**. Degrees of freedom account for both the number of observations and the number of independent variables you used to fit your model. We will discuss how to use the t-distribution below, but for now here are some t-distributions with different degrees of freedom:
 
@@ -408,11 +408,11 @@ ggplot() +
   scale_x_continuous(limits = c(-5, 5))
 ```
 
-The important thing to note here is that the t-distribution punishes you for using too little information to fit your models. The tails on the distribution with the smallest degrees of freedom (coloured in red) are fatter than the distributions with higher degrees of freedom. As you will learn below, this makes the bar required to reach statistical significance more difficult to clear. 
+The important thing to note here is that the t-distribution punishes you for using too little information to fit your models. The tails on the distribution with the smallest degrees of freedom (coloured in red) are fatter than the distributions with higher degrees of freedom. As you will learn below, this makes the bar required to reach statistical significance more difficult to clear.
 
-Another thing to note is that this effect is diminishing in the amount of information (degrees of freedom) you have. Note that the difference between the distribution with five degrees of freedom and that with 50 is much larger than the difference between the distribution with 50 degrees of freedom and that with 5000. Practically, once you have more than a few observations and you do not cram your model with many independent variables, you will not be punished too harshly. 
+Another thing to note is that this effect is diminishing in the amount of information (degrees of freedom) you have. Note that the difference between the distribution with five degrees of freedom and that with 50 is much larger than the difference between the distribution with 50 degrees of freedom and that with 5000. Practically, once you have more than a few observations and you do not cram your model with many independent variables, you will not be punished too harshly.
 
-Finally, as the degrees of freedom increase, the t-distribution increasingly resembles the Normal distribution. 
+Finally, as the degrees of freedom increase, the t-distribution increasingly resembles the Normal distribution.
 :::
 
 We need to use our knowledge of the t-distribution to answer this question. We know that center point (our coefficient):
@@ -654,5 +654,3 @@ modelsummary(m,
              statistic = c("std.error"),
              stars = T)
 ```
-
-

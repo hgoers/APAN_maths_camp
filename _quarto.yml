@@ -30,9 +30,14 @@ website:
             - content/02-experiments.qmd
             - content/03-surveys_to_pops.qmd
             - content/04-bivariate.qmd
-#            - content/04-02-linear_regression.qmd
-#            - content/05-02-probability.qmd
-#            - content/06-02-uncertainty.qmd
+            - content/05-probability.qmd
+            - content/06-hypothesis.qmd
+            - content/07-linear_regression.qmd
+            - content/08-multiple_linear_regression.qmd
+            - content/09-uncertainty.qmd
+            - content/10-binary_outcomes.qmd
+            - content/11-panel_data.qmd
+            - content/12-beysian.qmd
         - section: "Introduction to R"
           contents:
             - content/intro_to_r-00-introduction.qmd

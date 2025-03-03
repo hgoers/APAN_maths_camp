@@ -1,5 +1,5 @@
 ---
-title: "Probability"
+title: "Session 5: Introduction to Probability Theory"
 format:
   html:
     code-link: true

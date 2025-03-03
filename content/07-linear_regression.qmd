@@ -1,5 +1,5 @@
 ---
-title: "Estimating Causal Effects with Observational Data"
+title: "Session 7: Using Observational Data to Estimate Causal Effects"
 format:
   html:
     code-link: true
@@ -168,12 +168,12 @@ modelsummary(m,
              coef_rename = c("pcjPCJ institutions" = "PCJ institutions established"))
 ```
 
-We get the same numbers as above! Take a minute to interpret the intercept and coefficient estimate yourself. Can you see the connection to our simple grouped averages above?   
+We get the same numbers as above! Take a minute to interpret the intercept and coefficient estimate yourself. Can you see the connection to our simple grouped averages above?
 
 ::: {.callout-note collapse="true"}
-## Check your answer 
+## Check your answer
 
-The intercept is the predicted value of our outcome variable when all independent variables are equal to zero. Here, we have one independent variable which is equal to zero when the country did not establish PCJ institutions. Our model predicts that post-conflict countries without PCJ institutions will have the net FDI inflow that post-conflict countries in our sample without PCJ institutions had on average. 
+The intercept is the predicted value of our outcome variable when all independent variables are equal to zero. Here, we have one independent variable which is equal to zero when the country did not establish PCJ institutions. Our model predicts that post-conflict countries without PCJ institutions will have the net FDI inflow that post-conflict countries in our sample without PCJ institutions had on average.
 
 The coefficient estimate is the predicted average difference in the outcome following a one-unit change in the independent variable. Here, a one-unit change in our independent variable is a move from no PCJ institutions (where `pcj = 0`) to at least one PCJ institution (where `pcj = 1`). Our model predicts that post-conflict countries with PCJ institutions will have on average `r ebj |> group_by(pcj) |> summarise(avg_net_fdi = mean(net_fdi_inflows)) |> mutate(diff = avg_net_fdi - lag(avg_net_fdi)) |> drop_na() |> pull(diff) |> scales::dollar()` million more in net FDI inflows because this is the difference between the average net inflows of countries in our sample without PCJ institutions and those with them.
 :::
@@ -212,12 +212,12 @@ $$
 
 So, we found support for Appel and Loyal's hypothesis: countries that established PCJ institutions within the first five-years after conflict received more net FDI inflows than those that did not establish these institutions. But, was this difference large? These institutions impose real costs on post-conflict leaders. Is the predicted boost in net FDI inflows generally worth this cost? More generally, is this difference **substantively significant**?
 
-:::{.callout-note}
-Substantive significance is different from **statistical significance**, which we will discuss in detail in our last session. Here, we are interested in whether the difference is large enough for our political actors to care about it. 
+::: callout-note
+Substantive significance is different from **statistical significance**, which we will discuss in detail in our last session. Here, we are interested in whether the difference is large enough for our political actors to care about it.
 
-To illustrate, imagine if I told you that studying this course material for an additional five hours would lead to a one-point increase in your quiz mark. I'm not sure many of you would put in that additional work for such a small reward. If, on the other hand, I told you that it would boost your mark by 15 points, you might be more willing to spend your afternoon with these materials. 
+To illustrate, imagine if I told you that studying this course material for an additional five hours would lead to a one-point increase in your quiz mark. I'm not sure many of you would put in that additional work for such a small reward. If, on the other hand, I told you that it would boost your mark by 15 points, you might be more willing to spend your afternoon with these materials.
 
-There is no one right or wrong answer to the question of substantive significance. For example, perhaps someone who is one point away from a perfect grade would be willing to put in the extra hours to secure that one additional mark. Substantive significance rests much more on your argument for it, rather than a hard-and-fast threshold that must be reached (which is the case for statistical significance). 
+There is no one right or wrong answer to the question of substantive significance. For example, perhaps someone who is one point away from a perfect grade would be willing to put in the extra hours to secure that one additional mark. Substantive significance rests much more on your argument for it, rather than a hard-and-fast threshold that must be reached (which is the case for statistical significance).
 :::
 
 I argue that this finding is substantively significant. These countries are recovering from conflict: their economies are generally very weak. Leaders are often very keen to find stable and reliable sources of funding to promote and strengthen their battered economies. This average difference of `r tidy(m) |> filter(term == "pcjPCJ institutions") |> pull(estimate) |> scales::dollar()` million is; therefore, likely to incentivize this policy.
@@ -241,9 +241,9 @@ modelsummary(m,
                              "gdp_per_capita" = "GDP per capita (current USD)"))
 ```
 
-We continue to find a positive relationship between net FDI inflows and the establishment of a PCJ institution. In other words, countries that established PCJ institutions received, on average, larger net FDI inflows than those that did not establish these institutions. Additionally, we can now state that this is the case regardless of how rich or poor individuals within the country are. 
+We continue to find a positive relationship between net FDI inflows and the establishment of a PCJ institution. In other words, countries that established PCJ institutions received, on average, larger net FDI inflows than those that did not establish these institutions. Additionally, we can now state that this is the case regardless of how rich or poor individuals within the country are.
 
-We do this by holding constant the other variables in the model. This can be a little tricky to wrap your head around, so please be patient with yourselves. When we introduce multiple variables into our linear regression models we move from a *line* of best fit to a *plane* of best fit. You add an additional dimension to your plane for each additional variable you include in your model. To illustrate, look at the model we just fit (which has two variables) plotted against the observed values for whether the country had a PCJ institution, its GDP per capita, and the net FDI inflow it received: 
+We do this by holding constant the other variables in the model. This can be a little tricky to wrap your head around, so please be patient with yourselves. When we introduce multiple variables into our linear regression models we move from a *line* of best fit to a *plane* of best fit. You add an additional dimension to your plane for each additional variable you include in your model. To illustrate, look at the model we just fit (which has two variables) plotted against the observed values for whether the country had a PCJ institution, its GDP per capita, and the net FDI inflow it received:
 
 ```{r}
 #| code-fold: true
@@ -291,20 +291,20 @@ plot_ly() |>
   layout(showlegend = FALSE)
 ```
 
-::: {.callout-note}
-This graph is interactive. Have a play around with it. 
+::: callout-note
+This graph is interactive. Have a play around with it.
 :::
 
-Our model is no longer the line of best fit. It is now the linear plane of best fit. For any given value of GDP per capita and whether the country has PCJ institutions or not, we have a predicted value of net FDI inflows. This predicted value is the value that minimizes the distance between itself and all the values of both GDP per capita and whether the country has a PCJ institution or not. 
+Our model is no longer the line of best fit. It is now the linear plane of best fit. For any given value of GDP per capita and whether the country has PCJ institutions or not, we have a predicted value of net FDI inflows. This predicted value is the value that minimizes the distance between itself and all the values of both GDP per capita and whether the country has a PCJ institution or not.
 
 ### Interpreting multiple linear regression models
 
 The intercept here is not informative on its own. It tells us the estimated average net FDI inflows for countries that do not have PCJ institutions (`pcj = 0`) and in which citizens had a GDP per capita of \$0 (`gdp_per_capita = 0`). Although the majority of countries did not establish a PCJ institution, there are no countries in the world that have a GDP per capita of \$0.
 
-Let's instead focus on the other coefficients. We find that states that established a PCJ institution received, on average, net FDI inflows of `r tidy(m) |> filter(term == "pcjPCJ institutions") |> pull(estimate) |> scales::dollar()` million more than states that did not, *holding that country's GDP per capita constant*. I have picked one value of GDP per capita and then calculated the difference between the predicted value of net FDI inflows for a countries with that GDP per capita and without PCJ institutions compared to that for a country with that GDP per capita and with PCJ institutions. The value of GDP per capita that you pick does not matter because this is a linear plane. 
+Let's instead focus on the other coefficients. We find that states that established a PCJ institution received, on average, net FDI inflows of `r tidy(m) |> filter(term == "pcjPCJ institutions") |> pull(estimate) |> scales::dollar()` million more than states that did not, *holding that country's GDP per capita constant*. I have picked one value of GDP per capita and then calculated the difference between the predicted value of net FDI inflows for a countries with that GDP per capita and without PCJ institutions compared to that for a country with that GDP per capita and with PCJ institutions. The value of GDP per capita that you pick does not matter because this is a linear plane.
 
-::: {.callout-note}
-To illustrate, say I pick a GDP per capita of \$0. The predicted net FDI inflow for a country without a PCJ institution is therefore: 
+::: callout-note
+To illustrate, say I pick a GDP per capita of \$0. The predicted net FDI inflow for a country without a PCJ institution is therefore:
 
 $$
 Net\ inflow = -319 + \beta_{PCJ}(0) + \beta_{GDP\ per\ cap}(0) \\
@@ -312,7 +312,7 @@ Net\ inflow = -319 + 1673(0) + 0.318(0) \\
 Net\ inflow = -319
 $$
 
-The predicted net FDI inflow for a country with a PCJ institution (and a GDP per capita of \$0) is: 
+The predicted net FDI inflow for a country with a PCJ institution (and a GDP per capita of \$0) is:
 
 $$
 Net\ inflow = -319 + \beta_{PCJ}(1) + \beta_{GDP\ per\ cap}(0) \\
@@ -320,23 +320,23 @@ Net\ inflow = -319 + 1673(1) + 0.318(0)
 Net\ inflow = 1354
 $$
 
-The difference is $1673 (the coefficient for the PCJ variable).
+The difference is \$1673 (the coefficient for the PCJ variable).
 
-I can do the same calculations for a country with a GDP per capita of \$25,000. Here is the predicted net FDI inflow for a country without PCJ institutions: 
+I can do the same calculations for a country with a GDP per capita of \$25,000. Here is the predicted net FDI inflow for a country without PCJ institutions:
 
 $$
 Net\ inflow = -319 + 1673(0) + 0.318(25000) \\
 Net\ inflow = 7631
 $$
 
-And for a country with PCJ institutions: 
+And for a country with PCJ institutions:
 
 $$
 Net\ inflow = -319 + 1673(1) + 0.318(25000) \\
 Net\ inflow = 9304
 $$
 
-Again, the difference is $1673 (the coefficient for the PCJ variable).
+Again, the difference is \$1673 (the coefficient for the PCJ variable).
 :::
 
 We also find that an increase in the GDP per capita of a state of \$1,000 is associated with an increase of `r scales::dollar((tidy(m) |> filter(term == "gdp_per_capita") |> pull(estimate))*1000)` million in net FDI inflow, on average and holding whether they have PCJ institutions constant. This is consistent with our expectations that, holding all else constant, a country with a richer population is a more attractive investment destination than a country that has poorer citizens.
@@ -358,10 +358,10 @@ plot_predictions(m, condition = c("gdp_per_capita", "pcj")) +
   theme_minimal()
 ```
 
-We can see that countries with PCJ institutions (represented by the blue line) are predicted to have more net FDI inflows than countries without these institutions (represented by the red line) across all values of GDP per capita. Because the model is linear, the distance between the red and blue lines is constant across all values of GDP per capita. 
+We can see that countries with PCJ institutions (represented by the blue line) are predicted to have more net FDI inflows than countries without these institutions (represented by the red line) across all values of GDP per capita. Because the model is linear, the distance between the red and blue lines is constant across all values of GDP per capita.
 
-:::{.callout-note}
-The coloured bands around the line showing the predicted values of net FDI inflows are the **confidence intervals**. We will discuss these more in later sessions.  
+::: callout-note
+The coloured bands around the line showing the predicted values of net FDI inflows are the **confidence intervals**. We will discuss these more in later sessions.
 :::
 
 ### The full model
