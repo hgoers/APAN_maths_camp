@@ -222,32 +222,20 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/08-multiple_linear_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 8: Extending to Multiple Linear Regression</span></a>
+  <a href="../content/08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 8: Measuring Uncertainty</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/09-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 9: Measuring Uncertainty</span></a>
+  <a href="../content/09-binary_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 9: Modelling Binary Outcomes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/10-binary_outcomes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 10: Modelling Binary Outcomes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/11-panel_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 11: Accounting for Non-Independence Between Observations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/12-beysian.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 12: Introducing Beysian Interpretations</span></a>
+  <a href="../content/10-panel_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 10: Working with Panel Data</span></a>
   </div>
 </li>
       </ul>
@@ -313,7 +301,8 @@ div.csl-indent {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a></li>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up">Set up</a></li>
   <li><a href="#are-election-monitors-effective-at-reducing-election-day-fraud-in-new-democracies" id="toc-are-election-monitors-effective-at-reducing-election-day-fraud-in-new-democracies" class="nav-link" data-scroll-target="#are-election-monitors-effective-at-reducing-election-day-fraud-in-new-democracies">Are election monitors effective at reducing election-day fraud in new democracies?</a></li>
   <li><a href="#causal-relationships" id="toc-causal-relationships" class="nav-link" data-scroll-target="#causal-relationships">Causal relationships</a></li>
   <li><a href="#individual-causal-effects" id="toc-individual-causal-effects" class="nav-link" data-scroll-target="#individual-causal-effects">Individual causal effects</a></li>
@@ -338,7 +327,23 @@ div.csl-indent {
   
 
 
-</header><section id="set-up" class="level2"><h2 class="anchored" data-anchor-id="set-up">Set up</h2>
+</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>We often want to better understand what factors lead to (or cause) certain outcomes of interest. This session explains how we might go about identifying these causal effects in the real-world.</p>
+<p>Our goal as political scientists is to explain whether (and why) changes to some features lead to changes in our outcomes of interest. For example:</p>
+<ul>
+<li><p>Does increasing the number of voting booths close to a potential voter make that person more likely to vote?</p></li>
+<li><p>Are peace treaties signed with a single, cohesive group more durable than those signed with many factionalized rebel groups?</p></li>
+<li><p>Does trade between two countries make war between them less likely?</p></li>
+</ul>
+<p>The questions can be reframed as causal statements that can then be tested:</p>
+<ul>
+<li><p>More local voting booths lead to an increased likelihood individuals vote.</p></li>
+<li><p>More factionalization among rebel groups leads to a higher likelihood the conflict will restart.</p></li>
+<li><p>More trade between two countries leads to a lower likelihood that war will break out between them.</p></li>
+</ul>
+<p>However, proving that changes to one factor (more local voting booths, factionalization, or trade) caused changes to our outcome of interest is very difficult to do. This is because we need to prove that all the other things that changed before our outcome of interest changed weren’t the ones really driving that outcome. How do we do this?</p>
+<p>We will spend the whole course answering this question. This session, we are going to focus on experiments, which are often called the “gold-standard” of causal research. To guide us through this session, we are going to look at research conducted by <a href="https://polisci.berkeley.edu/people/person/susan-hyde">Professor Susan Hyde</a>.</p>
+</section><section id="set-up" class="level2"><h2 class="anchored" data-anchor-id="set-up">Set up</h2>
 <p>To complete this session, you need to load in the following R packages:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -364,21 +369,6 @@ Install packages
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT">DT</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We often want to better understand what factors lead to (or cause) certain outcomes of interest. This session explains how we might go about identifying these causal effects in the real-world.</p>
-<p>Our goal as political scientists is to explain whether (and why) changes to some features lead to changes in our outcomes of interest. For example:</p>
-<ul>
-<li><p>Does increasing the number of voting booths close to a potential voter make that person more likely to vote?</p></li>
-<li><p>Are peace treaties signed with a single, cohesive group more durable than those signed with many factionalized rebel groups?</p></li>
-<li><p>Does trade between two countries make war between them less likely?</p></li>
-</ul>
-<p>The questions can be reframed as causal statements that can then be tested:</p>
-<ul>
-<li><p>More local voting booths lead to an increased likelihood individuals vote.</p></li>
-<li><p>More factionalization among rebel groups leads to a higher likelihood the conflict will restart.</p></li>
-<li><p>More trade between two countries leads to a lower likelihood that war will break out between them.</p></li>
-</ul>
-<p>However, proving that changes to one factor (more local voting booths, factionalization, or trade) caused changes to our outcome of interest is very difficult to do. This is because we need to prove that all the other things that changed before our outcome of interest changed weren’t the ones really driving that outcome. How do we do this?</p>
-<p>We will spend the whole course answering this question. This session, we are going to focus on experiments, which are often called the “gold-standard” of causal research. To guide us through this session, we are going to look at research conducted by <a href="https://polisci.berkeley.edu/people/person/susan-hyde">Professor Susan Hyde</a>.</p>
 </section><section id="are-election-monitors-effective-at-reducing-election-day-fraud-in-new-democracies" class="level2"><h2 class="anchored" data-anchor-id="are-election-monitors-effective-at-reducing-election-day-fraud-in-new-democracies">Are election monitors effective at reducing election-day fraud in new democracies?</h2>
 <p>Hyde was very interested in election fraud. She wanted to uncover what things the international community could do to prevent elections from being stolen. Interestingly for her, she completed her PhD during a time in which the prevalence of international election monitors exploded. There was a sharp increase in the number of elections held in new democracies globally that included international organizations or representatives from other countries monitoring how those elections were run. So, she wanted to know: did these international monitors cause less election-day fraud in democratic elections?</p>
 <p>She worked out that, although fraud itself is very difficult to see, its outcome is not. (Effective) cheating parties receive a greater vote share than they would had they not cheated. So she set out to see whether international election monitors camped out at election booths decreased the vote share won by cheating parties at those booths. In her own words <span class="citation" data-cites="hyde2007">(<a href="#ref-hyde2007" role="doc-biblioref">Hyde 2007, 39</a>)</span>:</p>
@@ -488,6 +478,22 @@ Warning
 </div>
 </div>
 <p>The average difference with missing counter-factuals is very close to that with full information (that relies on that handy time machine). How does this work so well?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Skipping very far ahead…
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In fact, if we ran many, many identical experiments – assigning monitors to booths randomly – and recorded the average difference in vote shares won in each of those many trials, the average of those averages would be the same as that found in our impossible world with full information. This is because of two important facts that are described as the <strong>Law of Large Numbers</strong> and the <strong>Central Limit Theorem</strong>. We will discuss these (and demonstrate them using simulations) in a couple of sessions’ time.</p>
+</div>
+</div>
+</div>
 </section><section id="randomization" class="level2"><h2 class="anchored" data-anchor-id="randomization">Randomization</h2>
 <p>Through randomization! I assigned monitors to the 1,000 voting booths randomly. For each booth, I flipped a (R generated) coin to decide whether that booth would be monitored. At the end of that process, roughly half of the booths had monitors and half did not:</p>
 <div class="cell">
@@ -591,22 +597,19 @@ Note
 </div>
 </div>
 </div>
-<p>Again, these two groups are nearly identical to one another, on average. In fact, if we did this many, many, many times, these groups would be, on average, increasingly identical.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Why?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Because of the <strong>Central Limit Theorem</strong> and <strong>Law of Large Numbers</strong>. We will talk about these two concepts later in the course.</p>
-</div>
-</div>
+<p>Again, these two groups are nearly identical to one another, on average.</p>
 </section><section id="returning-to-our-question" class="level2"><h2 class="anchored" data-anchor-id="returning-to-our-question">Returning to our question</h2>
-<p>So, do international election monitors deter election-fraud? Yes! The international community monitored the 2003 Armenian Presidential elections. Monitors were assigned randomly to the polling stations. Hyde found a large difference between the vote share received by the cheating party at monitored stations compared to non-monitored stations, on average.</p>
+<p>So, do international election monitors deter election-fraud? Yes! The international community monitored the 2003 Armenian Presidential elections. Monitors were assigned randomly to the polling stations. Hyde found a large difference between the vote share received by the cheating party at monitored stations compared to non-monitored stations, on average. She concluded that election monitors stationed at election booths reduced the amount of fraud committed at those booths.</p>
+<p>She provides the following table in on page 53 of her paper:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="img/hyde.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The vote proceeded in two rounds (demarcated R1 and R2 respectively). For now, focus on the percentage differences reported in the third column (we will get to all of those measures of uncertainty later in the course).</p>
+<p>Let’s step through the first row together. Monitors were assigned randomly to election booths. Among the booths that were not observed in round one, the incumbent received 54.2% of the vote. Among the booths that were monitored, however, the incumbent only received 48.3% of the vote. This is a difference of a whopping 5.9% of the total vote share in round one.</p>
+<p>Remember, monitors were assigned to booths randomly. Yes, these booths would be different from each other. Some would sit in electorates in which the incumbent would enjoy strong support and others would be in electorates in which they did not. Some would be in rural settings, whilst others would be in the center of town. However, because of the random assignment, these two groups of booths are probably very similar to one another on average. This allows Hyde to claim that the only meaningful difference between them was the treatment (presence of monitors). This, in turn, allows her to claim that the difference in vote share won (5.9%) was caused by the monitors.</p>
+<p>This is a big difference! Elections can be won or lost by much smaller margins. It appears that monitors make a substantive difference to the vote share won. Hyde proved this all by simply looking at the difference between the averages of her two (randomly assigned) groups. This is excellent science: it is simple and clear.</p>
+<p>We don’t often have the luxury of random assignment when attempting to answer political questions. Next we will explore how we can learn about general relationships between our variables of interest when we have incomplete information.</p>
 
 
 

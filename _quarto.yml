@@ -33,11 +33,9 @@ website:
             - content/05-probability.qmd
             - content/06-hypothesis.qmd
             - content/07-linear_regression.qmd
-            - content/08-multiple_linear_regression.qmd
-            - content/09-uncertainty.qmd
-            - content/10-binary_outcomes.qmd
-            - content/11-panel_data.qmd
-            - content/12-beysian.qmd
+            - content/08-uncertainty.qmd
+            - content/09-binary_outcomes.qmd
+            - content/10-panel_data.qmd
         - section: "Introduction to R"
           contents:
             - content/intro_to_r-00-introduction.qmd

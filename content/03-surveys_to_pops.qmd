@@ -17,7 +17,9 @@ execute:
 set.seed(1234)
 ```
 
-A lot the data we use in political science research are incomplete. Rarely do we have data on all actors in our population of interest. We, therefore, need to work out the degree to which our sample of actors resembles what we would see in the population. This session introduces you to the tools you need to do this.
+## Introduction
+
+A lot the data we use in political science research are incomplete. Rarely do we have data on all actors in our population of interest. We, therefore, need to work out the degree to which our sample of actors resembles the population. This session introduces you to the tools you need to do this.
 
 ## Set up
 
@@ -43,13 +45,11 @@ library(here)
 library(dataverse)
 ```
 
-## Introduction
+## Representative samples
 
-Entire populations are very difficult to collect data on. Even the census (which aims to account for every citizen living within a country) misses people. Happily, we do not need to learn information about the whole population to discover general trends within it. Instead, we can use good surveys of the population.
+Entire populations are very difficult to collect data on. Even the census (which aims to account for every citizen living within a country) misses people. Happily, we do not need to learn information about the whole population to discover general trends within it. Instead, we can use good samples of the population.
 
 What do I mean by "good"? The sample of your population surveyed must be **representative** of that population. This session focuses on defining what we mean by that.
-
-## Representative samples
 
 Surveys are conducted on a subset of a our population of interest. This is because it is often unfeasible (or impossible) to ask these questions of our population.
 

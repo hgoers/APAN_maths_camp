@@ -197,32 +197,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/08-multiple_linear_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 8: Extending to Multiple Linear Regression</span></a>
+  <a href="../content/08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 8: Measuring Uncertainty</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/09-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 9: Measuring Uncertainty</span></a>
+  <a href="../content/09-binary_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 9: Modelling Binary Outcomes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/10-binary_outcomes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 10: Modelling Binary Outcomes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/11-panel_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 11: Accounting for Non-Independence Between Observations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/12-beysian.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 12: Introducing Beysian Interpretations</span></a>
+  <a href="../content/10-panel_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 10: Working with Panel Data</span></a>
   </div>
 </li>
       </ul>
@@ -570,20 +558,20 @@ $ gdp_per_cap    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
 <span></span>
 <span><span class="va">gapminder_raw</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 27,776 × 11
+<pre><code># A tibble: 28,210 × 11
    indicator_id   indicator     iso2c iso3c country  date value unit  obs_status
    &lt;chr&gt;          &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     
- 1 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2023  NA   &lt;NA&gt;  &lt;NA&gt;      
- 2 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2022  62.9 &lt;NA&gt;  &lt;NA&gt;      
- 3 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2021  62.0 &lt;NA&gt;  &lt;NA&gt;      
- 4 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2020  62.6 &lt;NA&gt;  &lt;NA&gt;      
- 5 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2019  63.6 &lt;NA&gt;  &lt;NA&gt;      
- 6 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2018  63.1 &lt;NA&gt;  &lt;NA&gt;      
- 7 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2017  63.0 &lt;NA&gt;  &lt;NA&gt;      
- 8 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2016  63.1 &lt;NA&gt;  &lt;NA&gt;      
- 9 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2015  62.7 &lt;NA&gt;  &lt;NA&gt;      
-10 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2014  62.5 &lt;NA&gt;  &lt;NA&gt;      
-# ℹ 27,766 more rows
+ 1 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2024  NA   &lt;NA&gt;  &lt;NA&gt;      
+ 2 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2023  66.0 &lt;NA&gt;  &lt;NA&gt;      
+ 3 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2022  65.6 &lt;NA&gt;  &lt;NA&gt;      
+ 4 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2021  60.4 &lt;NA&gt;  &lt;NA&gt;      
+ 5 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2020  61.5 &lt;NA&gt;  &lt;NA&gt;      
+ 6 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2019  62.9 &lt;NA&gt;  &lt;NA&gt;      
+ 7 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2018  62.4 &lt;NA&gt;  &lt;NA&gt;      
+ 8 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2017  62.4 &lt;NA&gt;  &lt;NA&gt;      
+ 9 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2016  62.6 &lt;NA&gt;  &lt;NA&gt;      
+10 SP.DYN.LE00.IN Life expecta… AF    AFG   Afghan…  2015  62.3 &lt;NA&gt;  &lt;NA&gt;      
+# ℹ 28,200 more rows
 # ℹ 2 more variables: footnote &lt;chr&gt;, last_updated &lt;date&gt;</code></pre>
 </div>
 </div>
@@ -608,7 +596,7 @@ Note
 <pre><code># A tibble: 2 × 11
   indicator_id   indicator      iso2c iso3c country  date value unit  obs_status
   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     
-1 SP.DYN.LE00.IN Life expectan… AF    AFG   Afghan…  2018  63.1 &lt;NA&gt;  &lt;NA&gt;      
+1 SP.DYN.LE00.IN Life expectan… AF    AFG   Afghan…  2018  62.4 &lt;NA&gt;  &lt;NA&gt;      
 2 NY.GDP.PCAP.CD GDP per capit… AF    AFG   Afghan…  2018 491.  &lt;NA&gt;  &lt;NA&gt;      
 # ℹ 2 more variables: footnote &lt;chr&gt;, last_updated &lt;date&gt;</code></pre>
 </div>
@@ -620,20 +608,20 @@ Note
 <div class="cell">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span><span class="va">gapminder_raw</span>, names_from <span class="op">=</span> <span class="va">indicator_id</span>, values_from <span class="op">=</span> <span class="va">value</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 27,776 × 11
+<pre><code># A tibble: 28,210 × 11
    indicator    iso2c iso3c country  date unit  obs_status footnote last_updated
    &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;date&gt;      
- 1 Life expect… AF    AFG   Afghan…  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 2 Life expect… AF    AFG   Afghan…  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 3 Life expect… AF    AFG   Afghan…  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 4 Life expect… AF    AFG   Afghan…  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 5 Life expect… AF    AFG   Afghan…  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 6 Life expect… AF    AFG   Afghan…  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 7 Life expect… AF    AFG   Afghan…  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 8 Life expect… AF    AFG   Afghan…  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 9 Life expect… AF    AFG   Afghan…  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
-10 Life expect… AF    AFG   Afghan…  2014 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
-# ℹ 27,766 more rows
+ 1 Life expect… AF    AFG   Afghan…  2024 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 2 Life expect… AF    AFG   Afghan…  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 3 Life expect… AF    AFG   Afghan…  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 4 Life expect… AF    AFG   Afghan…  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 5 Life expect… AF    AFG   Afghan…  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 6 Life expect… AF    AFG   Afghan…  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 7 Life expect… AF    AFG   Afghan…  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 8 Life expect… AF    AFG   Afghan…  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 9 Life expect… AF    AFG   Afghan…  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+10 Life expect… AF    AFG   Afghan…  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+# ℹ 28,200 more rows
 # ℹ 2 more variables: SP.DYN.LE00.IN &lt;dbl&gt;, NY.GDP.PCAP.CD &lt;dbl&gt;</code></pre>
 </div>
 </div>
@@ -646,20 +634,20 @@ Note
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">indicator_id</span>, values_from <span class="op">=</span> <span class="va">value</span><span class="op">)</span></span>
 <span><span class="va">gapminder</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 13,897 × 10
+<pre><code># A tibble: 14,114 × 10
    iso2c iso3c country      date unit  obs_status footnote last_updated
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;date&gt;      
- 1 AF    AFG   Afghanistan  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 2 AF    AFG   Afghanistan  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 3 AF    AFG   Afghanistan  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 4 AF    AFG   Afghanistan  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 5 AF    AFG   Afghanistan  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 6 AF    AFG   Afghanistan  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 7 AF    AFG   Afghanistan  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 8 AF    AFG   Afghanistan  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
- 9 AF    AFG   Afghanistan  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
-10 AF    AFG   Afghanistan  2014 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28  
-# ℹ 13,887 more rows
+ 1 AF    AFG   Afghanistan  2024 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 2 AF    AFG   Afghanistan  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 3 AF    AFG   Afghanistan  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 4 AF    AFG   Afghanistan  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 5 AF    AFG   Afghanistan  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 6 AF    AFG   Afghanistan  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 7 AF    AFG   Afghanistan  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 8 AF    AFG   Afghanistan  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 9 AF    AFG   Afghanistan  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+10 AF    AFG   Afghanistan  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+# ℹ 14,104 more rows
 # ℹ 2 more variables: SP.DYN.LE00.IN &lt;dbl&gt;, NY.GDP.PCAP.CD &lt;dbl&gt;</code></pre>
 </div>
 </div>
@@ -669,20 +657,20 @@ Note
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="va">gapminder</span>, avg_life_exp <span class="op">=</span> <span class="va">SP.DYN.LE00.IN</span>, gdp_per_cap <span class="op">=</span> <span class="va">NY.GDP.PCAP.CD</span><span class="op">)</span></span>
 <span><span class="va">gapminder</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 13,897 × 10
+<pre><code># A tibble: 14,114 × 10
    iso2c iso3c country  date unit  obs_status footnote last_updated avg_life_exp
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;date&gt;              &lt;dbl&gt;
- 1 AF    AFG   Afghan…  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28           NA  
- 2 AF    AFG   Afghan…  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28           62.9
- 3 AF    AFG   Afghan…  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28           62.0
- 4 AF    AFG   Afghan…  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28           62.6
- 5 AF    AFG   Afghan…  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28           63.6
- 6 AF    AFG   Afghan…  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28           63.1
- 7 AF    AFG   Afghan…  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28           63.0
- 8 AF    AFG   Afghan…  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28           63.1
- 9 AF    AFG   Afghan…  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28           62.7
-10 AF    AFG   Afghan…  2014 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-01-28           62.5
-# ℹ 13,887 more rows
+ 1 AF    AFG   Afghan…  2024 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           NA  
+ 2 AF    AFG   Afghan…  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           66.0
+ 3 AF    AFG   Afghan…  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           65.6
+ 4 AF    AFG   Afghan…  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           60.4
+ 5 AF    AFG   Afghan…  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           61.5
+ 6 AF    AFG   Afghan…  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           62.9
+ 7 AF    AFG   Afghan…  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           62.4
+ 8 AF    AFG   Afghan…  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           62.4
+ 9 AF    AFG   Afghan…  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           62.6
+10 AF    AFG   Afghan…  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           62.3
+# ℹ 14,104 more rows
 # ℹ 1 more variable: gdp_per_cap &lt;dbl&gt;</code></pre>
 </div>
 </div>
@@ -691,20 +679,20 @@ Note
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">country</span>, <span class="va">iso3c</span>, <span class="va">date</span>, <span class="va">avg_life_exp</span>, <span class="va">gdp_per_cap</span><span class="op">)</span></span>
 <span><span class="va">gapminder</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 13,897 × 5
+<pre><code># A tibble: 14,114 × 5
    country     iso3c  date avg_life_exp gdp_per_cap
    &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
- 1 Afghanistan AFG    2023         NA          416.
- 2 Afghanistan AFG    2022         62.9        357.
- 3 Afghanistan AFG    2021         62.0        356.
- 4 Afghanistan AFG    2020         62.6        511.
- 5 Afghanistan AFG    2019         63.6        497.
- 6 Afghanistan AFG    2018         63.1        491.
- 7 Afghanistan AFG    2017         63.0        525.
- 8 Afghanistan AFG    2016         63.1        522.
- 9 Afghanistan AFG    2015         62.7        566.
-10 Afghanistan AFG    2014         62.5        625.
-# ℹ 13,887 more rows</code></pre>
+ 1 Afghanistan AFG    2024         NA           NA 
+ 2 Afghanistan AFG    2023         66.0        416.
+ 3 Afghanistan AFG    2022         65.6        357.
+ 4 Afghanistan AFG    2021         60.4        356.
+ 5 Afghanistan AFG    2020         61.5        511.
+ 6 Afghanistan AFG    2019         62.9        497.
+ 7 Afghanistan AFG    2018         62.4        491.
+ 8 Afghanistan AFG    2017         62.4        525.
+ 9 Afghanistan AFG    2016         62.6        522.
+10 Afghanistan AFG    2015         62.3        566.
+# ℹ 14,104 more rows</code></pre>
 </div>
 </div>
 <p>We now have a nice, clean, and wide data set. You can easily look at the relationship between your two variables of interest over time:</p>
@@ -791,20 +779,20 @@ Check your answer
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">avg_life_exp</span><span class="op">:</span><span class="va">gdp_per_cap</span>, names_to <span class="op">=</span> <span class="st">"indicator"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 27,794 × 5
+<pre><code># A tibble: 28,228 × 5
    country     iso3c  date indicator    value
    &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
- 1 Afghanistan AFG    2023 avg_life_exp  NA  
- 2 Afghanistan AFG    2023 gdp_per_cap  416. 
- 3 Afghanistan AFG    2022 avg_life_exp  62.9
- 4 Afghanistan AFG    2022 gdp_per_cap  357. 
- 5 Afghanistan AFG    2021 avg_life_exp  62.0
- 6 Afghanistan AFG    2021 gdp_per_cap  356. 
- 7 Afghanistan AFG    2020 avg_life_exp  62.6
- 8 Afghanistan AFG    2020 gdp_per_cap  511. 
- 9 Afghanistan AFG    2019 avg_life_exp  63.6
-10 Afghanistan AFG    2019 gdp_per_cap  497. 
-# ℹ 27,784 more rows</code></pre>
+ 1 Afghanistan AFG    2024 avg_life_exp  NA  
+ 2 Afghanistan AFG    2024 gdp_per_cap   NA  
+ 3 Afghanistan AFG    2023 avg_life_exp  66.0
+ 4 Afghanistan AFG    2023 gdp_per_cap  416. 
+ 5 Afghanistan AFG    2022 avg_life_exp  65.6
+ 6 Afghanistan AFG    2022 gdp_per_cap  357. 
+ 7 Afghanistan AFG    2021 avg_life_exp  60.4
+ 8 Afghanistan AFG    2021 gdp_per_cap  356. 
+ 9 Afghanistan AFG    2020 avg_life_exp  61.5
+10 Afghanistan AFG    2020 gdp_per_cap  511. 
+# ℹ 28,218 more rows</code></pre>
 </div>
 </div>
 </div>

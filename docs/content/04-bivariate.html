@@ -222,32 +222,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/08-multiple_linear_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 8: Extending to Multiple Linear Regression</span></a>
+  <a href="../content/08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 8: Measuring Uncertainty</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/09-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 9: Measuring Uncertainty</span></a>
+  <a href="../content/09-binary_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 9: Modelling Binary Outcomes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/10-binary_outcomes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 10: Modelling Binary Outcomes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/11-panel_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 11: Accounting for Non-Independence Between Observations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/12-beysian.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 12: Introducing Beysian Interpretations</span></a>
+  <a href="../content/10-panel_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 10: Working with Panel Data</span></a>
   </div>
 </li>
       </ul>
@@ -429,16 +417,16 @@ Install packages
 <pre><code># A tibble: 217 × 8
    iso2c iso3c country         region  date gdp_per_cap life_exp log_gdp_per_cap
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;           &lt;dbl&gt;
- 1 AW    ABW   Aruba           Latin…  2016      27442.     75.6           10.2 
- 2 AF    AFG   Afghanistan     South…  2016        522.     63.1            6.26
- 3 AO    AGO   Angola          Sub-S…  2016       1808.     61.1            7.50
- 4 AL    ALB   Albania         Europ…  2016       4124.     78.9            8.32
- 5 AD    AND   Andorra         Europ…  2016      40130.     NA             10.6 
- 6 AE    ARE   United Arab Em… Middl…  2016      41326.     79.3           10.6 
- 7 AR    ARG   Argentina       Latin…  2016      12700.     76.3            9.45
- 8 AM    ARM   Armenia         Europ…  2016       3524.     74.7            8.17
- 9 AS    ASM   American Samoa  East …  2016      12843.     NA              9.46
-10 AG    ATG   Antigua and Ba… Latin…  2016      16558.     78.2            9.71
+ 1 AW    ABW   Aruba           Latin…  2016      27442.     75.5           10.2 
+ 2 AF    AFG   Afghanistan     South…  2016        522.     62.6            6.26
+ 3 AO    AGO   Angola          Sub-S…  2016       1808.     61.6            7.50
+ 4 AL    ALB   Albania         Europ…  2016       4124.     78.6            8.32
+ 5 AD    AND   Andorra         Europ…  2016      40130.     84.5           10.6 
+ 6 AE    ARE   United Arab Em… Middl…  2016      41326.     82.2           10.6 
+ 7 AR    ARG   Argentina       Latin…  2016      12700.     76.1            9.45
+ 8 AM    ARM   Armenia         Europ…  2016       3524.     74.9            8.17
+ 9 AS    ASM   American Samoa  East …  2016      12843.     72.6            9.46
+10 AG    ATG   Antigua and Ba… Latin…  2016      16558.     77.0            9.71
 # ℹ 207 more rows</code></pre>
 </div>
 </div>
@@ -514,7 +502,7 @@ Tip
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">gapminder_df</span><span class="op">$</span><span class="va">log_gdp_per_cap</span>, <span class="va">gapminder_df</span><span class="op">$</span><span class="va">life_exp</span>, use <span class="op">=</span> <span class="st">"complete.obs"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8506936</code></pre>
+<pre><code>[1] 0.8552701</code></pre>
 </div>
 </div>
 <p>As expected, the relationship is positive and strong.</p>
@@ -659,8 +647,8 @@ Note
 <pre><code># A tibble: 3 × 8
   iso2c iso3c country          region  date gdp_per_cap life_exp log_gdp_per_cap
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;  &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;           &lt;dbl&gt;
-1 KN    KNA   St. Kitts and N… Latin…  2016      21388.     71.7            9.97
-2 SA    SAU   Saudi Arabia     Middl…  2016      21516.     77.1            9.98
+1 KN    KNA   St. Kitts and N… Latin…  2016      21388.     71.2            9.97
+2 SA    SAU   Saudi Arabia     Middl…  2016      21516.     78.4            9.98
 3 SI    SVN   Slovenia         Europ…  2016      21448.     81.2            9.97</code></pre>
 </div>
 </div>
@@ -681,7 +669,7 @@ Note
 <p>The constant that minimizes this distance is the mean of <span class="math inline">\(Y\)</span> minus <span class="math inline">\(\beta_1\)</span> times the mean of <span class="math inline">\(X\)</span>. You can prove this using some calculus. We won’t do that here, but feel free to Google it if you are very interested.</p>
 </div>
 </div>
-<p>So, the constant that best predicts a country’s average life expectancy based on its logged GDP per capita is equal to the average life expectancy across our sample (72.3 years) minus the average logged GDP per capita ($8.80, or $6,652.93 GDP per capita) transformed by <span class="math inline">\(\beta_1\)</span>.</p>
+<p>So, the constant that best predicts a country’s average life expectancy based on its logged GDP per capita is equal to the average life expectancy across our sample (72.35 years) minus the average logged GDP per capita ($8.80, or $6,652.93 GDP per capita) transformed by <span class="math inline">\(\beta_1\)</span>.</p>
 <p>So…</p>
 </section><section id="how-do-we-calculate-the-coefficient-beta_1" class="level4"><h4 class="anchored" data-anchor-id="how-do-we-calculate-the-coefficient-beta_1">How do we calculate the coefficient <span class="math inline">\(\beta_1\)</span>?</h4>
 <p>The regression slope is the <strong>correlation coefficient</strong> between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> multiplied by the standard deviation of <span class="math inline">\(Y\)</span> divided by the standard deviation of <span class="math inline">\(X\)</span>.</p>
@@ -706,7 +694,7 @@ lm(formula = life_exp ~ log_gdp_per_cap, data = gapminder_df)
 
 Coefficients:
     (Intercept)  log_gdp_per_cap  
-         32.794            4.521  </code></pre>
+         32.447            4.543  </code></pre>
 </div>
 </div>
 <p>Okay, so the line of best fit describing the relationship between average life expectancy and logged GDP per capita is:</p>
@@ -727,8 +715,8 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
 
     <script>
 
-      function styleCell_0b3iu4glgp08cojgnqlt(i, j, css_id) {
-          var table = document.getElementById("tinytable_0b3iu4glgp08cojgnqlt");
+      function styleCell_gllsztsmpmu0swayqyw4(i, j, css_id) {
+          var table = document.getElementById("tinytable_gllsztsmpmu0swayqyw4");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -738,7 +726,7 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_0b3iu4glgp08cojgnqlt');
+        var table = document.getElementById('tinytable_gllsztsmpmu0swayqyw4');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -746,8 +734,8 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_0b3iu4glgp08cojgnqlt(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_0b3iu4glgp08cojgnqlt");
+      function spanCell_gllsztsmpmu0swayqyw4(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_gllsztsmpmu0swayqyw4");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -777,36 +765,36 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_yhblfzzlz5wvj58iftna',}, 
-          { positions: [ { i: 2, j: 0 },  ], css_id: 'tinytable_css_wazpwcany8byq2hrrlhw',}, 
-          { positions: [ { i: 3, j: 0 },  ], css_id: 'tinytable_css_vfzi4dfq8tkvrq02t2md',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_l7v2gac8jbitl2kc5bj8',}, 
-          { positions: [ { i: 1, j: 0 },  ], css_id: 'tinytable_css_kacnb4vrk29n00k0wnso',}, 
-          { positions: [ { i: 3, j: 1 },  ], css_id: 'tinytable_css_fjs80mnuwwr50lifon8v',}, 
-          { positions: [ { i: 1, j: 1 },  ], css_id: 'tinytable_css_b1idqx83afoxupd7w5jq',}, 
-          { positions: [ { i: 2, j: 1 },  ], css_id: 'tinytable_css_04gkp4ijn2wpfewnpz4u',}, 
+          { positions: [ { i: 1, j: 1 },  ], css_id: 'tinytable_css_tw3x96kvtzl32oyr7np4',}, 
+          { positions: [ { i: 1, j: 0 },  ], css_id: 'tinytable_css_m61z96eywvdy5ftajtlj',}, 
+          { positions: [ { i: 2, j: 0 },  ], css_id: 'tinytable_css_gpw16h636fsnsa0fn82d',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_g3s61n3w1hi7qiscmu59',}, 
+          { positions: [ { i: 2, j: 1 },  ], css_id: 'tinytable_css_ffh5iypub6mthh661okp',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_fdxrfthacj4ea6zskbzk',}, 
+          { positions: [ { i: 3, j: 1 },  ], css_id: 'tinytable_css_8on1jjva5py7d39169j3',}, 
+          { positions: [ { i: 3, j: 0 },  ], css_id: 'tinytable_css_0wq9e2hase5es7okvc37',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_0b3iu4glgp08cojgnqlt(cell.i, cell.j, group.css_id);
+                  styleCell_gllsztsmpmu0swayqyw4(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_yhblfzzlz5wvj58iftna, .table th.tinytable_css_yhblfzzlz5wvj58iftna { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_wazpwcany8byq2hrrlhw, .table th.tinytable_css_wazpwcany8byq2hrrlhw { text-align: left; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_vfzi4dfq8tkvrq02t2md, .table th.tinytable_css_vfzi4dfq8tkvrq02t2md { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_l7v2gac8jbitl2kc5bj8, .table th.tinytable_css_l7v2gac8jbitl2kc5bj8 { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_kacnb4vrk29n00k0wnso, .table th.tinytable_css_kacnb4vrk29n00k0wnso { text-align: left; }
-      .table td.tinytable_css_fjs80mnuwwr50lifon8v, .table th.tinytable_css_fjs80mnuwwr50lifon8v { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_b1idqx83afoxupd7w5jq, .table th.tinytable_css_b1idqx83afoxupd7w5jq { text-align: center; }
-      .table td.tinytable_css_04gkp4ijn2wpfewnpz4u, .table th.tinytable_css_04gkp4ijn2wpfewnpz4u { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_tw3x96kvtzl32oyr7np4, .table th.tinytable_css_tw3x96kvtzl32oyr7np4 { text-align: center; }
+      .table td.tinytable_css_m61z96eywvdy5ftajtlj, .table th.tinytable_css_m61z96eywvdy5ftajtlj { text-align: left; }
+      .table td.tinytable_css_gpw16h636fsnsa0fn82d, .table th.tinytable_css_gpw16h636fsnsa0fn82d { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_g3s61n3w1hi7qiscmu59, .table th.tinytable_css_g3s61n3w1hi7qiscmu59 { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_ffh5iypub6mthh661okp, .table th.tinytable_css_ffh5iypub6mthh661okp { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_fdxrfthacj4ea6zskbzk, .table th.tinytable_css_fdxrfthacj4ea6zskbzk { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_8on1jjva5py7d39169j3, .table th.tinytable_css_8on1jjva5py7d39169j3 { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_0wq9e2hase5es7okvc37, .table th.tinytable_css_0wq9e2hase5es7okvc37 { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
     </style>
 <div class="container">
-      <table class="table table-borderless" id="tinytable_0b3iu4glgp08cojgnqlt" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_gllsztsmpmu0swayqyw4" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
 <thead><tr>
 <th scope="col"> </th>
                 <th scope="col">(1)</th>
@@ -814,15 +802,15 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
 <tbody>
 <tr>
 <td>(Intercept)</td>
-                  <td>32.794</td>
+                  <td>32.447</td>
                 </tr>
 <tr>
 <td>GDP per capita (logged)</td>
-                  <td>4.521</td>
+                  <td>4.543</td>
                 </tr>
 <tr>
 <td>Num.Obs.</td>
-                  <td>203</td>
+                  <td>210</td>
                 </tr>
 </tbody>
 </table>
@@ -856,8 +844,8 @@ Tip
 <pre><code># A tibble: 2 × 5
   term            estimate std.error statistic  p.value
   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept)        32.8      1.75       18.8 4.18e-46
-2 log_gdp_per_cap     4.52     0.197      22.9 4.80e-58</code></pre>
+1 (Intercept)        32.4      1.70       19.0 1.75e-47
+2 log_gdp_per_cap     4.54     0.191      23.8 2.64e-61</code></pre>
 </div>
 </div>
 <p>First, let’s pull out the estimated constant (or intercept or <span class="math inline">\(\beta_0\)</span>) for our calculations.</p>
@@ -868,7 +856,7 @@ Tip
 <span></span>
 <span><span class="va">beta_0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 32.79384</code></pre>
+<pre><code>[1] 32.44708</code></pre>
 </div>
 </div>
 <p>Next, let’s pull out the estimated coefficient for (logged) GDP per capita:</p>
@@ -879,7 +867,7 @@ Tip
 <span></span>
 <span><span class="va">beta_1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4.520601</code></pre>
+<pre><code>[1] 4.542867</code></pre>
 </div>
 </div>
 <p>Finally, we can plug this in to our model:</p>
@@ -890,10 +878,10 @@ life Exp_i = \beta_0 + \beta_1 logGdpPerCap_i
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">life_exp_20000</span> <span class="op">&lt;-</span> <span class="va">beta_0</span> <span class="op">+</span> <span class="va">beta_1</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">20000</span><span class="op">)</span></span>
 <span><span class="va">life_exp_20000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 77.56355</code></pre>
+<pre><code>[1] 77.43731</code></pre>
 </div>
 </div>
-<p>On average, countries with GDPs per capita of $20,000 are predicted to have an average life expectancy of 78 years.</p>
+<p>On average, countries with GDPs per capita of $20,000 are predicted to have an average life expectancy of 77 years.</p>
 <p>Let’s take a look back at our data. Remember, these data describe what the World Bank actually observed for each country in 2016. How close is our predicted value to our observed values?</p>
 <div class="cell">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -901,8 +889,8 @@ life Exp_i = \beta_0 + \beta_1 logGdpPerCap_i
 <pre><code># A tibble: 3 × 8
   iso2c iso3c country          region  date gdp_per_cap life_exp log_gdp_per_cap
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;  &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;           &lt;dbl&gt;
-1 KN    KNA   St. Kitts and N… Latin…  2016      21388.     71.7            9.97
-2 SA    SAU   Saudi Arabia     Middl…  2016      21516.     77.1            9.98
+1 KN    KNA   St. Kitts and N… Latin…  2016      21388.     71.2            9.97
+2 SA    SAU   Saudi Arabia     Middl…  2016      21516.     78.4            9.98
 3 SI    SVN   Slovenia         Europ…  2016      21448.     81.2            9.97</code></pre>
 </div>
 </div>
@@ -926,29 +914,29 @@ life Exp_i = \beta_0 + \beta_1 logGdpPerCap_i
 </div>
 </div>
 <p>The world is a complicated and messy place. There are many countries that have a GDP per capita of around $20,000 (those dots sitting around the vertical black line). They have a wide range of average life expectancy: look at their various placement along that vertical line. Some are higher than others.</p>
-<p>Also, there are several countries with a wide range of logged GDP per capita that have an average life expectancy of 78 years (those sitting at or around the horizontal black line). These have a wide range of logged GDP per capita: some are further to the left than others.</p>
+<p>Also, there are several countries with a wide range of logged GDP per capita that have an average life expectancy of 77 years (those sitting at or around the horizontal black line). These have a wide range of logged GDP per capita: some are further to the left than others.</p>
 <p>Our model is our best attempt at accounting for that diversity whilst still producing a useful summary of the relationship between health and wealth for those countries and all other countries with all observed values of GDP per capita.</p>
 <p>A bit of noise (or error) is expected. How much error is okay? This is a complicated question that has contested answers. Let’s start with actually measuring that error. Then we can chat about whether or not it’s small enough to allow us to be confident in our model.</p>
 </section><section id="measuring-error-in-our-model" class="level3"><h3 class="anchored" data-anchor-id="measuring-error-in-our-model">Measuring error in our model</h3>
-<p>Returning to our question above, how close are our predicted values to our observed values? For example, how far from the observed average life expectancy of countries with a GDP per capita of or close to $20,000 is 78 years?</p>
+<p>Returning to our question above, how close are our predicted values to our observed values? For example, how far from the observed average life expectancy of countries with a GDP per capita of or close to $20,000 is 77 years?</p>
 <p>Start by working out the average life expectancy predicted by our model for the logged GDP per capita of all of our countries. We can then compare this to the average life expectancy actually observed in all these countries. We can predict values from a model using <code><a href="https://generics.r-lib.org/reference/augment.html">broom::augment()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 203 × 9
+<pre><code># A tibble: 210 × 9
    .rownames life_exp log_gdp_per_cap .fitted .resid    .hat .sigma   .cooksd
    &lt;chr&gt;        &lt;dbl&gt;           &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
- 1 1             75.6           10.2     79.0 -3.38  0.00999   4.10 0.00347  
- 2 2             63.1            6.26    61.1  2.05  0.0192    4.10 0.00252  
- 3 3             61.1            7.50    66.7 -5.61  0.00850   4.08 0.00812  
- 4 4             78.9            8.32    70.4  8.43  0.00533   4.06 0.0114   
- 5 6             79.3           10.6     80.8 -1.51  0.0132    4.10 0.000921 
- 6 7             76.3            9.45    75.5  0.797 0.00609   4.10 0.000117 
- 7 8             74.7            8.17    69.7  4.95  0.00569   4.09 0.00421  
- 8 10            78.2            9.71    76.7  1.44  0.00712   4.10 0.000448 
- 9 11            82.4           10.8     81.7  0.753 0.0149    4.10 0.000260 
-10 12            81.6           10.7     81.2  0.406 0.0140    4.10 0.0000706
-# ℹ 193 more rows
+ 1 1             75.5           10.2     78.9 -3.33  0.00914   4.09 0.00310  
+ 2 2             62.6            6.26    60.9  1.77  0.0189    4.10 0.00184  
+ 3 3             61.6            7.50    66.5 -4.90  0.00846   4.08 0.00619  
+ 4 4             78.6            8.32    70.3  8.38  0.00526   4.06 0.0112   
+ 5 5             84.5           10.6     80.6  3.89  0.0118    4.09 0.00547  
+ 6 6             82.2           10.6     80.7  1.46  0.0120    4.10 0.000787 
+ 7 7             76.1            9.45    75.4  0.731 0.00567   4.10 0.0000917
+ 8 8             74.9            8.17    69.6  5.32  0.00564   4.08 0.00483  
+ 9 9             72.6            9.46    75.4 -2.79  0.00571   4.09 0.00134  
+10 10            77.0            9.71    76.6  0.389 0.00657   4.10 0.0000301
+# ℹ 200 more rows
 # ℹ 1 more variable: .std.resid &lt;dbl&gt;</code></pre>
 </div>
 </div>
@@ -960,16 +948,16 @@ life Exp_i = \beta_0 + \beta_1 logGdpPerCap_i
 <pre><code># A tibble: 217 × 3
    country              log_gdp_per_cap .fitted
    &lt;chr&gt;                          &lt;dbl&gt;   &lt;dbl&gt;
- 1 Aruba                          10.2     79.0
- 2 Afghanistan                     6.26    61.1
- 3 Angola                          7.50    66.7
- 4 Albania                         8.32    70.4
- 5 Andorra                        10.6     80.7
- 6 United Arab Emirates           10.6     80.8
- 7 Argentina                       9.45    75.5
- 8 Armenia                         8.17    69.7
- 9 American Samoa                  9.46    75.6
-10 Antigua and Barbuda             9.71    76.7
+ 1 Aruba                          10.2     78.9
+ 2 Afghanistan                     6.26    60.9
+ 3 Angola                          7.50    66.5
+ 4 Albania                         8.32    70.3
+ 5 Andorra                        10.6     80.6
+ 6 United Arab Emirates           10.6     80.7
+ 7 Argentina                       9.45    75.4
+ 8 Armenia                         8.17    69.6
+ 9 American Samoa                  9.46    75.4
+10 Antigua and Barbuda             9.71    76.6
 # ℹ 207 more rows</code></pre>
 </div>
 </div>
@@ -984,20 +972,20 @@ life Exp_i = \beta_0 + \beta_1 logGdpPerCap_i
 <span></span>
 <span><span class="va">m_eval</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 203 × 3
+<pre><code># A tibble: 210 × 3
    life_exp .fitted   diff
       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
- 1     75.6    79.0 -3.38 
- 2     63.1    61.1  2.05 
- 3     61.1    66.7 -5.61 
- 4     78.9    70.4  8.43 
- 5     79.3    80.8 -1.51 
- 6     76.3    75.5  0.797
- 7     74.7    69.7  4.95 
- 8     78.2    76.7  1.44 
- 9     82.4    81.7  0.753
-10     81.6    81.2  0.406
-# ℹ 193 more rows</code></pre>
+ 1     75.5    78.9 -3.33 
+ 2     62.6    60.9  1.77 
+ 3     61.6    66.5 -4.90 
+ 4     78.6    70.3  8.38 
+ 5     84.5    80.6  3.89 
+ 6     82.2    80.7  1.46 
+ 7     76.1    75.4  0.731
+ 8     74.9    69.6  5.32 
+ 9     72.6    75.4 -2.79 
+10     77.0    76.6  0.389
+# ℹ 200 more rows</code></pre>
 </div>
 </div>
 <p>Note that <code><a href="https://generics.r-lib.org/reference/augment.html">broom::augment()</a></code> already did this calculation and stored it in the <code>.resid</code> variable. The formal term for the difference between the predicted and observed values is the <strong>residual</strong>.</p>
@@ -1005,20 +993,20 @@ life Exp_i = \beta_0 + \beta_1 logGdpPerCap_i
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">life_exp</span>, <span class="va">.fitted</span>, <span class="va">.resid</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 203 × 3
+<pre><code># A tibble: 210 × 3
    life_exp .fitted .resid
       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
- 1     75.6    79.0 -3.38 
- 2     63.1    61.1  2.05 
- 3     61.1    66.7 -5.61 
- 4     78.9    70.4  8.43 
- 5     79.3    80.8 -1.51 
- 6     76.3    75.5  0.797
- 7     74.7    69.7  4.95 
- 8     78.2    76.7  1.44 
- 9     82.4    81.7  0.753
-10     81.6    81.2  0.406
-# ℹ 193 more rows</code></pre>
+ 1     75.5    78.9 -3.33 
+ 2     62.6    60.9  1.77 
+ 3     61.6    66.5 -4.90 
+ 4     78.6    70.3  8.38 
+ 5     84.5    80.6  3.89 
+ 6     82.2    80.7  1.46 
+ 7     76.1    75.4  0.731
+ 8     74.9    69.6  5.32 
+ 9     72.6    75.4 -2.79 
+10     77.0    76.6  0.389
+# ℹ 200 more rows</code></pre>
 </div>
 </div>
 <p>Okay, so there are some differences. Let’s look at those differences a bit more closely:</p>
@@ -1077,7 +1065,7 @@ life Exp_x = \beta_0 + \beta_1 logGdpPerCap_x + \epsilon
 <pre><code># A tibble: 1 × 1
   `sum(.resid^2)`
             &lt;dbl&gt;
-1           3366.</code></pre>
+1           3474.</code></pre>
 </div>
 </div>
 <p>Or we can use <code><a href="https://generics.r-lib.org/reference/glance.html">broom::glance()</a></code>:</p>
@@ -1087,7 +1075,7 @@ life Exp_x = \beta_0 + \beta_1 logGdpPerCap_x + \epsilon
 <pre><code># A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     0.724         0.722  4.09      526. 4.80e-58     1  -573. 1152. 1162.
+1     0.731         0.730  4.09      567. 2.64e-61     1  -593. 1191. 1201.
 # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -1098,7 +1086,7 @@ life Exp_x = \beta_0 + \beta_1 logGdpPerCap_x + \epsilon
 <pre><code># A tibble: 1 × 1
   deviance
      &lt;dbl&gt;
-1    3366.</code></pre>
+1    3474.</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1144,11 +1132,11 @@ R^2 = \frac{ESS}{TSS} = \frac{\Sigma(\hat{y}_i - \bar{y})^2}{\Sigma(y_i - \bar{y
 <pre><code># A tibble: 1 × 1
   r.squared
       &lt;dbl&gt;
-1     0.724</code></pre>
+1     0.731</code></pre>
 </div>
 </div>
 <p>An <span class="math inline">\(R^2\)</span> of one means that all changes in the dependent variable are completely explained by changes in the independent variable. Here, it would mean that all changes to a country’s average life expectancy are explained through changes to the country’s logged GDP per capita.</p>
-<p>According to our model, 72.4% of changes in a country’s average life expectancy are explained through changes to the country’s logged GDP per capita.</p>
+<p>According to our model, 73.1% of changes in a country’s average life expectancy are explained through changes to the country’s logged GDP per capita.</p>
 
 
 </section></section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

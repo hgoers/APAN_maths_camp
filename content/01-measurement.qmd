@@ -17,6 +17,18 @@ execute:
 library(patchwork)
 ```
 
+## Learning Objectives
+
+By the end of this module, you should be able to:
+
+-   Identify different types of measurement scales and their properties
+
+-   Calculate and interpret measures of central tendency
+
+-   Calculate and interpret measures of dispersion
+
+-   Apply these concepts using R statistical software
+
 ## Set up
 
 Throughout this course, you will need a series of data sets I have collected, cleaned, and stored in the [`polisciols` R package](https://github.com/hgoers/polisciols). These data sets were collected and published by political scientists (including some incredible GVPT alumni). This package is not published on CRAN[^1], so you will need to install it using the following code:
@@ -31,7 +43,7 @@ install.packages("devtools")
 devtools::install_github("hgoers/polisciols")
 ```
 
-You will also need access to the following R packages to complete this week's activities:
+You will also need access to the following R packages to complete this session:
 
 ::: {.callout-tip collapse="true"}
 ## Install packages
@@ -56,7 +68,7 @@ library(countrycode)
 library(scales)
 ```
 
-## How will what you learn this session help your research?
+## Why?
 
 You have an interesting question that you want to explore. You have some data that relate to that question. Included in these data are information on your outcome of interest and information on the things that you think determine or shape that outcome. You think that one (or more) of the drivers is particularly important, but no one has yet written about it or proven its importance. Brilliant! What do you do now?
 
@@ -76,27 +88,104 @@ Let's get started.
 
 ## Describing your data
 
-Broadly, there are two types of variables: categorical and continuous variables.
+When conducting quantitative analysis, we need to understand what type of data we're working with. Different measurement scales allow for different mathematical operations and statistical procedures. As future international relations analysts, recognizing these distinctions will be crucial for properly analyzing global data. Broadly, there are two types of variables: **categorical** and **continuous**.
 
-**Categorical variables** are discrete. They can be unordered (**nominal**) - for example, the different colours of cars - or ordered (**ordinal**) - for example, whether you strongly dislike, dislike, are neutral about, like, or strongly like Taylor Swift.
+### Categorical variables
 
-::: callout-note
-**Dichotomous (or binary) variables** are a special type of categorical variable. They take on one of two values. For example: yes or no; at war or not at war; is a Swifty, or is not a Swifty.
-:::
+**Categorical variables** are discrete. They can be unordered (**nominal**) or ordered (**ordinal**).
 
-**Continuous variables** are, well, continuous. For example, your height or weight, a country's GDP or population, or the number of fatalities in a battle.
+#### Nominal variables
 
-::: callout-note
-Continuous variables can be made into (usually ordered) categorical variables. This process is called **binning**. For example, you can take individuals' ages and reduce them to 0 - 18 years old, 18 - 45 years old, 45 - 65 years old, and 65+ years old.
+Nominal variables classify data into mutually exclusive, unordered categories.
+
+- **Properties:** Categories with no inherent order
+- **Examples:** Country names, political party affiliation, ethnicity
+- **Operations allowed:** Counting, mode, frequency distributions
+- **Cannot calculate:** Mean, median, standard deviation
+
+In R: Nominal variables are stored as *factors*.
+
+```{r}
+# Creating and examining a nominal variable in R
+countries <- factor(c("USA", "China", "Russia", "France", "UK", "China"))
+countries
+
+# Frequency count
+table(countries)
+```
+
+#### Ordinal variables
+
+Ordinal scales classify data into categories with a meaningful order, but the intervals between values aren't necessarily equal.
+
+- **Properties:** Categories with clear ranking/order
+- **Examples:** Education levels, survey responses (strongly disagree to strongly agree), UN Security Council status
+- **Operations allowed:** All nominal operations plus median, percentiles
+- **Limited meaning:** Mean, standard deviation
+
+In R: Ordinal variables are stored as ordered factors.
+
+```{r}
+education <- factor(c("High School", "Bachelor's", "Master's", "PhD"),
+                   levels = c("High School", "Bachelor's", "Master's", "PhD"),
+                   ordered = T)
+
+education
+```
+
+#### Binary variables
+
+**Binary variables** are a special type of categorical variable. They take on one of two values. 
+
+- **Properties:** Categories with only two levels
+- **Examples:** Voted or not, at war or not, a democracy or not
+- **Operations allowed:** All nominal operations
+- **Limited meaning:** Mean, median, standard deviation
+
+In R: Binary variables are stored as *ordered factors*.
+
+```{r}
+voted <- factor(c("Yes", "No", "No", "Yes", "Yes"),
+                levels = c("No", "Yes"),
+                ordered = T)
+voted
+
+table(voted)
+```
+
+### Continuous variables
+
+**Continuous variables** are, well, continuous.
+
+- **Properties:** Variables that can take any value within an interval
+- **Examples:** GDP, population, number of fatalities in a battle
+- **Operations allowed:** Mean, median, standard deviation
+- **Limited meaning:** Counting, mode, frequency distributions
+
+In R: Continuous variables are stored as *numeric* or *integer* data types.
+
+```{r}
+gdp <- c(1.6e9, 7e8, 5.8e8, 7.68e8)
+gdp
+
+mean(gdp)
+```
+
+#### Binning
+
+Continuous variables can be made into ordinal variables. This process is called **binning**. For example, you can take individuals' ages and reduce them to intervals of 10 years.
+
+```{r}
+ages <- c(23L, 21L, 57L, 24L, 43L, 25L, 71L, 28L, 43L, 56L)
+
+cut_width(ages, width = 10, boundary = 15)
+```
 
 You lose information in this process: you cannot go from 45 - 65 years old back to the individuals' precise age. In other words, you cannot go from a categorical to continuous variable.
-:::
-
-Let's take a look at how you can describe these different types of variables using real-world political science examples.
 
 ## Describing categorical variables
 
-Generally, we can get a good sense of a categorical variable by looking at counts or proportions. For example, which category contains the most number of observations? Which contains the least?
+Let's take a look at how you can describe these different types of variables using real-world political science examples. Generally, we can get a good sense of a categorical variable by looking at counts or proportions. For example, which category contains the most number of observations? Which contains the least?
 
 ::: callout-note
 Later, we will ask interesting questions using these summaries. These include whether differences between the counts and/or percentages of cases that fall into each category are meaningfully (and/or statistically significantly) different from one another. This deceptively simple question serves as the foundation for a lot of empirical research.
@@ -124,7 +213,7 @@ Respondents could provide one of four answers (or refuse to answer the question,
 distinct(nes, income_gap)
 ```
 
-This is an **ordinal categorical variable**. It is discrete and ordered. We can take a look at the variable itself using the helpful `skimr::skim()` function:
+This is an **ordinal variable**. It is discrete and has a clear ranking. We can take a look at the variable itself using the helpful `skimr::skim()` function:
 
 ```{r}
 #| echo: false
@@ -143,7 +232,11 @@ From this, we learn that:
 -   This means that we have information on `r percent(summary_income_gap$complete_rate)` of our observations (from `complete_rate`).
 
 ::: callout-tip
-Remember, there are many different types of data that R recognizes. These include characters (`"A"`, `"B"`, `"C"`), integers (`1`, `2`, `3`), and logical values (`TRUE` or `FALSE`). R treats categorical variables as **factors**.
+In base R: 
+
+```{r}
+summary(nes$income_gap)
+```
 :::
 
 ### Frequency distribution
@@ -437,9 +530,9 @@ mean(x)
 median(x)
 ```
 
-Which number better summarizes our data? Here, I would suggest that the average is misleading. That one 1,000 data point is doing a lot of the work. The median better describes the majority of my data.
+Which number best summarizes our data? Here, I would suggest that the average is misleading. That one 1,000 data point is doing a lot of the work. The median better describes the majority of my data.
 
-We will talk more about this (and outliers more specifically) later in the course.
+We will talk more about this (and outliers more specifically) later in this session.
 
 #### Five number summary
 
@@ -682,4 +775,4 @@ The standard deviation of all countries' percentage of their GDP that they spent
 
 Your empirical analysis is only as strong as its foundation. You can use the tools you learnt this session to build a very strong foundation. Always start any analysis by getting a very good sense of your data. Look at it with a critical eye. Does it match your intuition? Is something off? What can you learn about the peaks and troughs among your observations?
 
-Now you need to head over to ELMs and successfully complete this session's quiz. Good luck!
+Now you need to head over to ELMs and complete this session's quiz. Good luck!

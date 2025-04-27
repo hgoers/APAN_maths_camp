@@ -222,32 +222,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/08-multiple_linear_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 8: Extending to Multiple Linear Regression</span></a>
+  <a href="../content/08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 8: Measuring Uncertainty</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/09-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 9: Measuring Uncertainty</span></a>
+  <a href="../content/09-binary_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 9: Modelling Binary Outcomes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/10-binary_outcomes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 10: Modelling Binary Outcomes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/11-panel_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 11: Accounting for Non-Independence Between Observations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/12-beysian.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 12: Introducing Beysian Interpretations</span></a>
+  <a href="../content/10-panel_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 10: Working with Panel Data</span></a>
   </div>
 </li>
       </ul>
@@ -313,9 +301,28 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a></li>
-  <li><a href="#how-will-what-you-learn-this-session-help-your-research" id="toc-how-will-what-you-learn-this-session-help-your-research" class="nav-link" data-scroll-target="#how-will-what-you-learn-this-session-help-your-research">How will what you learn this session help your research?</a></li>
-  <li><a href="#describing-your-data" id="toc-describing-your-data" class="nav-link" data-scroll-target="#describing-your-data">Describing your data</a></li>
+<li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up">Set up</a></li>
+  <li><a href="#why" id="toc-why" class="nav-link" data-scroll-target="#why">Why?</a></li>
+  <li>
+<a href="#describing-your-data" id="toc-describing-your-data" class="nav-link" data-scroll-target="#describing-your-data">Describing your data</a>
+  <ul>
+<li>
+<a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables">Categorical variables</a>
+  <ul class="collapse">
+<li><a href="#nominal-variables" id="toc-nominal-variables" class="nav-link" data-scroll-target="#nominal-variables">Nominal variables</a></li>
+  <li><a href="#ordinal-variables" id="toc-ordinal-variables" class="nav-link" data-scroll-target="#ordinal-variables">Ordinal variables</a></li>
+  <li><a href="#binary-variables" id="toc-binary-variables" class="nav-link" data-scroll-target="#binary-variables">Binary variables</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#continuous-variables" id="toc-continuous-variables" class="nav-link" data-scroll-target="#continuous-variables">Continuous variables</a>
+  <ul class="collapse">
+<li><a href="#binning" id="toc-binning" class="nav-link" data-scroll-target="#binning">Binning</a></li>
+  </ul>
+</li>
+  </ul>
+</li>
   <li>
 <a href="#describing-categorical-variables" id="toc-describing-categorical-variables" class="nav-link" data-scroll-target="#describing-categorical-variables">Describing categorical variables</a>
   <ul>
@@ -386,14 +393,21 @@ window.Quarto = {
   
 
 
-</header><section id="set-up" class="level2"><h2 class="anchored" data-anchor-id="set-up">Set up</h2>
+</header><section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this module, you should be able to:</p>
+<ul>
+<li><p>Identify different types of measurement scales and their properties</p></li>
+<li><p>Calculate and interpret measures of central tendency</p></li>
+<li><p>Calculate and interpret measures of dispersion</p></li>
+<li><p>Apply these concepts using R statistical software</p></li>
+</ul></section><section id="set-up" class="level2"><h2 class="anchored" data-anchor-id="set-up">Set up</h2>
 <p>Throughout this course, you will need a series of data sets I have collected, cleaned, and stored in the <a href="https://github.com/hgoers/polisciols"><code>polisciols</code> R package</a>. These data sets were collected and published by political scientists (including some incredible GVPT alumni). This package is not published on CRAN<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, so you will need to install it using the following code:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"hgoers/polisciols"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You will also need access to the following R packages to complete this week’s activities:</p>
+<p>You will also need access to the following R packages to complete this session:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -423,7 +437,7 @@ Install packages
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/countrycode/">countrycode</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="how-will-what-you-learn-this-session-help-your-research" class="level2"><h2 class="anchored" data-anchor-id="how-will-what-you-learn-this-session-help-your-research">How will what you learn this session help your research?</h2>
+</section><section id="why" class="level2"><h2 class="anchored" data-anchor-id="why">Why?</h2>
 <p>You have an interesting question that you want to explore. You have some data that relate to that question. Included in these data are information on your outcome of interest and information on the things that you think determine or shape that outcome. You think that one (or more) of the drivers is particularly important, but no one has yet written about it or proven its importance. Brilliant! What do you do now?</p>
 <p>The first step in any empirical analysis is getting to know your data. I mean, <em>really</em> getting to know your data. You want to dig into it with a critical eye. You want to understand any patterns lurking beneath the surface.</p>
 <p>Ultimately, you want to get a really good understanding of the <strong>data generation process</strong>. This process can be thought of in two different and important ways. First, you want to understand how, out there in the real world, your outcome and drivers come to be. For example, if you are interested in voting patterns, you want to know the nitty gritty process of how people actually vote. Do they have to travel long distances, stand in long queues, fill out a lot of paperwork? Are there age restrictions on their ability to vote? Are there more insidious restrictions that might suppress voting for one particular group in the electorate?</p>
@@ -433,39 +447,130 @@ Install packages
 <p>As you make your frequency tables and histograms and very elaborate dot plots and box charts, keep in mind that these tools are useful for your interrogation of the data generation process. <em>Be critical.</em> Continue to ask whether your data allow you to detect true relationships between your variables of interest. Build your intuition for what is really going on and what factors are really driving your outcome of interest.</p>
 <p>Let’s get started.</p>
 </section><section id="describing-your-data" class="level2"><h2 class="anchored" data-anchor-id="describing-your-data">Describing your data</h2>
-<p>Broadly, there are two types of variables: categorical and continuous variables.</p>
-<p><strong>Categorical variables</strong> are discrete. They can be unordered (<strong>nominal</strong>) - for example, the different colours of cars - or ordered (<strong>ordinal</strong>) - for example, whether you strongly dislike, dislike, are neutral about, like, or strongly like Taylor Swift.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>When conducting quantitative analysis, we need to understand what type of data we’re working with. Different measurement scales allow for different mathematical operations and statistical procedures. As future international relations analysts, recognizing these distinctions will be crucial for properly analyzing global data. Broadly, there are two types of variables: <strong>categorical</strong> and <strong>continuous</strong>.</p>
+<section id="categorical-variables" class="level3"><h3 class="anchored" data-anchor-id="categorical-variables">Categorical variables</h3>
+<p><strong>Categorical variables</strong> are discrete. They can be unordered (<strong>nominal</strong>) or ordered (<strong>ordinal</strong>).</p>
+<section id="nominal-variables" class="level4"><h4 class="anchored" data-anchor-id="nominal-variables">Nominal variables</h4>
+<p>Nominal variables classify data into mutually exclusive, unordered categories.</p>
+<ul>
+<li>
+<strong>Properties:</strong> Categories with no inherent order</li>
+<li>
+<strong>Examples:</strong> Country names, political party affiliation, ethnicity</li>
+<li>
+<strong>Operations allowed:</strong> Counting, mode, frequency distributions</li>
+<li>
+<strong>Cannot calculate:</strong> Mean, median, standard deviation</li>
+</ul>
+<p>In R: Nominal variables are stored as <em>factors</em>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Creating and examining a nominal variable in R</span></span>
+<span><span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USA"</span>, <span class="st">"China"</span>, <span class="st">"Russia"</span>, <span class="st">"France"</span>, <span class="st">"UK"</span>, <span class="st">"China"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">countries</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] USA    China  Russia France UK     China 
+Levels: China France Russia UK USA</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Frequency count</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">countries</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>countries
+ China France Russia     UK    USA 
+     2      1      1      1      1 </code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Dichotomous (or binary) variables</strong> are a special type of categorical variable. They take on one of two values. For example: yes or no; at war or not at war; is a Swifty, or is not a Swifty.</p>
+</section><section id="ordinal-variables" class="level4"><h4 class="anchored" data-anchor-id="ordinal-variables">Ordinal variables</h4>
+<p>Ordinal scales classify data into categories with a meaningful order, but the intervals between values aren’t necessarily equal.</p>
+<ul>
+<li>
+<strong>Properties:</strong> Categories with clear ranking/order</li>
+<li>
+<strong>Examples:</strong> Education levels, survey responses (strongly disagree to strongly agree), UN Security Council status</li>
+<li>
+<strong>Operations allowed:</strong> All nominal operations plus median, percentiles</li>
+<li>
+<strong>Limited meaning:</strong> Mean, standard deviation</li>
+</ul>
+<p>In R: Ordinal variables are stored as ordered factors.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">education</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"High School"</span>, <span class="st">"Bachelor's"</span>, <span class="st">"Master's"</span>, <span class="st">"PhD"</span><span class="op">)</span>,</span>
+<span>                   levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"High School"</span>, <span class="st">"Bachelor's"</span>, <span class="st">"Master's"</span>, <span class="st">"PhD"</span><span class="op">)</span>,</span>
+<span>                   ordered <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">education</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] High School Bachelor's  Master's    PhD        
+Levels: High School &lt; Bachelor's &lt; Master's &lt; PhD</code></pre>
 </div>
 </div>
-<p><strong>Continuous variables</strong> are, well, continuous. For example, your height or weight, a country’s GDP or population, or the number of fatalities in a battle.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+</section><section id="binary-variables" class="level4"><h4 class="anchored" data-anchor-id="binary-variables">Binary variables</h4>
+<p><strong>Binary variables</strong> are a special type of categorical variable. They take on one of two values.</p>
+<ul>
+<li>
+<strong>Properties:</strong> Categories with only two levels</li>
+<li>
+<strong>Examples:</strong> Voted or not, at war or not, a democracy or not</li>
+<li>
+<strong>Operations allowed:</strong> All nominal operations</li>
+<li>
+<strong>Limited meaning:</strong> Mean, median, standard deviation</li>
+</ul>
+<p>In R: Binary variables are stored as <em>ordered factors</em>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">voted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="st">"Yes"</span><span class="op">)</span>,</span>
+<span>                levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span>,</span>
+<span>                ordered <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="va">voted</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Yes No  No  Yes Yes
+Levels: No &lt; Yes</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">voted</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>voted
+ No Yes 
+  2   3 </code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Continuous variables can be made into (usually ordered) categorical variables. This process is called <strong>binning</strong>. For example, you can take individuals’ ages and reduce them to 0 - 18 years old, 18 - 45 years old, 45 - 65 years old, and 65+ years old.</p>
+</section></section><section id="continuous-variables" class="level3"><h3 class="anchored" data-anchor-id="continuous-variables">Continuous variables</h3>
+<p><strong>Continuous variables</strong> are, well, continuous.</p>
+<ul>
+<li>
+<strong>Properties:</strong> Variables that can take any value within an interval</li>
+<li>
+<strong>Examples:</strong> GDP, population, number of fatalities in a battle</li>
+<li>
+<strong>Operations allowed:</strong> Mean, median, standard deviation</li>
+<li>
+<strong>Limited meaning:</strong> Counting, mode, frequency distributions</li>
+</ul>
+<p>In R: Continuous variables are stored as <em>numeric</em> or <em>integer</em> data types.</p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gdp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.6e9</span>, <span class="fl">7e8</span>, <span class="fl">5.8e8</span>, <span class="fl">7.68e8</span><span class="op">)</span></span>
+<span><span class="va">gdp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.60e+09 7.00e+08 5.80e+08 7.68e+08</code></pre>
+</div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gdp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.12e+08</code></pre>
+</div>
+</div>
+<section id="binning" class="level4"><h4 class="anchored" data-anchor-id="binning">Binning</h4>
+<p>Continuous variables can be made into ordinal variables. This process is called <strong>binning</strong>. For example, you can take individuals’ ages and reduce them to intervals of 10 years.</p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ages</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">23L</span>, <span class="fl">21L</span>, <span class="fl">57L</span>, <span class="fl">24L</span>, <span class="fl">43L</span>, <span class="fl">25L</span>, <span class="fl">71L</span>, <span class="fl">28L</span>, <span class="fl">43L</span>, <span class="fl">56L</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/cut_interval.html">cut_width</a></span><span class="op">(</span><span class="va">ages</span>, width <span class="op">=</span> <span class="fl">10</span>, boundary <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] [15,25] [15,25] (55,65] [15,25] (35,45] [15,25] (65,75] (25,35] (35,45]
+[10] (55,65]
+Levels: [15,25] (25,35] (35,45] (45,55] (55,65] (65,75]</code></pre>
+</div>
+</div>
 <p>You lose information in this process: you cannot go from 45 - 65 years old back to the individuals’ precise age. In other words, you cannot go from a categorical to continuous variable.</p>
-</div>
-</div>
-<p>Let’s take a look at how you can describe these different types of variables using real-world political science examples.</p>
-</section><section id="describing-categorical-variables" class="level2"><h2 class="anchored" data-anchor-id="describing-categorical-variables">Describing categorical variables</h2>
-<p>Generally, we can get a good sense of a categorical variable by looking at counts or proportions. For example, which category contains the most number of observations? Which contains the least?</p>
+</section></section></section><section id="describing-categorical-variables" class="level2"><h2 class="anchored" data-anchor-id="describing-categorical-variables">Describing categorical variables</h2>
+<p>Let’s take a look at how you can describe these different types of variables using real-world political science examples. Generally, we can get a good sense of a categorical variable by looking at counts or proportions. For example, which category contains the most number of observations? Which contains the least?</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -482,7 +587,7 @@ Note
 <p>Let’s use the <a href="https://electionstudies.org/">American National Election Survey</a> to explore how to produce useful descriptive statistics for categorical variables using R. The ANES surveys individual US voters prior to and just following US Presidential Elections. It asks them about their political beliefs and behavior.</p>
 <p>We can access the latest survey (from the 2020 Presidential Election) using the <code>polisciols</code> package:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">polisciols</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/polisciols/man/nes.html">nes</a></span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">polisciols</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/polisciols/man/nes.html">nes</a></span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
@@ -500,7 +605,7 @@ Exercise
 <p>Let’s look at US voters’ views on income inequality in the US. Specifically, we will look at whether individuals think the difference in incomes between rich people and poor people in the United States today is larger, smaller, or about the same as it was 20 years ago.</p>
 <p>Respondents could provide one of four answers (or refuse to answer the question, which is marked as <code>NA</code>):</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">nes</span>, <span class="va">income_gap</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">nes</span>, <span class="va">income_gap</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 1
   income_gap    
@@ -512,9 +617,9 @@ Exercise
 5 Don't know    </code></pre>
 </div>
 </div>
-<p>This is an <strong>ordinal categorical variable</strong>. It is discrete and ordered. We can take a look at the variable itself using the helpful <code><a href="https://docs.ropensci.org/skimr/reference/skim.html">skimr::skim()</a></code> function:</p>
+<p>This is an <strong>ordinal variable</strong>. It is discrete and has a clear ranking. We can take a look at the variable itself using the helpful <code><a href="https://docs.ropensci.org/skimr/reference/skim.html">skimr::skim()</a></code> function:</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="va">nes</span><span class="op">$</span><span class="va">income_gap</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="va">nes</span><span class="op">$</span><span class="va">income_gap</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Data summary</caption>
@@ -599,13 +704,20 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Remember, there are many different types of data that R recognizes. These include characters (<code>"A"</code>, <code>"B"</code>, <code>"C"</code>), integers (<code>1</code>, <code>2</code>, <code>3</code>), and logical values (<code>TRUE</code> or <code>FALSE</code>). R treats categorical variables as <strong>factors</strong>.</p>
+<p>In base R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">nes</span><span class="op">$</span><span class="va">income_gap</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Don't know        Smaller About the same         Larger           NA's 
+            10            416           1683           6117             54 </code></pre>
+</div>
+</div>
 </div>
 </div>
 <section id="frequency-distribution" class="level3"><h3 class="anchored" data-anchor-id="frequency-distribution">Frequency distribution</h3>
 <p>What count and proportion of respondents provided each answer? We can take advantage of <code><a href="https://sfirke.github.io/janitor/reference/tabyl.html">janitor::tabyl()</a></code> to quickly calculate this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/tabyl.html">tabyl</a></span><span class="op">(</span><span class="va">nes</span>, <span class="va">income_gap</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/tabyl.html">tabyl</a></span><span class="op">(</span><span class="va">nes</span>, <span class="va">income_gap</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     income_gap    n     percent valid_percent
      Don't know   10 0.001207729   0.001215658
@@ -633,7 +745,7 @@ Tip
 <p>It is a bit difficult to quickly determine relative counts. Which was the most popular answer? Which was the least? Are these counts very different from each other?</p>
 <p>Visualizing your data will give you a much better sense of it. I recommend using a bar chart to show clearly relative counts.</p>
 <div class="cell fig-cap-location-top">
-<div class="sourceCode" id="cb10" data-cap-location="top"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">nes</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">income_gap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<div class="sourceCode" id="cb28" data-cap-location="top"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">nes</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">income_gap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
@@ -644,7 +756,7 @@ Tip
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_number.html">label_comma</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Do you think the difference in incomes between rich people and poor people in the United States today is larger, smaller, or about the same as it was 20 years ago?</figcaption></figure>
 </div>
 </div>
@@ -668,7 +780,7 @@ Tip
 <p>We can get a much better sense of our continuous variables by looking at how they are distributed across the range of all possible values they could take on. Phew! Let’s make sense of this using some real-world data.</p>
 <p>For this section, we will look at how much each country spends on education as a proportion of its gross domestic product (GDP). We will use <code><a href="https://rdrr.io/pkg/wbstats/man/wb_data.html">wbstats::wb_data()</a></code> to collect these data directly from the World Bank’s data portal.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">perc_edu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/wbstats/man/wb_data.html">wb_data</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">perc_edu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/wbstats/man/wb_data.html">wb_data</a></span><span class="op">(</span></span>
 <span>  <span class="st">"SE.XPD.TOTL.GD.ZS"</span>, start_date <span class="op">=</span> <span class="fl">2020</span>, end_date <span class="op">=</span> <span class="fl">2020</span>, return_wide <span class="op">=</span> <span class="cn">F</span></span>
 <span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html">transmute</a></span><span class="op">(</span></span>
@@ -716,7 +828,7 @@ Note
 <p>A histogram creates buckets along the range of values our variable can take (i.e.&nbsp;buckets of 10 between 1 and 100 would include 1 - 10, 11 - 20, 21 - 30, etc.). It then counts the number of observations that fall into each of those buckets and plots that count.</p>
 <p>Let’s plot our data as a histogram with a bin width of 1 percentage point:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">perc_edu</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">perc_edu</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
@@ -725,7 +837,7 @@ Note
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -733,7 +845,7 @@ Note
 <p>From this we learn that most countries spend between three to five percent of their GDP on education. There appears to be some <strong>outliers</strong>. Some countries spend over 10 percent of their GDP on education. This is well above the proportion all other countries spent.</p>
 <p>If we pick a narrower bin width, we will see more fine-grained detail about the distribution of our data:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">perc_edu</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">perc_edu</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
@@ -742,7 +854,7 @@ Note
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -752,7 +864,7 @@ Note
 <p>Density curves also communicate the distribution of continuous variables. They plot the density of the data that fall at a given value on the x-axis.</p>
 <p>Let’s plot our data using a density plot:</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">perc_edu</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">perc_edu</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
@@ -761,7 +873,7 @@ Note
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -786,12 +898,12 @@ Note
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1e6</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -799,12 +911,12 @@ Note
 </section><section id="right-skewed-distribution" class="level4"><h4 class="anchored" data-anchor-id="right-skewed-distribution">Right-skewed distribution</h4>
 <p>With right-skewed data, the majority of data have small values with a small number of larger values. Examples of right-skewed data include countries’ GDP.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span><span class="fl">1e6</span>, <span class="fl">2</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -812,12 +924,12 @@ Note
 </section><section id="left-skewed-distribution" class="level4"><h4 class="anchored" data-anchor-id="left-skewed-distribution">Left-skewed distribution</h4>
 <p>With left-skewed data, the majority of data have large values with a small number of small values. Examples of left-skewed data include democracies’ election turn-out rates.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span><span class="fl">1e6</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -831,7 +943,7 @@ Note
 \]</span></p>
 <p>In other words, add all of your values together and then divide that total by the number of values you have. We can use R to quickly calculate the mean percent of GDP spent on education by countries in 2020:</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.509317</code></pre>
 </div>
@@ -854,7 +966,7 @@ Tip
 <p>The <strong>median</strong> is the mid-point of all values. To calculate it, put all of your values in order from smallest to largest. Identify the value in the middle. That’s your median.</p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.446204</code></pre>
 </div>
@@ -890,7 +1002,7 @@ Note
 </div>
 <p>We can find the modal region in our data set using base R’s <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
        East Asia &amp; Pacific      Europe &amp; Central Asia 
@@ -909,7 +1021,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -918,7 +1030,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -927,7 +1039,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -935,42 +1047,42 @@ Note
 <p>When do we care about the mean or the median? There is no simple answer to this question. Both of these values are useful summaries of our continuous data. We tend to use the average to describe our data in statistical analysis. As you will learn, most regression models are, fundamentally, just fancy averages of our data. However, this approach is not always sensible.</p>
 <p>As you may have noted above, the average value is more sensitive to extreme values. If you have one very large or very small number in your vector of numbers, your average will be pulled well away from your mid-point (or median). This can lead you astray. To illustrate, let’s look at the average and median of the numbers between one and 10:</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
 <span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.5</code></pre>
 </div>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.5</code></pre>
 </div>
 </div>
 <p>If we add one very large number to our vector, our average will shoot up but our median will only move up one additional number in our collection:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">1000</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]    1    2    3    4    5    6    7    8    9   10 1000</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 95.90909</code></pre>
 </div>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6</code></pre>
 </div>
 </div>
-<p>Which number better summarizes our data? Here, I would suggest that the average is misleading. That one 1,000 data point is doing a lot of the work. The median better describes the majority of my data.</p>
-<p>We will talk more about this (and outliers more specifically) later in the course.</p>
+<p>Which number best summarizes our data? Here, I would suggest that the average is misleading. That one 1,000 data point is doing a lot of the work. The median better describes the majority of my data.</p>
+<p>We will talk more about this (and outliers more specifically) later in this session.</p>
 <section id="five-number-summary" class="level4"><h4 class="anchored" data-anchor-id="five-number-summary">Five number summary</h4>
 <p>As you can see, we are attempting to summarize our continuous data to give us a meaningful but manageable sense of it. Means and medians are useful for this.</p>
 <p>We can provide more context to our understanding using more summary statistics. A common approach is the <strong>five number summary</strong>. This includes:</p>
@@ -983,7 +1095,7 @@ Note
 </ul>
 <p>We can use <code><a href="https://docs.ropensci.org/skimr/reference/skim.html">skimr::skim()</a></code> to quickly get useful information about our continuous variable.</p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Data summary</caption>
@@ -1068,7 +1180,7 @@ Note
 </div>
 <p>Alternatively, you can use base R’s <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
  0.3596  3.2950  4.4462  4.5093  5.5270 10.5390      52 </code></pre>
@@ -1080,7 +1192,7 @@ Note
 </section><section id="box-plots" class="level4"><h4 class="anchored" data-anchor-id="box-plots">Box plots</h4>
 <p>Box plots (sometimes referred to as box and whisker plots) visualize the five number summary (with bonus features) nicely.</p>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">perc_edu</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">perc_edu</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
@@ -1092,7 +1204,7 @@ Note
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1123,7 +1235,7 @@ range = max - min
 \]</span></p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">perc_edu</span><span class="op">$</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.17936</code></pre>
 </div>
@@ -1133,40 +1245,40 @@ range = max - min
 <p>The <strong>variance</strong> measures how spread out your values are. On average, how far are your observations from the mean?</p>
 <p>This measure can, at first, be a bit too abstract to get an immediate handle on. Let’s walk through it. Imagine we have two data sets, <code>wide_dist</code> and <code>narrow_dist</code>. Both are Normally distributed, share the same mean (0), and the same number of observations (1,000,000).</p>
 <div class="cell">
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wide_dist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wide_dist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,000,000 × 1
         x
     &lt;dbl&gt;
- 1  1.54 
- 2  0.249
- 3  2.04 
- 4  1.31 
- 5  1.64 
- 6  1.28 
- 7  1.10 
- 8 -2.71 
- 9  0.342
-10 -1.16 
+ 1  0.181
+ 2 -1.55 
+ 3  0.169
+ 4  0.665
+ 5 -2.20 
+ 6  0.260
+ 7 -1.61 
+ 8 -2.72 
+ 9 -1.42 
+10  0.753
 # ℹ 999,990 more rows</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">narrow_dist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">narrow_dist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,000,000 × 1
          x
      &lt;dbl&gt;
- 1  1.11  
- 2  2.25  
- 3 -1.04  
- 4 -0.261 
- 5 -0.0606
- 6 -1.04  
- 7 -1.63  
- 8  1.40  
- 9 -1.61  
-10 -0.954 
+ 1  0.223 
+ 2 -1.04  
+ 3  0.0923
+ 4 -2.18  
+ 5  0.198 
+ 6  0.490 
+ 7  0.304 
+ 8  1.62  
+ 9  0.0456
+10  0.331 
 # ℹ 999,990 more rows</code></pre>
 </div>
 </div>
@@ -1174,7 +1286,7 @@ range = max - min
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="01-measurement_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1210,7 +1322,7 @@ Tip
 <p>You now have your variance!</p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wide_dist_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wide_dist</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wide_dist_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wide_dist</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">wide_var_calc</span> <span class="op">&lt;-</span> <span class="va">wide_dist</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
@@ -1227,31 +1339,31 @@ Tip
 <pre><code># A tibble: 1,000,000 × 4
         x    mean   diff diff_2
     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
- 1  1.54  0.00129  1.53  2.35  
- 2  0.249 0.00129  0.248 0.0614
- 3  2.04  0.00129  2.04  4.14  
- 4  1.31  0.00129  1.30  1.70  
- 5  1.64  0.00129  1.64  2.69  
- 6  1.28  0.00129  1.27  1.63  
- 7  1.10  0.00129  1.10  1.21  
- 8 -2.71  0.00129 -2.71  7.37  
- 9  0.342 0.00129  0.341 0.116 
-10 -1.16  0.00129 -1.16  1.35  
+ 1  0.181 0.00147  0.180 0.0324
+ 2 -1.55  0.00147 -1.55  2.41  
+ 3  0.169 0.00147  0.167 0.0279
+ 4  0.665 0.00147  0.663 0.440 
+ 5 -2.20  0.00147 -2.20  4.83  
+ 6  0.260 0.00147  0.258 0.0667
+ 7 -1.61  0.00147 -1.61  2.60  
+ 8 -2.72  0.00147 -2.72  7.39  
+ 9 -1.42  0.00147 -1.43  2.03  
+10  0.753 0.00147  0.752 0.565 
 # ℹ 999,990 more rows</code></pre>
 </div>
 </div>
 <p>We the add those squared differences between each observation and the mean of our whole sample together. Finally, we divide that by one less than our number of observations.</p>
 <div class="cell">
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wide_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">wide_var_calc</span><span class="op">$</span><span class="va">diff_2</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">wide_var_calc</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wide_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">wide_var_calc</span><span class="op">$</span><span class="va">diff_2</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">wide_var_calc</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">wide_var</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.99556</code></pre>
+<pre><code>[1] 4.000508</code></pre>
 </div>
 </div>
 <p>We can compare this to the variance for our narrower distribution.</p>
 <div class="cell">
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">narrow_var_calc</span> <span class="op">&lt;-</span> <span class="va">narrow_dist</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">narrow_var_calc</span> <span class="op">&lt;-</span> <span class="va">narrow_dist</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>    mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">narrow_dist</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>,</span>
 <span>    diff <span class="op">=</span> <span class="va">x</span> <span class="op">-</span> <span class="va">mean</span>,</span>
@@ -1262,27 +1374,27 @@ Tip
 <span></span>
 <span><span class="va">narrow_var</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9989524</code></pre>
+<pre><code>[1] 1.001443</code></pre>
 </div>
 </div>
 <p>It is, in fact, smaller!</p>
 <p>That was painful. Happily we can use base R’s <code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code> to do this in one step:</p>
 <div class="cell">
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">wide_dist</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">wide_dist</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        x
-x 3.99556</code></pre>
+<pre><code>         x
+x 4.000508</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">narrow_dist</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">narrow_dist</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          x
-x 0.9989524</code></pre>
+<pre><code>         x
+x 1.001443</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">wide_dist</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">narrow_dist</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">wide_dist</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">narrow_dist</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     x
 x TRUE</code></pre>
@@ -1292,34 +1404,34 @@ x TRUE</code></pre>
 </section><section id="standard-deviation" class="level4"><h4 class="anchored" data-anchor-id="standard-deviation">Standard deviation</h4>
 <p>A simpler measure of spread is the <strong>standard deviation</strong>. It is simply the square root of the variance.</p>
 <div class="cell">
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">wide_var</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">wide_var</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.99889</code></pre>
+<pre><code>[1] 2.000127</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">narrow_var</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">narrow_var</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9994761</code></pre>
+<pre><code>[1] 1.000721</code></pre>
 </div>
 </div>
 <p>You can get this directly using base R’s <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">wide_dist</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">wide_dist</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.99889</code></pre>
+<pre><code>[1] 2.000127</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">narrow_dist</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">narrow_dist</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9994761</code></pre>
+<pre><code>[1] 1.000721</code></pre>
 </div>
 </div>
 <p>The standard deviation of all countries’ percentage of their GDP that they spent on education in 2020 was 1.75%. This horrible sentence demonstrates that standard deviations are most usefully employed in contexts other than attempts to better describe your variables of interest. For example, they are very important for determining how certain we can be about the relationships between different variables we uncover using statistical models (which we will get to later in the course).</p>
 </section></section></section><section id="conclusion" class="level2"><h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>Your empirical analysis is only as strong as its foundation. You can use the tools you learnt this session to build a very strong foundation. Always start any analysis by getting a very good sense of your data. Look at it with a critical eye. Does it match your intuition? Is something off? What can you learn about the peaks and troughs among your observations?</p>
-<p>Now you need to head over to ELMs and successfully complete this session’s quiz. Good luck!</p>
+<p>Now you need to head over to ELMs and complete this session’s quiz. Good luck!</p>
 
 
 </section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>

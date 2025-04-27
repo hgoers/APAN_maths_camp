@@ -197,32 +197,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/08-multiple_linear_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 8: Extending to Multiple Linear Regression</span></a>
+  <a href="../content/08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 8: Measuring Uncertainty</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/09-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 9: Measuring Uncertainty</span></a>
+  <a href="../content/09-binary_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 9: Modelling Binary Outcomes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/10-binary_outcomes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 10: Modelling Binary Outcomes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/11-panel_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 11: Accounting for Non-Independence Between Observations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/12-beysian.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 12: Introducing Beysian Interpretations</span></a>
+  <a href="../content/10-panel_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 10: Working with Panel Data</span></a>
   </div>
 </li>
       </ul>
@@ -288,8 +276,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up">Set up</a></li>
   <li><a href="#representative-samples" id="toc-representative-samples" class="nav-link" data-scroll-target="#representative-samples">Representative samples</a></li>
   <li><a href="#random-sampling" id="toc-random-sampling" class="nav-link" data-scroll-target="#random-sampling">Random sampling</a></li>
   <li><a href="#the-effects-of-an-unrepresentative-sample" id="toc-the-effects-of-an-unrepresentative-sample" class="nav-link" data-scroll-target="#the-effects-of-an-unrepresentative-sample">The effects of an unrepresentative sample</a></li>
@@ -319,8 +307,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>A lot the data we use in political science research are incomplete. Rarely do we have data on all actors in our population of interest. We, therefore, need to work out the degree to which our sample of actors resembles what we would see in the population. This session introduces you to the tools you need to do this.</p>
-<section id="set-up" class="level2"><h2 class="anchored" data-anchor-id="set-up">Set up</h2>
+</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>A lot the data we use in political science research are incomplete. Rarely do we have data on all actors in our population of interest. We, therefore, need to work out the degree to which our sample of actors resembles the population. This session introduces you to the tools you need to do this.</p>
+</section><section id="set-up" class="level2"><h2 class="anchored" data-anchor-id="set-up">Set up</h2>
 <p>To complete this session, you need to load in the following R packages:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -348,10 +337,9 @@ Install packages
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://iqss.github.io/dataverse-client-r/">dataverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Entire populations are very difficult to collect data on. Even the census (which aims to account for every citizen living within a country) misses people. Happily, we do not need to learn information about the whole population to discover general trends within it. Instead, we can use good surveys of the population.</p>
-<p>What do I mean by “good”? The sample of your population surveyed must be <strong>representative</strong> of that population. This session focuses on defining what we mean by that.</p>
 </section><section id="representative-samples" class="level2"><h2 class="anchored" data-anchor-id="representative-samples">Representative samples</h2>
+<p>Entire populations are very difficult to collect data on. Even the census (which aims to account for every citizen living within a country) misses people. Happily, we do not need to learn information about the whole population to discover general trends within it. Instead, we can use good samples of the population.</p>
+<p>What do I mean by “good”? The sample of your population surveyed must be <strong>representative</strong> of that population. This session focuses on defining what we mean by that.</p>
 <p>Surveys are conducted on a subset of a our population of interest. This is because it is often unfeasible (or impossible) to ask these questions of our population.</p>
 <p>To be able to infer from our sample information about our population, we need to ensure the sample is representative of that population. In other words, we need to try our best to make sure the sample looks very similar to our population.</p>
 <p>Remember back to the last session on experiments. In an ideal world, we would be able to create two parallel worlds (one with the treatment, one held as our control). These two worlds would be identical to each other prior to treatment. This allows us to confidently state that any differences in our outcome of interest were <em>caused</em> by the treatment. It was, after all, the only thing differentiating those two worlds.</p>
