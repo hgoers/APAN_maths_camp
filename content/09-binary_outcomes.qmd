@@ -306,3 +306,7 @@ plot_predictions(m_logistic, condition = "obama_therm") +
        y = "Probability of voting for Obama") + 
   scale_y_continuous(label = percent, limits = c(0, 1))
 ```
+
+## Quiz
+
+Head over to ELMs to complete this session's quiz. You need to score 80% on it to gain access to the next session's quiz.

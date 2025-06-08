@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Session 3: How to Infer Population Characteristics through Survey Research – APAN Maths Camp</title>
+<title>Session 3: How to Infer Population Characteristics through Survey Research – APAN Summer Statistics Camp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">APAN Maths Camp</span>
+    <span class="navbar-title">APAN Summer Statistics Camp</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -289,6 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-population-of-votes-cast" id="toc-the-population-of-votes-cast" class="nav-link" data-scroll-target="#the-population-of-votes-cast">The population of votes cast</a></li>
   </ul>
 </li>
+  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz">Quiz</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://hgoers.github.io/APAN_maths_camp/issues/new" class="toc-action"><i class="bi bi-git"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -681,7 +682,7 @@ Tip
 </iframe>
 <p>Once you have collected the data, you can read it in using the <code>readr</code> package’s <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function. It takes the file’s path as its first argument.</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anes_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"content"</span>, <span class="st">"data"</span>, <span class="st">"anes_timeseries_2020_csv_20220210.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anes_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"content"</span>, <span class="st">"data"</span>, <span class="st">"anes_timeseries_2020_csv_20220210.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">anes_raw</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8,280 × 1,771
@@ -716,14 +717,14 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <code>here</code> R package makes saving data in a robust way very easy. Using <code><a href="https://here.r-lib.org//reference/here.html">here::here()</a></code>, you can automatically update file paths to reflect the computer you are currently using. To demonstrate, run the following code:</p>
+<p>The <code>here</code> R package makes saving data in a robust way very easy. Using <code><a href="https://here.r-lib.org/reference/here.html">here::here()</a></code>, you can automatically update file paths to reflect the computer you are currently using. To demonstrate, run the following code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Users/harrietgoers/Documents/APAN_maths_camp"</code></pre>
 </div>
 </div>
-<p>Your output will be different to mine. <code><a href="https://here.r-lib.org//reference/here.html">here::here()</a></code> locates the top level of the file directory in which you are located. This is helpful when you share your code with others (or switch to a new computer). Hard coded file paths will cause annoying errors.</p>
+<p>Your output will be different to mine. <code><a href="https://here.r-lib.org/reference/here.html">here::here()</a></code> locates the top level of the file directory in which you are located. This is helpful when you share your code with others (or switch to a new computer). Hard coded file paths will cause annoying errors.</p>
 <p>I like to save my data in a folder called <code>data</code>. You can use a structure you find works for you.</p>
 </div>
 </div>
@@ -974,9 +975,11 @@ Note
 <p>It looks like the ANES did a fairly good job of capturing the US voting population’s behavior. The proportion of survey respondents who said they voted for each candidate (represented by the blue bar) is roughly equal to the proportion of votes won by each candidate (represented by the pink bar).</p>
 <p>One interesting thing to note is that the survey did overstate support for Joe Biden and understated support for Donald Trump. We might see this despite having a representative sample. For example, people - when asked who they voted for - may be inclined to say they voted for the winner (regardless of who that winner was). Also, individuals may be hesitant to tell a pollster that they voted for Donald Trump given how divisive he and his campaign were.</p>
 <p>It is; however, very likely that the ANES did not reach a representative sample of the US voting population. As we discussed above: this is very difficult (if not impossible) to do. ANES runs very good surveys precisely because they acknowledge and, to the best of their ability, account for this. Generally, surveys will compare the demographics of their respondents to those of the voting population (or population more generally). If they find that some individuals are under-represented in their sample (for example, young Black women make up a smaller proportion of their sample than they make up in the population), they will make the responses of individuals who fit those demographics count for more than one response in their calculations. Similarly, if they find a demographic is over-represented in their sample, they will make their responses count for less than one response in their calculations. This practice is called <strong>weighting</strong> and it is standard across all major and respected surveys.</p>
+</section></section><section id="quiz" class="level2"><h2 class="anchored" data-anchor-id="quiz">Quiz</h2>
+<p>Head over to ELMs to complete this session’s quiz. You need to score 80% on it to gain access to the next session’s quiz.</p>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Data Wrangling – APAN Maths Camp</title>
+<title>Data Wrangling – APAN Summer Statistics Camp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">APAN Maths Camp</span>
+    <span class="navbar-title">APAN Summer Statistics Camp</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -346,9 +346,9 @@ Note
 <p>This process is similar to the one we used in Session 2: From Samples to the Population.</p>
 </div>
 </div>
-<p>I saved the CSV in the <code>data</code> folder (which is the in the <code>content</code> folder because this is a website), so I will use <code><a href="https://here.r-lib.org//reference/here.html">here::here()</a></code> to adaptively find the correct file path and read the file in using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>.</p>
+<p>I saved the CSV in the <code>data</code> folder (which is the in the <code>content</code> folder because this is a website), so I will use <code><a href="https://here.r-lib.org/reference/here.html">here::here()</a></code> to adaptively find the correct file path and read the file in using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gdp_per_cap_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"content"</span>, <span class="st">"data"</span>, </span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gdp_per_cap_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"content"</span>, <span class="st">"data"</span>, </span>
 <span>                                       <span class="st">"API_NY.GDP.PCAP.CD_DS2_en_csv_v2_76.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After running this yourself, you will see an ominous warning. Let’s take a look at our data:</p>
@@ -374,7 +374,7 @@ Note
 <p>We have only three columns, none of which appear to have the right names. It also looks like the first few rows may, in fact, not be rows in our data set. Rather, they are metadata, including the last time the data were updated.</p>
 <p>The second row in our data set looks like the real column headings. This is good! We can skip the first few rows using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>’s <code>skip</code> argument. Just provide it with the number of rows you want to skip when reading in the CSV.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gdp_per_cap_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"content"</span>, <span class="st">"data"</span>, </span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gdp_per_cap_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"content"</span>, <span class="st">"data"</span>, </span>
 <span>                                       <span class="st">"API_NY.GDP.PCAP.CD_DS2_en_csv_v2_76.csv"</span><span class="op">)</span>,</span>
 <span>                            skip <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span></span>
@@ -611,16 +611,16 @@ Note
 <pre><code># A tibble: 28,210 × 11
    indicator    iso2c iso3c country  date unit  obs_status footnote last_updated
    &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;date&gt;      
- 1 Life expect… AF    AFG   Afghan…  2024 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 2 Life expect… AF    AFG   Afghan…  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 3 Life expect… AF    AFG   Afghan…  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 4 Life expect… AF    AFG   Afghan…  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 5 Life expect… AF    AFG   Afghan…  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 6 Life expect… AF    AFG   Afghan…  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 7 Life expect… AF    AFG   Afghan…  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 8 Life expect… AF    AFG   Afghan…  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 9 Life expect… AF    AFG   Afghan…  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
-10 Life expect… AF    AFG   Afghan…  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 1 Life expect… AF    AFG   Afghan…  2024 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 2 Life expect… AF    AFG   Afghan…  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 3 Life expect… AF    AFG   Afghan…  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 4 Life expect… AF    AFG   Afghan…  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 5 Life expect… AF    AFG   Afghan…  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 6 Life expect… AF    AFG   Afghan…  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 7 Life expect… AF    AFG   Afghan…  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 8 Life expect… AF    AFG   Afghan…  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 9 Life expect… AF    AFG   Afghan…  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+10 Life expect… AF    AFG   Afghan…  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
 # ℹ 28,200 more rows
 # ℹ 2 more variables: SP.DYN.LE00.IN &lt;dbl&gt;, NY.GDP.PCAP.CD &lt;dbl&gt;</code></pre>
 </div>
@@ -637,16 +637,16 @@ Note
 <pre><code># A tibble: 14,114 × 10
    iso2c iso3c country      date unit  obs_status footnote last_updated
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;date&gt;      
- 1 AF    AFG   Afghanistan  2024 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 2 AF    AFG   Afghanistan  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 3 AF    AFG   Afghanistan  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 4 AF    AFG   Afghanistan  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 5 AF    AFG   Afghanistan  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 6 AF    AFG   Afghanistan  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 7 AF    AFG   Afghanistan  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 8 AF    AFG   Afghanistan  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
- 9 AF    AFG   Afghanistan  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
-10 AF    AFG   Afghanistan  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15  
+ 1 AF    AFG   Afghanistan  2024 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 2 AF    AFG   Afghanistan  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 3 AF    AFG   Afghanistan  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 4 AF    AFG   Afghanistan  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 5 AF    AFG   Afghanistan  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 6 AF    AFG   Afghanistan  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 7 AF    AFG   Afghanistan  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 8 AF    AFG   Afghanistan  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+ 9 AF    AFG   Afghanistan  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
+10 AF    AFG   Afghanistan  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05  
 # ℹ 14,104 more rows
 # ℹ 2 more variables: SP.DYN.LE00.IN &lt;dbl&gt;, NY.GDP.PCAP.CD &lt;dbl&gt;</code></pre>
 </div>
@@ -660,16 +660,16 @@ Note
 <pre><code># A tibble: 14,114 × 10
    iso2c iso3c country  date unit  obs_status footnote last_updated avg_life_exp
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;date&gt;              &lt;dbl&gt;
- 1 AF    AFG   Afghan…  2024 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           NA  
- 2 AF    AFG   Afghan…  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           66.0
- 3 AF    AFG   Afghan…  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           65.6
- 4 AF    AFG   Afghan…  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           60.4
- 5 AF    AFG   Afghan…  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           61.5
- 6 AF    AFG   Afghan…  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           62.9
- 7 AF    AFG   Afghan…  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           62.4
- 8 AF    AFG   Afghan…  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           62.4
- 9 AF    AFG   Afghan…  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           62.6
-10 AF    AFG   Afghan…  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-04-15           62.3
+ 1 AF    AFG   Afghan…  2024 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05           NA  
+ 2 AF    AFG   Afghan…  2023 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05           66.0
+ 3 AF    AFG   Afghan…  2022 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05           65.6
+ 4 AF    AFG   Afghan…  2021 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05           60.4
+ 5 AF    AFG   Afghan…  2020 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05           61.5
+ 6 AF    AFG   Afghan…  2019 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05           62.9
+ 7 AF    AFG   Afghan…  2018 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05           62.4
+ 8 AF    AFG   Afghan…  2017 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05           62.4
+ 9 AF    AFG   Afghan…  2016 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05           62.6
+10 AF    AFG   Afghan…  2015 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-06-05           62.3
 # ℹ 14,104 more rows
 # ℹ 1 more variable: gdp_per_cap &lt;dbl&gt;</code></pre>
 </div>

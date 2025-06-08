@@ -233,3 +233,7 @@ Note that non-directional null hypotheses are more difficult to reject. The symm
 ::: callout-note
 Most political science research translates into directional hypotheses. However, most researchers still subject their empirical analyses to two-tailed tests. This is because scientists tend to be conservative. They are more willing to accidentally fail to reject a false null hypothesis than they are to reject a true null hypothesis. An analogy might help here. Doctors are more willing to assume someone has cancer who does not, in fact, have cancer than they are to let someone with cancer go untreated because they made a mistake.
 :::
+
+## Quiz
+
+Head over to ELMs to complete this session's quiz. You need to score 80% on it to gain access to the next session's quiz.

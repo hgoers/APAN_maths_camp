@@ -484,3 +484,7 @@ ggplot(pred, aes(x = .fitted, y = pcj, colour = regime_type)) +
 We can clearly see that states that established PCJ institutions received, on average, larger net FDI inflows than states that did not, no matter their regime type. Further and completely counter to my hypothesis, hybrid regimes have, on average, the highest net FDI inflows compared to democracies and autocracies even when we account for whether the state has a PCJ institution.
 
 I'm not too worried: none of these coefficients are anywhere close to being statistically significant. I suspect that there is a more complex relationship underlying commercial actors' beliefs about the stability of hybrid regimes, democracies, and autocracies and its effect on *net* investment flows. But I hope this serves as a good illustration of how we can use multiple categorical variables in our analyses.
+
+## Quiz
+
+Head over to ELMs to complete this session's quiz. You need to score 80% on it to gain access to the next session's quiz.

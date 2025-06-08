@@ -422,3 +422,7 @@ Remember, monitors were assigned to booths randomly. Yes, these booths would be 
 This is a big difference! Elections can be won or lost by much smaller margins. It appears that monitors make a substantive difference to the vote share won. Hyde proved this all by simply looking at the difference between the averages of her two (randomly assigned) groups. This is excellent science: it is simple and clear.
 
 We don't often have the luxury of random assignment when attempting to answer political questions. Next we will explore how we can learn about general relationships between our variables of interest when we have incomplete information.
+
+## Quiz
+
+Head over to ELMs to complete this session's quiz. You need to score 80% on it to gain access to the next session's quiz.

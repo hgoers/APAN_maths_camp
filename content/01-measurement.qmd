@@ -98,10 +98,10 @@ When conducting quantitative analysis, we need to understand what type of data w
 
 Nominal variables classify data into mutually exclusive, unordered categories.
 
-- **Properties:** Categories with no inherent order
-- **Examples:** Country names, political party affiliation, ethnicity
-- **Operations allowed:** Counting, mode, frequency distributions
-- **Cannot calculate:** Mean, median, standard deviation
+-   **Properties:** Categories with no inherent order
+-   **Examples:** Country names, political party affiliation, ethnicity
+-   **Operations allowed:** Counting, mode, frequency distributions
+-   **Cannot calculate:** Mean, median, standard deviation
 
 In R: Nominal variables are stored as *factors*.
 
@@ -118,10 +118,10 @@ table(countries)
 
 Ordinal scales classify data into categories with a meaningful order, but the intervals between values aren't necessarily equal.
 
-- **Properties:** Categories with clear ranking/order
-- **Examples:** Education levels, survey responses (strongly disagree to strongly agree), UN Security Council status
-- **Operations allowed:** All nominal operations plus median, percentiles
-- **Limited meaning:** Mean, standard deviation
+-   **Properties:** Categories with clear ranking/order
+-   **Examples:** Education levels, survey responses (strongly disagree to strongly agree), UN Security Council status
+-   **Operations allowed:** All nominal operations plus median, percentiles
+-   **Limited meaning:** Mean, standard deviation
 
 In R: Ordinal variables are stored as ordered factors.
 
@@ -135,12 +135,12 @@ education
 
 #### Binary variables
 
-**Binary variables** are a special type of categorical variable. They take on one of two values. 
+**Binary variables** are a special type of categorical variable. They take on one of two values.
 
-- **Properties:** Categories with only two levels
-- **Examples:** Voted or not, at war or not, a democracy or not
-- **Operations allowed:** All nominal operations
-- **Limited meaning:** Mean, median, standard deviation
+-   **Properties:** Categories with only two levels
+-   **Examples:** Voted or not, at war or not, a democracy or not
+-   **Operations allowed:** All nominal operations
+-   **Limited meaning:** Mean, median, standard deviation
 
 In R: Binary variables are stored as *ordered factors*.
 
@@ -157,10 +157,10 @@ table(voted)
 
 **Continuous variables** are, well, continuous.
 
-- **Properties:** Variables that can take any value within an interval
-- **Examples:** GDP, population, number of fatalities in a battle
-- **Operations allowed:** Mean, median, standard deviation
-- **Limited meaning:** Counting, mode, frequency distributions
+-   **Properties:** Variables that can take any value within an interval
+-   **Examples:** GDP, population, number of fatalities in a battle
+-   **Operations allowed:** Mean, median, standard deviation
+-   **Limited meaning:** Counting, mode, frequency distributions
 
 In R: Continuous variables are stored as *numeric* or *integer* data types.
 
@@ -232,7 +232,7 @@ From this, we learn that:
 -   This means that we have information on `r percent(summary_income_gap$complete_rate)` of our observations (from `complete_rate`).
 
 ::: callout-tip
-In base R: 
+In base R:
 
 ```{r}
 summary(nes$income_gap)
@@ -775,4 +775,6 @@ The standard deviation of all countries' percentage of their GDP that they spent
 
 Your empirical analysis is only as strong as its foundation. You can use the tools you learnt this session to build a very strong foundation. Always start any analysis by getting a very good sense of your data. Look at it with a critical eye. Does it match your intuition? Is something off? What can you learn about the peaks and troughs among your observations?
 
-Now you need to head over to ELMs and complete this session's quiz. Good luck!
+## Quiz
+
+Head over to ELMs to complete this session's quiz. You need to score 80% on it to gain access to the next session's quiz.

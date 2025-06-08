@@ -736,3 +736,7 @@ upper_95
 These boundaries are marked by the thinner black line on the graph above.
 
 We are putting a lot of stead in our single sample. That's okay as long as your sample is *large and representative*. So, let's return to the problem faced by pollsters when trying to determine support for Kamala Harris prior to the election. As long as those pollsters took a large and representative sample of the population of US voters, they can assume that the statistic they derive from their survey - the proportion of those surveyed who intended to vote for Harris - is most likely to be equal to the proportion of US voters who intended to vote for Harris. They will know this with some level of confidence, based on the size of and variation within their sample.
+
+## Quiz
+
+Head over to ELMs to complete this session's quiz. You need to score 80% on it to gain access to the next session's quiz.

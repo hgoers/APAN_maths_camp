@@ -628,3 +628,7 @@ It looks much better across all countries and years!
 -   This lab session draws heavily on Andrew Heiss's brilliant blog post [*A guide to working with country-year panel data and Bayesian multilevel models* (2021)](https://www.andrewheiss.com/blog/2021/12/01/multilevel-models-panel-data-guide/).
 
 -   I also highly recommend Michael Clark's [*Mixed Models with R*](https://m-clark.github.io/mixed-models-with-R/).
+
+## Quiz
+
+Head over to ELMs to complete this session's quiz. You need to score 80% on it to gain access to the next session's quiz.

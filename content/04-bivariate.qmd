@@ -576,3 +576,7 @@ glance(m) |>
 An $R^2$ of one means that all changes in the dependent variable are completely explained by changes in the independent variable. Here, it would mean that all changes to a country's average life expectancy are explained through changes to the country's logged GDP per capita.
 
 According to our model, `r percent(glance(m)$r.squared, accuracy = 0.1)` of changes in a country's average life expectancy are explained through changes to the country's logged GDP per capita.
+
+## Quiz
+
+Head over to ELMs to complete this session's quiz. You need to score 80% on it to gain access to the next session's quiz.

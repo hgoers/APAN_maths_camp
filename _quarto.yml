@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "APAN Maths Camp"
+  title: "APAN Summer Statistics Camp"
   google-analytics: ""
   repo-url: https://hgoers.github.io/APAN_maths_camp/
   repo-actions: [issue]

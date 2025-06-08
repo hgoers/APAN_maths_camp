@@ -83,3 +83,7 @@ To complete this course, you need access to a personal computer and a stable int
 {{< fa book >}} [Instructions on downloading RStudio](https://r4ds.hadley.nz/intro#rstudio)
 
 Everything you need to successfully complete this course is available for free.
+
+## Quiz
+
+Head over to ELMs to complete this session's quiz. You need to score 100% on it to gain access to the next session's quiz.

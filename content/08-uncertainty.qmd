@@ -654,3 +654,7 @@ modelsummary(m,
              statistic = c("std.error"),
              stars = T)
 ```
+
+## Quiz
+
+Head over to ELMs to complete this session's quiz. You need to score 80% on it to gain access to the next session's quiz.

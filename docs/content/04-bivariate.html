@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Session 4: Modelling the Relationship between Two Variables – APAN Maths Camp</title>
+<title>Session 4: Modelling the Relationship between Two Variables – APAN Summer Statistics Camp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">APAN Maths Camp</span>
+    <span class="navbar-title">APAN Summer Statistics Camp</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -335,6 +335,7 @@ window.Quarto = {
 </li>
   </ul>
 </li>
+  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz">Quiz</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://hgoers.github.io/APAN_maths_camp/issues/new" class="toc-action"><i class="bi bi-git"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -715,8 +716,8 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
 
     <script>
 
-      function styleCell_gllsztsmpmu0swayqyw4(i, j, css_id) {
-          var table = document.getElementById("tinytable_gllsztsmpmu0swayqyw4");
+      function styleCell_qq9siaqkf7xokeedulrt(i, j, css_id) {
+          var table = document.getElementById("tinytable_qq9siaqkf7xokeedulrt");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -726,7 +727,7 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_gllsztsmpmu0swayqyw4');
+        var table = document.getElementById('tinytable_qq9siaqkf7xokeedulrt');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -734,8 +735,8 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_gllsztsmpmu0swayqyw4(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_gllsztsmpmu0swayqyw4");
+      function spanCell_qq9siaqkf7xokeedulrt(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_qq9siaqkf7xokeedulrt");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -765,36 +766,36 @@ life Exp_i = 32.9 + 4.5 * logGdpPerCap_i + \epsilon
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 1, j: 1 },  ], css_id: 'tinytable_css_tw3x96kvtzl32oyr7np4',}, 
-          { positions: [ { i: 1, j: 0 },  ], css_id: 'tinytable_css_m61z96eywvdy5ftajtlj',}, 
-          { positions: [ { i: 2, j: 0 },  ], css_id: 'tinytable_css_gpw16h636fsnsa0fn82d',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_g3s61n3w1hi7qiscmu59',}, 
-          { positions: [ { i: 2, j: 1 },  ], css_id: 'tinytable_css_ffh5iypub6mthh661okp',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_fdxrfthacj4ea6zskbzk',}, 
-          { positions: [ { i: 3, j: 1 },  ], css_id: 'tinytable_css_8on1jjva5py7d39169j3',}, 
-          { positions: [ { i: 3, j: 0 },  ], css_id: 'tinytable_css_0wq9e2hase5es7okvc37',}, 
+          { positions: [ { i: 3, j: 1 },  ], css_id: 'tinytable_css_2kt46nvivkd3p5bqt0dv',}, 
+          { positions: [ { i: 2, j: 1 },  ], css_id: 'tinytable_css_jdz9u0v53od31ql76477',}, 
+          { positions: [ { i: 1, j: 1 },  ], css_id: 'tinytable_css_k47yvd0v1l5787b9gs3y',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_qgzobajy7cbg4ccoqauv',}, 
+          { positions: [ { i: 3, j: 0 },  ], css_id: 'tinytable_css_9i1dobw4jlyzkwrloils',}, 
+          { positions: [ { i: 2, j: 0 },  ], css_id: 'tinytable_css_bn894unzntpd17cgbk34',}, 
+          { positions: [ { i: 1, j: 0 },  ], css_id: 'tinytable_css_fsnhgd373vzta8trwbsy',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_z8pnt6vzhpbt4jgrf790',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_gllsztsmpmu0swayqyw4(cell.i, cell.j, group.css_id);
+                  styleCell_qq9siaqkf7xokeedulrt(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_tw3x96kvtzl32oyr7np4, .table th.tinytable_css_tw3x96kvtzl32oyr7np4 { text-align: center; }
-      .table td.tinytable_css_m61z96eywvdy5ftajtlj, .table th.tinytable_css_m61z96eywvdy5ftajtlj { text-align: left; }
-      .table td.tinytable_css_gpw16h636fsnsa0fn82d, .table th.tinytable_css_gpw16h636fsnsa0fn82d { text-align: left; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_g3s61n3w1hi7qiscmu59, .table th.tinytable_css_g3s61n3w1hi7qiscmu59 { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_ffh5iypub6mthh661okp, .table th.tinytable_css_ffh5iypub6mthh661okp { text-align: center; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_fdxrfthacj4ea6zskbzk, .table th.tinytable_css_fdxrfthacj4ea6zskbzk { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_8on1jjva5py7d39169j3, .table th.tinytable_css_8on1jjva5py7d39169j3 { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_0wq9e2hase5es7okvc37, .table th.tinytable_css_0wq9e2hase5es7okvc37 { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_2kt46nvivkd3p5bqt0dv, .table th.tinytable_css_2kt46nvivkd3p5bqt0dv { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_jdz9u0v53od31ql76477, .table th.tinytable_css_jdz9u0v53od31ql76477 { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_k47yvd0v1l5787b9gs3y, .table th.tinytable_css_k47yvd0v1l5787b9gs3y { text-align: center; }
+      .table td.tinytable_css_qgzobajy7cbg4ccoqauv, .table th.tinytable_css_qgzobajy7cbg4ccoqauv { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_9i1dobw4jlyzkwrloils, .table th.tinytable_css_9i1dobw4jlyzkwrloils { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_bn894unzntpd17cgbk34, .table th.tinytable_css_bn894unzntpd17cgbk34 { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_fsnhgd373vzta8trwbsy, .table th.tinytable_css_fsnhgd373vzta8trwbsy { text-align: left; }
+      .table td.tinytable_css_z8pnt6vzhpbt4jgrf790, .table th.tinytable_css_z8pnt6vzhpbt4jgrf790 { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
 <div class="container">
-      <table class="table table-borderless" id="tinytable_gllsztsmpmu0swayqyw4" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_qq9siaqkf7xokeedulrt" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
 <thead><tr>
 <th scope="col"> </th>
                 <th scope="col">(1)</th>
@@ -1137,9 +1138,11 @@ R^2 = \frac{ESS}{TSS} = \frac{\Sigma(\hat{y}_i - \bar{y})^2}{\Sigma(y_i - \bar{y
 </div>
 <p>An <span class="math inline">\(R^2\)</span> of one means that all changes in the dependent variable are completely explained by changes in the independent variable. Here, it would mean that all changes to a country’s average life expectancy are explained through changes to the country’s logged GDP per capita.</p>
 <p>According to our model, 73.1% of changes in a country’s average life expectancy are explained through changes to the country’s logged GDP per capita.</p>
+</section></section></section></section><section id="quiz" class="level2"><h2 class="anchored" data-anchor-id="quiz">Quiz</h2>
+<p>Head over to ELMs to complete this session’s quiz. You need to score 80% on it to gain access to the next session’s quiz.</p>
 
 
-</section></section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

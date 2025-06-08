@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Session 8: Measuring Uncertainty – APAN Maths Camp</title>
+<title>Session 8: Measuring Uncertainty – APAN Summer Statistics Camp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">APAN Maths Camp</span>
+    <span class="navbar-title">APAN Summer Statistics Camp</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -309,6 +309,7 @@ window.Quarto = {
   <li><a href="#building-uncertainty-into-our-single-regression-model" id="toc-building-uncertainty-into-our-single-regression-model" class="nav-link" data-scroll-target="#building-uncertainty-into-our-single-regression-model">Building uncertainty into our single regression model</a></li>
   <li><a href="#connecting-this-to-our-research-question" id="toc-connecting-this-to-our-research-question" class="nav-link" data-scroll-target="#connecting-this-to-our-research-question">Connecting this to our research question</a></li>
   <li><a href="#reading-our-regression-outputs" id="toc-reading-our-regression-outputs" class="nav-link" data-scroll-target="#reading-our-regression-outputs">Reading our regression outputs</a></li>
+  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz">Quiz</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://hgoers.github.io/APAN_maths_camp/issues/new" class="toc-action"><i class="bi bi-git"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -1243,14 +1244,14 @@ Tip
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 8, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 },  ], css_id: 'tinytable_css_ug1s24wfiayooi4p3p1q',}, 
           { positions: [ { i: 12, j: 1 },  ], css_id: 'tinytable_css_uah8hzaaya9kjgwo46s3',}, 
-          { positions: [ { i: 12, j: 0 },  ], css_id: 'tinytable_css_j7h09tdwgb8nhc3fuibg',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_fbax5o84i3nri9i4l512',}, 
           { positions: [ { i: 4, j: 1 },  ], css_id: 'tinytable_css_dvymwqtm7a0esyt51qfw',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_assn478kh8foeaaxt7fx',}, 
-          { positions: [ { i: 4, j: 0 },  ], css_id: 'tinytable_css_6rsryczsm42xqg1sq89v',}, 
           { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 8, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 },  ], css_id: 'tinytable_css_52rers5efg8xvt6x742x',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_assn478kh8foeaaxt7fx',}, 
+          { positions: [ { i: 12, j: 0 },  ], css_id: 'tinytable_css_j7h09tdwgb8nhc3fuibg',}, 
+          { positions: [ { i: 4, j: 0 },  ], css_id: 'tinytable_css_6rsryczsm42xqg1sq89v',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 8, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 },  ], css_id: 'tinytable_css_ug1s24wfiayooi4p3p1q',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_fbax5o84i3nri9i4l512',}, 
           ];
 
           // Loop over the arrays to style the cells
@@ -1262,14 +1263,14 @@ Tip
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_ug1s24wfiayooi4p3p1q, .table th.tinytable_css_ug1s24wfiayooi4p3p1q { text-align: left; }
       .table td.tinytable_css_uah8hzaaya9kjgwo46s3, .table th.tinytable_css_uah8hzaaya9kjgwo46s3 { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_j7h09tdwgb8nhc3fuibg, .table th.tinytable_css_j7h09tdwgb8nhc3fuibg { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_fbax5o84i3nri9i4l512, .table th.tinytable_css_fbax5o84i3nri9i4l512 { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
       .table td.tinytable_css_dvymwqtm7a0esyt51qfw, .table th.tinytable_css_dvymwqtm7a0esyt51qfw { text-align: center; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_assn478kh8foeaaxt7fx, .table th.tinytable_css_assn478kh8foeaaxt7fx { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_6rsryczsm42xqg1sq89v, .table th.tinytable_css_6rsryczsm42xqg1sq89v { text-align: left; border-bottom: solid black 0.05em; }
       .table td.tinytable_css_52rers5efg8xvt6x742x, .table th.tinytable_css_52rers5efg8xvt6x742x { text-align: center; }
+      .table td.tinytable_css_assn478kh8foeaaxt7fx, .table th.tinytable_css_assn478kh8foeaaxt7fx { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_j7h09tdwgb8nhc3fuibg, .table th.tinytable_css_j7h09tdwgb8nhc3fuibg { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_6rsryczsm42xqg1sq89v, .table th.tinytable_css_6rsryczsm42xqg1sq89v { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_ug1s24wfiayooi4p3p1q, .table th.tinytable_css_ug1s24wfiayooi4p3p1q { text-align: left; }
+      .table td.tinytable_css_fbax5o84i3nri9i4l512, .table th.tinytable_css_fbax5o84i3nri9i4l512 { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
 <div class="container">
       <table class="table table-borderless" id="tinytable_14s8t28k1zgx1m5i3svu" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
@@ -1333,6 +1334,8 @@ Tip
 <!-- hack to avoid NA insertion in last line -->
 </div>
 </div>
+</section><section id="quiz" class="level2"><h2 class="anchored" data-anchor-id="quiz">Quiz</h2>
+<p>Head over to ELMs to complete this session’s quiz. You need to score 80% on it to gain access to the next session’s quiz.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
